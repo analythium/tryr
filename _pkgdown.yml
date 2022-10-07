@@ -1,0 +1,36 @@
+url: https://hub.analythium.io/tryr
+
+home:
+  title: "tryr: Manage R Configuration at the Command Line"
+  description: |
+    Configuration management using files (JSON, YAML, separated text),
+    JSON strings, and command line arguments.
+
+template:
+  bootstrap: 5
+  includes:
+    in_header: |
+      <script src="https://cdn.usefathom.com/script.js" data-site="XXTESXHY" defer></script>
+      <link rel="icon" href="https://hub.analythium.io/assets/logo/grays/favicon.ico" />
+  opengraph:
+    image:
+      src: https://hub.analythium.io/assets/web/tryr.png
+      alt: "tryr: Try/catch mechanisms for Plumber APIs"
+    twitter:
+      creator: "@psolymos"
+      site: "@analythium"
+      card: summary_large_image
+
+navbar:
+  structure:
+    right: [search, twitter, github]
+  components:
+    twitter:
+      icon: fa-twitter
+      href: http://twitter.com/analythium
+      aria-label: Twitter
+    github:
+      icon: fa-github
+      href: http://github.com/analythium
+      aria-label: GitHub
+
