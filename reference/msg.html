@@ -93,19 +93,19 @@ A side effect is a log message to STDIO or STDERR.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2022-10-07 05:00:21.85 [INFO   ] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2022-10-16 20:54:10.41 [INFO   ] Success - We did it!</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, <span class="st">"SUCCESS"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Crap"</span>, <span class="st">"Oh no ..."</span>, <span class="st">"ERROR"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, <span class="st">"SUCCESS"</span>, json<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, json<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"ts":"2022-10-07 05:00:21.86","ut":1665118821,"level":"INFO","value":3,"title":"Success","message":"We did it!"}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"ts":"2022-10-16 20:54:10.41","ut":1665953650,"level":"INFO","value":3,"title":"Success","message":"We did it!"}</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Crap"</span>, <span class="st">"Oh no ..."</span>, <span class="st">"ERROR"</span>, json<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2022-10-07 05:00:21 [INFO   ] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2022-10-16 20:54:10 [INFO   ] Success - We did it!</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, digits <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2022-10-07 05:00:21.871148 [INFO   ] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2022-10-16 20:54:10.42627 [INFO   ] Success - We did it!</span>
 <span class="r-in"><span> </span></span>
 </code></pre></div>
     </div>
