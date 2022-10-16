@@ -6,6 +6,7 @@
 #' 
 #' @param res The response object.
 #' @param expr An expression.
+#' @param x The return value from `try(expr)`.
 #' @param silent Should the report of error messages be suppressed by [try()]?
 #' @param ... Arguments passed to [try()]
 #' 
@@ -23,26 +24,25 @@
 #' 
 #' f <- function() stop("Stop!!!")
 #' http_try(res, {f()})
+#' http_try_handler(res, {try(f())})
 #' 
+#' @name http-try
+NULL
+
+
+#' @rdname http-try
 #' @export 
-http_try <- function(res, expr, silent = TRUE, ...) {
+http_try_handler <- function(res, x) {
     if (missing(res))
         res <- list()
-    x <- try(
-        expr,
-        silent = silent,
-        ...
-    )
     if (inherits(x, "try-error")) {
         if (!inherits(attr(x, "condition"), "http_error")) {
             msg(
                 title = paste0(
                     "Status 500: ", 
                     http_status_codes["500", "message"]),
+                message = geterrmessage(),
                 level = "ERROR"
-            )
-            message(
-                geterrmessage()
             )
             res$status <- 500L
             i <- as.list(
@@ -86,4 +86,17 @@ http_try <- function(res, expr, silent = TRUE, ...) {
             )
         }
     }
+}
+
+#' @rdname http-try
+#' @export 
+http_try <- function(res, expr, silent = TRUE, ...) {
+    http_try_handler(
+        res = res,
+        x = try(
+            expr,
+            silent = silent,
+            ...
+        )
+    )
 }

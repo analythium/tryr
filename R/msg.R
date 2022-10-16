@@ -29,20 +29,22 @@ msg <- function(
     json = NULL,
     digits = NULL
 ) {
+    title <- trimws(gsub("[\r\n]", " ", title))
+    message <- trimws(gsub("[\r\n]", " ", message))
     if (is.null(json)) {
         json <- FALSE
-        OPT_FORMAT <- getOption("tryr.log.format")
-        if (!is.null(OPT_FORMAT))
-            json <- tolower(OPT_FORMAT) == "json"
+        # OPT_FORMAT <- getOption("tryr.log.format")
+        # if (!is.null(OPT_FORMAT))
+        #     json <- tolower(OPT_FORMAT) == "json"
         ENV_FORMAT <- Sys.getenv("TRYR_LOG_FORMAT", "TXT")
         if (!is.null(ENV_FORMAT))
             json <- tolower(ENV_FORMAT) == "json"
     }
     if (is.null(digits)) {
         digits <- 2L
-        OPT_DIGITS <- getOption("tryr.log.digits")
-        if (!is.null(OPT_DIGITS))
-            digits <- as.integer(OPT_DIGITS)
+        # OPT_DIGITS <- getOption("tryr.log.digits")
+        # if (!is.null(OPT_DIGITS))
+        #     digits <- as.integer(OPT_DIGITS)
         ENV_DIGITS <- Sys.getenv("TRYR_LOG_DIGITS")
         if (ENV_DIGITS != "")
             digits <- as.integer(ENV_DIGITS)
