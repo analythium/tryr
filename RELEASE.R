@@ -1,16 +1,16 @@
-# Check spelling
-dict <- hunspell::dictionary('en_CA')
-devtools::spell_check()
-spelling::update_wordlist()
-
 # Compile README.md using latest version of package
 devtools::build_readme()
+devtools::document()
+
+# Check spelling
+dict <- hunspell::dictionary('en_US')
+devtools::spell_check()
+spelling::update_wordlist()
 
 # Check/update URLS
 urlchecker::url_check()
 
 # local checks
-devtools::document()
 devtools::check()
 
 devtools::install()
