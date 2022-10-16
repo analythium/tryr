@@ -35,6 +35,7 @@ http_error <- function(
     i[["message"]] <- paste0(
         "Status ", status, ": ", i[["message"]], 
         ifelse(!is.null(message), " - ", ""), message)
+    i[] <- lapply(i, jsonlite::unbox)
     stop(
         structure(
             i,
@@ -60,6 +61,7 @@ http_success <- function(
         ifelse(!is.null(message), " - ", ""), message)
     if (!is.null(body))
         i$body <- body
+    i[] <- lapply(i, jsonlite::unbox)
     structure(
         i,
         class = "http_success")

@@ -45,9 +45,11 @@ http_try <- function(res, expr, silent = TRUE, ...) {
                 geterrmessage()
             )
             res$status <- 500L
-            as.list(
+            i <- as.list(
                 http_status_codes["500",]
             )
+            i[] <- lapply(i, jsonlite::unbox)
+            i
         } else {
             msg(
                 title = paste0(
@@ -56,15 +58,17 @@ http_try <- function(res, expr, silent = TRUE, ...) {
                 level = "ERROR"
             )
             res$status <- attr(x, "condition")$status
-            unclass(
+            i <- unclass(
                 attr(x, "condition")
             )
+            i[] <- lapply(i, jsonlite::unbox)
+            i
         }
     } else {
         if (!inherits(x, "http_success")) {
             msg(
                 title = paste0(
-                    "Status200: ", 
+                    "Status 200: ", 
                     http_status_codes["200", "message"]),
                 level = "SUCCESS"
             )
@@ -78,7 +82,7 @@ http_try <- function(res, expr, silent = TRUE, ...) {
             )
             res$status <- x$status
             unclass(
-                x
+                x # no unboxing applied
             )
         }
     }
