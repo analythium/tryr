@@ -8,7 +8,7 @@ foo <- function(x) {
 }
 
 bar <- function(x) {
-  x <- as.numeric(x)
+  x <- suppressWarnings(as.numeric(x))
   if (is.na(x))
     tryr::http_error(400L, "Unexpected input.")
   foo(x)
