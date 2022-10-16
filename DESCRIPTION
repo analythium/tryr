@@ -15,6 +15,7 @@ Description: Differentiate client errors (4xx)
   from server errors (5xx) with a simple built-in
   logging mechanism.
 License: MIT + file LICENSE
+Imports: jsonlite
 LazyLoad: yes
 RoxygenNote: 7.2.1
 Encoding: UTF-8
