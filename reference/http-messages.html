@@ -87,11 +87,11 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">http_error</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error : Status 500: Internal Server Error</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error : Internal Server Error</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">http_error</span><span class="op">(</span><span class="fl">400</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error : Status 400: Bad Request</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error : Bad Request</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">http_error</span><span class="op">(</span><span class="fl">400</span>, <span class="st">"Sorry"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error : Status 400: Bad Request - Sorry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error : Bad Request - Sorry</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">http_success</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $category</span>
@@ -101,7 +101,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [x] 200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $message</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [x] "Status 200: OK"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [x] "OK"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "http_success"</span>
@@ -113,7 +113,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [x] 201</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $message</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [x] "Status 201: Created"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [x] "Created"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "http_success"</span>
@@ -125,7 +125,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [x] 201</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $message</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [x] "Status 201: Created - Awesome"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [x] "Created - Awesome"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "http_success"</span>
@@ -137,7 +137,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [x] 201</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $message</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [x] "Status 201: Created - Awesome"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [x] "Created - Awesome"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $body</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $body$name</span>
