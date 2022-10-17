@@ -4,7 +4,7 @@ output:
     variant: gfm
 ---
 
-```{r, echo = FALSE}
+```{r, echo=FALSE,strip.white=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#",
@@ -12,7 +12,22 @@ knitr::opts_chunk$set(
 )
 set.seed(0)
 #knitr::opts_knit$set(root.dir = 'inst/examples')
+
+post <- function(URL, out, err) {
+  r <- httr::POST(URL)
+  cat("--- Request ---\n")
+  cat("curl -X POST \"", URL, "\"\n", sep="")
+  cat("--- Response ---\n")
+  cat(httr::content(r, "text", "application/json", "UTF-8"))
+  cat("\n--- STDOUT ---\n")
+  cat(readLines(out), sep="\n")
+  cat("--- STDERR ---\n")
+  cat(readLines(err), sep="\n")
+  invisible()
+}
+tmp <- tempdir()
 ```
+
 
 # tryr: Client/Server Error Handling for Plumber APIs
 
@@ -32,12 +47,13 @@ Let's see this for an example API:
 
 ```R
 plumber::pr("inst/examples/plumber.R") |>
+  plumber::pr_set_debug(FALSE) |>
   plumber::pr_run(port=8000)
 ```
 
 ### Default behavior
 
-We use a very simple handler calling the function `foo()`:
+We use a very simple handler calling the function `foo()`: note that the contents of the response also depend on the `pr_set_debug()` settings that depends on whether we use interactive or non-interactive session. Therefore we turned that off in our interactive examples. 
 
 ```R
 foo <- function(x) {
@@ -55,33 +71,73 @@ function(x) {
 
 Here are the responses from this `/test` endpoint:
 
-```bash
-curl --data "x=0" "http://localhost:8000/test"
-# --- Response body ---
-# ["Success!"]
 
-curl --data "x=-1" "http://localhost:8000/test"
-# --- Response body ---
-# {"error":"500 - Internal server error",
-# "message":"Error in foo(x = x): 'x' is too low.\n"}
-# --- STDOUT ---
-# <simpleError in foo(x = x): 'x' is too low.>
-# --- STDERR ---
-# Warning in foo(x = x) : NAs introduced by coercion
+```{r, echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+    plumber::pr("inst/examples/plumber.R") |>
+      plumber::pr_set_debug(FALSE) |>
+      plumber::pr_run(port=8000)
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/test?x=0"
+post(URL, out, err)
+o <- rx$kill()
+```
 
-curl --data "x=a" "http://localhost:8000/test"
-# --- Response body ---
-# {"error":"500 - Internal server error",
-# "message":"Error in if (x < 0) stop(\"'x' is too low.\"): missing value where TRUE/FALSE needed\n"}
-# --- STDOUT ---
-# <simpleError in if (x < 0) stop("'x' is too low."): missing value where TRUE/FALSE needed>
+```{r, echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+    plumber::pr("inst/examples/plumber.R") |>
+      plumber::pr_set_debug(FALSE) |>
+      plumber::pr_run(port=8000)
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/test?x=-1"
+post(URL, out, err)
+o <- rx$kill()
+```
 
-curl --data "" "http://localhost:8000/test"
-# --- Response body ---
-# {"error":"500 - Internal server error",
-# "message":"Error in foo(x = x): argument \"x\" is missing, with no default\n"}
-# --- STDOUT ---
-# <simpleError in foo(x = x): argument "x" is missing, with no default>
+```{r, echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+    plumber::pr("inst/examples/plumber.R") |>
+      plumber::pr_set_debug(FALSE) |>
+      plumber::pr_run(port=8000)
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/test?x=a"
+post(URL, out, err)
+o <- rx$kill()
+```
+
+```{r, echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+    plumber::pr("inst/examples/plumber.R") |>
+      plumber::pr_set_debug(FALSE) |>
+      plumber::pr_run(port=8000)
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/test?x="
+post(URL, out, err)
+o <- rx$kill()
 ```
 
 As you can see, the response has a generic 500 HTTP status irrespective of nature of the error. Moreover the response contains the error message from R. On the back end, the error is printed to STDOUT, whereas a warning got printed to STDERR.
@@ -116,39 +172,72 @@ function(res, x) {
 
 Here are the outputs from the `/try` endpoint:
 
-```bash
-curl --data "x=0" "http://localhost:8000/try"
-# --- Response body ---
-# ["Success!"]
-# --- STDERR ---
-# 2022-10-16 14:18:44.46 [SUCCESS] Status 200: OK
+```{r echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+    plumber::pr("inst/examples/plumber.R") |>
+      plumber::pr_set_debug(FALSE) |>
+      plumber::pr_run(port=8000)
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/try?x=0"
+post(URL, out, err)
+o <- rx$kill()
+```
 
-curl --data "x=-1" "http://localhost:8000/try"
-# --- Response body ---
-# {"category":"Server Error",
-# "status":500,
-# "message":"Internal Server Error"}
-# --- STDERR ---
-# 2022-10-16 14:18:48.98 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
+```{r, echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+    plumber::pr("inst/examples/plumber.R") |>
+      plumber::pr_set_debug(FALSE) |>
+      plumber::pr_run(port=8000)
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/try?x=-1"
+post(URL, out, err)
+o <- rx$kill()
+```
 
-curl --data "x=a" "http://localhost:8000/try"
-# --- Response body ---
-# "category":"Client Error",
-# "status":400,
-# "message":"Status 400: Bad Request - Unexpected input."}
-# --- STDERR ---
-# 2022-10-16 14:18:54.10 [ERROR  ] Status 400: Status 400: Bad Request - Unexpected input.
-# 2022-10-15 23:45:32.10 [ERROR  ] Status 400: Status 400: Bad Request - Unexpected input.
+```{r, echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+    plumber::pr("inst/examples/plumber.R") |>
+      plumber::pr_set_debug(FALSE) |>
+      plumber::pr_run(port=8000)
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/try?x=a"
+post(URL, out, err)
+o <- rx$kill()
+```
 
-curl --data "" "http://localhost:8000/try"
-# --- Response body ---
-# {"category":"Server Error",
-# "status":500,
-# "message":"Status 500: Internal Server Error"}
-# --- STDERR ---
-# 2022-10-16 14:18:58.87 [ERROR  ] Status 500: Status 500: Internal Server Error
-
-curl --data "" "http://localhost:8000/try"
+```{r, echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+    plumber::pr("inst/examples/plumber.R") |>
+      plumber::pr_set_debug(FALSE) |>
+      plumber::pr_run(port=8000)
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/try?x="
+post(URL, out, err)
+o <- rx$kill()
 ```
 
 Now we can see that:
@@ -193,6 +282,7 @@ Sys.setenv(
   TRYR_LOG_DIGITS = "6"
 )
 plumber::pr("inst/examples/plumber.R") |>
+  plumber::pr_set_debug(FALSE) |>
   plumber::pr_hooks(
     list(
       preroute = function(data, req, res) {
@@ -211,28 +301,142 @@ plumber::pr("inst/examples/plumber.R") |>
 
 Output:
 
-```bash
-curl --data "x=0" "http://localhost:8000/try"
-# --- Response body ---
-# ["Success!"]
-
-
-curl --data "x=-1" "http://localhost:8000/try"
-# --- Response body ---
-# {"category":"Server Error","status":500,"message":"Internal Server Error"}
-# --- STDOUT ---
-# {"ts":"2022-10-16 14:29:48.65461","ut":1665952188,"level":"INFO","value":3,"title":"POST /try","message":""}
-# --- STDERR ---
-# {"ts":"2022-10-16 14:29:48.688595","ut":1665952188,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
-
-curl --data "x=a" "http://localhost:8000/try"
-# --- Response body ---
-# {"category":"Client Error","status":400,"message":"Status 400: Bad Request - Unexpected input."}
-# --- STDOUT ---
-# {"ts":"2022-10-16 14:29:51.340456","ut":1665952191,"level":"INFO","value":3,"title":"POST /try","message":""}
-# --- STDERR ---
-# {"ts":"2022-10-16 14:29:51.341885","ut":1665952191,"level":"ERROR","value":6,"title":"Status 400: Status 400: Bad Request - Unexpected input.","message":""}
+```{r echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+  Sys.setenv(
+    TRYR_LOG_FORMAT = "JSON",
+    TRYR_LOG_DIGITS = "6"
+  )
+  plumber::pr("inst/examples/plumber.R") |>
+    plumber::pr_set_debug(FALSE) |>
+    plumber::pr_hooks(
+      list(
+        preroute = function(data, req, res) {
+          tryr::msg(
+            title = paste(
+              method = req$REQUEST_METHOD, 
+              path = req$PATH_INFO
+            ),
+            level = "INFO"
+          )
+        }
+      )
+    ) |>
+    plumber::pr_run(port=8000)
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/try?x=0"
+post(URL, out, err)
+o <- rx$kill()
 ```
+
+```{r echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+  Sys.setenv(
+    TRYR_LOG_FORMAT = "JSON",
+    TRYR_LOG_DIGITS = "6"
+  )
+  plumber::pr("inst/examples/plumber.R") |>
+    plumber::pr_set_debug(FALSE) |>
+    plumber::pr_hooks(
+      list(
+        preroute = function(data, req, res) {
+          tryr::msg(
+            title = paste(
+              method = req$REQUEST_METHOD, 
+              path = req$PATH_INFO
+            ),
+            level = "INFO"
+          )
+        }
+      )
+    ) |>
+    plumber::pr_run(port=8000)
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/try?x=-1"
+post(URL, out, err)
+o <- rx$kill()
+```
+
+```{r echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+  Sys.setenv(
+    TRYR_LOG_FORMAT = "JSON",
+    TRYR_LOG_DIGITS = "6"
+  )
+  plumber::pr("inst/examples/plumber.R") |>
+    plumber::pr_set_debug(FALSE) |>
+    plumber::pr_hooks(
+      list(
+        preroute = function(data, req, res) {
+          tryr::msg(
+            title = paste(
+              method = req$REQUEST_METHOD, 
+              path = req$PATH_INFO
+            ),
+            level = "INFO"
+          )
+        }
+      )
+    ) |>
+    plumber::pr_run(port=8000)
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/try?x=a"
+post(URL, out, err)
+o <- rx$kill()
+```
+
+```{r echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+  Sys.setenv(
+    TRYR_LOG_FORMAT = "JSON",
+    TRYR_LOG_DIGITS = "6"
+  )
+  plumber::pr("inst/examples/plumber.R") |>
+    plumber::pr_set_debug(FALSE) |>
+    plumber::pr_hooks(
+      list(
+        preroute = function(data, req, res) {
+          tryr::msg(
+            title = paste(
+              method = req$REQUEST_METHOD, 
+              path = req$PATH_INFO
+            ),
+            level = "INFO"
+          )
+        }
+      )
+    ) |>
+    plumber::pr_run(port=8000)
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/try?x="
+post(URL, out, err)
+o <- rx$kill()
+```
+
 
 Structured errors are handled by the `http_error()` function that uses default error messages as defined in the `http_status_codes` data frame.
 
