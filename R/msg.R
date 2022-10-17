@@ -65,13 +65,14 @@ msg <- function(
     if (is.null(levels[tolower(ENV_LEVEL)])) {
         stop("The TRYR_LOG_LEVEL environment variable is incorrectly set.")
     }
-    dt <- as.character(Sys.time())
+    st <- Sys.time()
+    dt <- as.character(st)
     if (json) {
         msg <- paste0(
             "{\"ts\":\"",
             dt,
             "\",\"ut\":",
-            as.integer(Sys.time()),
+            as.numeric(st),
             ",\"level\":\"",
             level,
             "\",\"value\":",
