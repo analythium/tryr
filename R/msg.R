@@ -1,4 +1,4 @@
-#' Message to STDIO or STDERR
+#' Message to STDOUT or STDERR
 #' 
 #' @param title Title.
 #' @param message Message.
@@ -7,7 +7,7 @@
 #' @param digits Digits for seconds (default `2L`).
 #' 
 #' @return `TRUE` or `FALSE`: did a log event happened?
-#'   A side effect is a log message to STDIO or STDERR.
+#'   A side effect is a log message to STDOUT or STDERR.
 #' 
 #' @examples
 #' msg("Success", "We did it!")
@@ -29,8 +29,8 @@ msg <- function(
     json = NULL,
     digits = NULL
 ) {
-    title <- trimws(gsub("[\r\n]", " ", title))
-    message <- trimws(gsub("[\r\n]", " ", message))
+    title <- oneline(title)
+    message <- oneline(message)
     if (is.null(json)) {
         json <- FALSE
         # OPT_FORMAT <- getOption("tryr.log.format")
@@ -101,7 +101,7 @@ msg <- function(
             "\n")
     }
     if (as.integer(levels[tolower(ENV_LEVEL)]) <= as.integer(levels[tolower(level)])) {
-        if (as.integer(levels[tolower(level)]) > 3L) {
+        if (as.integer(levels[tolower(level)]) > 4L) {
             cat(msg, file = stderr())
         } else {
             cat(msg, file = stdout())
@@ -110,4 +110,14 @@ msg <- function(
     } else {
         invisible(FALSE)
     }
+}
+
+#' Remove newlines and leading/trailing white space from a string
+#' 
+#' @param x A string, possibly a vector
+#' 
+#' @return An atomic character vector.
+#' @noRd
+oneline <- function(x) {
+    trimws(gsub("[\r\n]", " ", paste(as.character(x), collapse = " ")))
 }

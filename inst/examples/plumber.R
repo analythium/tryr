@@ -23,7 +23,7 @@ function(x) {
 function(res, x) {
   tryr::http_try(res, {
     if (missing(x))
-      tryr::http_error()
+      stop("'x' is missing", call. = FALSE)
     bar(x = x)
   })
 }
