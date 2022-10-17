@@ -2,7 +2,7 @@
 % Please edit documentation in R/msg.R
 \name{msg}
 \alias{msg}
-\title{Message to STDIO or STDERR}
+\title{Message to STDOUT or STDERR}
 \usage{
 msg(title = "", message = "", level = "INFO", json = NULL, digits = NULL)
 }
@@ -19,10 +19,10 @@ msg(title = "", message = "", level = "INFO", json = NULL, digits = NULL)
 }
 \value{
 \code{TRUE} or \code{FALSE}: did a log event happened?
-A side effect is a log message to STDIO or STDERR.
+A side effect is a log message to STDOUT or STDERR.
 }
 \description{
-Message to STDIO or STDERR
+Message to STDOUT or STDERR
 }
 \examples{
 msg("Success", "We did it!")

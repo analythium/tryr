@@ -1,5 +1,9 @@
 # tryr: Client/Server Error Handling for Plumber APIs
 
+``` r
+remotes::install_github("analythium/tryr")
+```
+
 In client/server setups, the client might send user input that is
 incorrect. In such cases the front end application needs to know that
 the 4xx error status indicates that the message needs to be relayed to
@@ -91,7 +95,7 @@ inconveniences:
 
 ``` r
 bar <- function(x) {
-  x <- as.numeric(x)
+  x <- suppressWarnings(as.numeric(x))
   if (is.na(x))
     tryr::http_error(400L, "Unexpected input.")
   foo(x)
@@ -101,7 +105,7 @@ bar <- function(x) {
 function(res, x) {
   tryr::http_try(res, {
     if (missing(x))
-      tryr::http_error()
+      stop("'x' is missing", call. = FALSE)
     bar(x = x)
   })
 }
@@ -114,7 +118,7 @@ curl --data "x=0" "http://localhost:8000/try"
 # --- Response body ---
 # ["Success!"]
 # --- STDERR ---
-# 2022-10-15 23:45:22.65 [SUCCESS] Status 200: OK
+# 2022-10-16 14:18:44.46 [SUCCESS] Status 200: OK
 
 curl --data "x=-1" "http://localhost:8000/try"
 # --- Response body ---
@@ -122,8 +126,7 @@ curl --data "x=-1" "http://localhost:8000/try"
 # "status":500,
 # "message":"Internal Server Error"}
 # --- STDERR ---
-# 2022-10-15 23:45:26.88 [ERROR  ] Status 500: Internal Server Error
-# Error in foo(x) : 'x' is too low.
+# 2022-10-16 14:18:48.98 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
 
 curl --data "x=a" "http://localhost:8000/try"
 # --- Response body ---
@@ -131,7 +134,7 @@ curl --data "x=a" "http://localhost:8000/try"
 # "status":400,
 # "message":"Status 400: Bad Request - Unexpected input."}
 # --- STDERR ---
-# Warning in bar(x = x) : NAs introduced by coercion
+# 2022-10-16 14:18:54.10 [ERROR  ] Status 400: Status 400: Bad Request - Unexpected input.
 # 2022-10-15 23:45:32.10 [ERROR  ] Status 400: Status 400: Bad Request - Unexpected input.
 
 curl --data "" "http://localhost:8000/try"
@@ -140,7 +143,9 @@ curl --data "" "http://localhost:8000/try"
 # "status":500,
 # "message":"Status 500: Internal Server Error"}
 # --- STDERR ---
-# 2022-10-15 23:45:36.61 [ERROR  ] Status 500: Status 500: Internal Server Error
+# 2022-10-16 14:18:58.87 [ERROR  ] Status 500: Status 500: Internal Server Error
+
+curl --data "" "http://localhost:8000/try"
 ```
 
 Now we can see that:
@@ -210,20 +215,46 @@ plumber::pr("inst/examples/plumber.R") |>
   plumber::pr_run(port=8000)
 ```
 
+Output:
+
 ``` bash
 curl --data "x=0" "http://localhost:8000/try"
 # --- Response body ---
-# {"ts":"2022-10-16 14:08:00.00545",
-# "ut":1665950880,
-# "level":"INFO",
-# "value":3,
-# "title":"POST /try",
-# "message":""}
+# ["Success!"]
+
+
+curl --data "x=-1" "http://localhost:8000/try"
+# --- Response body ---
+# {"category":"Server Error","status":500,"message":"Internal Server Error"}
+# --- STDOUT ---
+# {"ts":"2022-10-16 14:29:48.65461","ut":1665952188,"level":"INFO","value":3,"title":"POST /try","message":""}
 # --- STDERR ---
-# {"ts":"2022-10-16 14:08:00.006481",
-# "ut":1665950880,
-# "level":"SUCCESS",
-# "value":4,
-# "title":"Status 200: OK",
-# "message":""}
+# {"ts":"2022-10-16 14:29:48.688595","ut":1665952188,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
+
+curl --data "x=a" "http://localhost:8000/try"
+# --- Response body ---
+# {"category":"Client Error","status":400,"message":"Status 400: Bad Request - Unexpected input."}
+# --- STDOUT ---
+# {"ts":"2022-10-16 14:29:51.340456","ut":1665952191,"level":"INFO","value":3,"title":"POST /try","message":""}
+# --- STDERR ---
+# {"ts":"2022-10-16 14:29:51.341885","ut":1665952191,"level":"ERROR","value":6,"title":"Status 400: Status 400: Bad Request - Unexpected input.","message":""}
 ```
+
+Structured errors are handled by the `http_error()` function that uses
+default error messages as defined in the `http_status_codes` data frame.
+
+The `http_success()` works similarly but it does not produce an error.
+It can also pass a `body` argument. This is useful if we need to return
+simple status messages when responding to webhooks during async
+execution.
+
+## Readings
+
+<https://cran.r-project.org/web/packages/tryCatchLog/vignettes/tryCatchLog-intro.html>
+
+## Considerations
+
+STDOUT is buffered, needs a flush. STDERR is unbuffered, more immediate
+<https://unix.stackexchange.com/questions/331611/do-progress-reports-logging-information-belong-on-stderr-or-stdout>
+
+But the API does not fail

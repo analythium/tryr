@@ -16,6 +16,10 @@ set.seed(0)
 
 # tryr: Client/Server Error Handling for Plumber APIs
 
+```R
+remotes::install_github("analythium/tryr")
+```
+
 In client/server setups, the client might send user input that is incorrect. In such cases the front end application needs to know that the 4xx error status indicates that the message needs to be relayed to the user to correct the input.
 
 As opposed to this, when the server fails due to unexpected reasons, the client only needs to know that an error with 5xx status happened. Logs are essential for backend developers to diagnose the problem.
@@ -104,7 +108,7 @@ bar <- function(x) {
 function(res, x) {
   tryr::http_try(res, {
     if (missing(x))
-      tryr::http_error()
+      stop("'x' is missing", call. = FALSE)
     bar(x = x)
   })
 }
@@ -143,6 +147,8 @@ curl --data "" "http://localhost:8000/try"
 # "message":"Status 500: Internal Server Error"}
 # --- STDERR ---
 # 2022-10-16 14:18:58.87 [ERROR  ] Status 500: Status 500: Internal Server Error
+
+curl --data "" "http://localhost:8000/try"
 ```
 
 Now we can see that:
@@ -228,10 +234,17 @@ curl --data "x=a" "http://localhost:8000/try"
 # {"ts":"2022-10-16 14:29:51.341885","ut":1665952191,"level":"ERROR","value":6,"title":"Status 400: Status 400: Bad Request - Unexpected input.","message":""}
 ```
 
-Structured arrors are handled by the `http_error()` function that uses default error messages as defined in the `http_status_codes` data frame.
+Structured errors are handled by the `http_error()` function that uses default error messages as defined in the `http_status_codes` data frame.
 
 The `http_success()` works similarly but it does not produce an error. It can also pass a `body` argument. This is useful if we need to return simple status messages when responding to webhooks during async execution.
 
 ## Readings
 
 <https://cran.r-project.org/web/packages/tryCatchLog/vignettes/tryCatchLog-intro.html>
+
+## Considerations
+
+STDOUT is buffered, needs a flush. STDERR is unbuffered, more immediate
+<https://unix.stackexchange.com/questions/331611/do-progress-reports-logging-information-belong-on-stderr-or-stdout>
+
+But the API does not fail
