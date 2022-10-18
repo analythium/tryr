@@ -54,14 +54,10 @@ ui <- fluidPage(
         .iframe-container {
             height: 100vh;
             overflow: hidden;
-            position: relative;
         }
         .iframe-container iframe {
             border: 0;
             height: 100%;
-            left: 0;
-            position: absolute;
-            top: 0;
             width: 100%;
         }"))
     ),
