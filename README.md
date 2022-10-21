@@ -134,7 +134,7 @@ Here are the outputs from the `/try` endpoint:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # 2022-10-21 11:44:17.93 [SUCCESS] Status 200: OK
+    # 2022-10-21 11:52:10.29 [SUCCESS] Status 200: OK
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
@@ -148,7 +148,7 @@ Here are the outputs from the `/try` endpoint:
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 2022-10-21 11:44:19.00 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
+    # 2022-10-21 11:52:11.35 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
@@ -159,7 +159,7 @@ Here are the outputs from the `/try` endpoint:
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 2022-10-21 11:44:20.07 [ERROR  ] Status 400: Bad Request - Unexpected input.
+    # 2022-10-21 11:52:12.42 [ERROR  ] Status 400: Bad Request - Unexpected input.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
@@ -170,7 +170,7 @@ Here are the outputs from the `/try` endpoint:
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 2022-10-21 11:44:21.14 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
+    # 2022-10-21 11:52:13.49 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
 
 Now we can see that:
 
@@ -247,8 +247,8 @@ Output:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # {"ts":"2022-10-21 11:44:22.190643","ut":1666374262.19064,"level":"INFO","value":3,"title":"POST /try","message":""}
-    # {"ts":"2022-10-21 11:44:22.219624","ut":1666374262.21962,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
+    # {"ts":"2022-10-21 11:52:14.538342","ut":1666374734.53834,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"ts":"2022-10-21 11:52:14.565371","ut":1666374734.56537,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
@@ -258,33 +258,33 @@ Output:
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"ts":"2022-10-21 11:44:23.262025","ut":1666374263.26203,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"ts":"2022-10-21 11:52:15.611495","ut":1666374735.6115,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # {"ts":"2022-10-21 11:44:23.289186","ut":1666374263.28919,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
+    # {"ts":"2022-10-21 11:52:15.64203","ut":1666374735.64203,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
     # --- Response ---
     # {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}
     # --- STDOUT ---
-    # {"ts":"2022-10-21 11:44:24.337541","ut":1666374264.33754,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"ts":"2022-10-21 11:52:16.682497","ut":1666374736.6825,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # {"ts":"2022-10-21 11:44:24.367991","ut":1666374264.36799,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
+    # {"ts":"2022-10-21 11:52:16.711323","ut":1666374736.71132,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"ts":"2022-10-21 11:44:25.424462","ut":1666374265.42446,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"ts":"2022-10-21 11:52:17.755378","ut":1666374737.75538,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # {"ts":"2022-10-21 11:44:25.455751","ut":1666374265.45575,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
+    # {"ts":"2022-10-21 11:52:17.785048","ut":1666374737.78505,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
 
 Structured errors are handled by the `http_error()` function that uses
 default error messages as defined in the `http_status_codes` data frame.
@@ -294,13 +294,28 @@ It can also pass a `body` argument. This is useful if we need to return
 simple status messages when responding to webhooks during async
 execution.
 
-## Readings
+## See the action
+
+The `inst/examples` folder contains Shiny apps that you can edit and use
+to explore the differences between Plumber’s default error handling
+(`/test` endpoint) and the `tryr` approach (`/tryr` endpoint). See the
+response, request, STDOUT and STDERR from the calls:
+
+``` r
+source("inst/examples/app.R")
+```
+
+The second app is more general. You can edit the `plumber_fun` function
+definition and explore your own API’s output printed to STDOUT and
+STDERR:
+
+``` r
+source("inst/examples/explore.R")
+```
+
+## Other considerations
 
 <https://cran.r-project.org/web/packages/tryCatchLog/vignettes/tryCatchLog-intro.html>
 
-## Considerations
-
 STDOUT is buffered, needs a flush. STDERR is unbuffered, more immediate
 <https://unix.stackexchange.com/questions/331611/do-progress-reports-logging-information-belong-on-stderr-or-stdout>
-
-But the API does not fail

@@ -442,13 +442,23 @@ Structured errors are handled by the `http_error()` function that uses default e
 
 The `http_success()` works similarly but it does not produce an error. It can also pass a `body` argument. This is useful if we need to return simple status messages when responding to webhooks during async execution.
 
-## Readings
+## See the action
+
+The `inst/examples` folder contains Shiny apps that you can edit and use to explore the differences between Plumber's default error handling (`/test` endpoint) and the `tryr` approach (`/tryr` endpoint). See the response, request, STDOUT and STDERR from the calls:
+
+```{r eval=FALSE}
+source("inst/examples/app.R")
+```
+
+The second app is more general. You can edit the `plumber_fun` function definition and explore your own API's output printed to STDOUT and STDERR:
+
+```{r eval=FALSE}
+source("inst/examples/explore.R")
+```
+
+## Other considerations
 
 <https://cran.r-project.org/web/packages/tryCatchLog/vignettes/tryCatchLog-intro.html>
 
-## Considerations
-
 STDOUT is buffered, needs a flush. STDERR is unbuffered, more immediate
 <https://unix.stackexchange.com/questions/331611/do-progress-reports-logging-information-belong-on-stderr-or-stdout>
-
-But the API does not fail
