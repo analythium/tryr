@@ -118,8 +118,8 @@ bar <- function(x) {
 }
 
 #* @post /try
-function(res, x) {
-  tryr::http_try(res, {
+function(req, res, x) {
+  tryr::http_try(req, res, {
     if (missing(x))
       stop("'x' is missing", call. = FALSE)
     bar(x = x)
@@ -134,7 +134,7 @@ Here are the outputs from the `/try` endpoint:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # 2022-10-17 16:17:46.02 [SUCCESS] Status 200: OK
+    # 2022-10-21 11:44:17.93 [SUCCESS] Status 200: OK
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
@@ -148,7 +148,7 @@ Here are the outputs from the `/try` endpoint:
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 2022-10-17 16:17:47.08 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
+    # 2022-10-21 11:44:19.00 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
@@ -159,7 +159,7 @@ Here are the outputs from the `/try` endpoint:
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 2022-10-17 16:17:48.14 [ERROR  ] Status 400: Bad Request - Unexpected input.
+    # 2022-10-21 11:44:20.07 [ERROR  ] Status 400: Bad Request - Unexpected input.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
@@ -170,7 +170,7 @@ Here are the outputs from the `/try` endpoint:
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 2022-10-17 16:17:49.21 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
+    # 2022-10-21 11:44:21.14 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
 
 Now we can see that:
 
@@ -247,8 +247,8 @@ Output:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # {"ts":"2022-10-17 16:17:50.265825","ut":1666045070.26583,"level":"INFO","value":3,"title":"POST /try","message":""}
-    # {"ts":"2022-10-17 16:17:50.294553","ut":1666045070.29455,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
+    # {"ts":"2022-10-21 11:44:22.190643","ut":1666374262.19064,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"ts":"2022-10-21 11:44:22.219624","ut":1666374262.21962,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
@@ -258,33 +258,33 @@ Output:
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"ts":"2022-10-17 16:17:51.342638","ut":1666045071.34264,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"ts":"2022-10-21 11:44:23.262025","ut":1666374263.26203,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # {"ts":"2022-10-17 16:17:51.37395","ut":1666045071.37395,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
+    # {"ts":"2022-10-21 11:44:23.289186","ut":1666374263.28919,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
     # --- Response ---
     # {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}
     # --- STDOUT ---
-    # {"ts":"2022-10-17 16:17:52.411391","ut":1666045072.41139,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"ts":"2022-10-21 11:44:24.337541","ut":1666374264.33754,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # {"ts":"2022-10-17 16:17:52.438956","ut":1666045072.43896,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
+    # {"ts":"2022-10-21 11:44:24.367991","ut":1666374264.36799,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"ts":"2022-10-17 16:17:53.483086","ut":1666045073.48309,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"ts":"2022-10-21 11:44:25.424462","ut":1666374265.42446,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # {"ts":"2022-10-17 16:17:53.514566","ut":1666045073.51457,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
+    # {"ts":"2022-10-21 11:44:25.455751","ut":1666374265.45575,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
 
 Structured errors are handled by the `http_error()` function that uses
 default error messages as defined in the `http_status_codes` data frame.
