@@ -4,11 +4,17 @@
 \alias{http-messages}
 \alias{http_error}
 \alias{http_success}
+\alias{http_response}
+\alias{http_handler}
 \title{HTTP messages}
 \usage{
 http_error(status = 500L, message = NULL)
 
 http_success(status = 200L, message = NULL, body = NULL)
+
+http_response(status = 200L, message = NULL, body = NULL)
+
+http_handler(req, res, status, ...)
 }
 \arguments{
 \item{status}{HTTP status code.}
@@ -16,6 +22,12 @@ http_success(status = 200L, message = NULL, body = NULL)
 \item{message}{Error message.}
 
 \item{body}{A list, additional values to be returned.}
+
+\item{req}{The request object.}
+
+\item{res}{The response object.}
+
+\item{...}{Other arguments passed to \code{http_response}.}
 }
 \value{
 \code{http_error} returns an error with a custom condition attribute.

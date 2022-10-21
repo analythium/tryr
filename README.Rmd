@@ -442,6 +442,50 @@ Structured errors are handled by the `http_error()` function that uses default e
 
 The `http_success()` works similarly but it does not produce an error. It can also pass a `body` argument. This is useful if we need to return simple status messages when responding to webhooks during async execution.
 
+The `http_response()` can be used for any of the status codes and is behind the `http_handler()` function that is useful to set default handlers for Plumber:
+
+```{r eval=FALSE}
+plumber::pr("inst/examples/plumber.R") |>
+  plumber::pr_set_debug(FALSE) |>
+  plumber::pr_set_404(
+    function(req, res) {
+      tryr::msg(
+        title = paste0(
+          "Status 404: ", 
+          tryr::http_status_codes["404", "message"]),
+        level = "INFO"
+      )
+      tryr::http_handler(req, res, 404L)
+    }
+  ) |>
+  plumber::pr_set_error(
+    function(req, res, err) {
+      tryr::msg(
+        title = paste0(
+          "Status 500: ", 
+          tryr::http_status_codes["500", "message"]),
+        message = err,
+        level = "ERROR"
+      )
+      tryr::http_handler(req, res, 500L)
+    }
+  ) |>
+  plumber::pr_hooks(
+    list(
+      preroute = function(data, req, res) {
+        tryr::msg(
+          title = paste(
+            method = req$REQUEST_METHOD, 
+            path = req$PATH_INFO
+          ),
+          level = "INFO"
+        )
+      }
+    )
+  ) |>
+  plumber::pr_run(port=8000)
+```
+
 ## See the action
 
 The `inst/examples` folder contains Shiny apps that you can edit and use to explore the differences between Plumber's default error handling (`/test` endpoint) and the `tryr` approach (`/tryr` endpoint). See the response, request, STDOUT and STDERR from the calls:

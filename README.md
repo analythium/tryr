@@ -134,7 +134,7 @@ Here are the outputs from the `/try` endpoint:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # 2022-10-21 11:52:10.29 [SUCCESS] Status 200: OK
+    # 2022-10-21 15:47:24.24 [SUCCESS] Status 200: OK
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
@@ -148,7 +148,7 @@ Here are the outputs from the `/try` endpoint:
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 2022-10-21 11:52:11.35 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
+    # 2022-10-21 15:47:25.31 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
@@ -159,7 +159,7 @@ Here are the outputs from the `/try` endpoint:
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 2022-10-21 11:52:12.42 [ERROR  ] Status 400: Bad Request - Unexpected input.
+    # 2022-10-21 15:47:26.38 [ERROR  ] Status 400: Bad Request - Unexpected input.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
@@ -170,7 +170,7 @@ Here are the outputs from the `/try` endpoint:
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 2022-10-21 11:52:13.49 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
+    # 2022-10-21 15:47:27.43 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
 
 Now we can see that:
 
@@ -247,8 +247,8 @@ Output:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # {"ts":"2022-10-21 11:52:14.538342","ut":1666374734.53834,"level":"INFO","value":3,"title":"POST /try","message":""}
-    # {"ts":"2022-10-21 11:52:14.565371","ut":1666374734.56537,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
+    # {"ts":"2022-10-21 15:47:28.482702","ut":1666388848.4827,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"ts":"2022-10-21 15:47:28.5032","ut":1666388848.5033,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
@@ -258,33 +258,33 @@ Output:
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"ts":"2022-10-21 11:52:15.611495","ut":1666374735.6115,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"ts":"2022-10-21 15:47:29.541244","ut":1666388849.54124,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # {"ts":"2022-10-21 11:52:15.64203","ut":1666374735.64203,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
+    # {"ts":"2022-10-21 15:47:29.567953","ut":1666388849.56795,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
     # --- Response ---
     # {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}
     # --- STDOUT ---
-    # {"ts":"2022-10-21 11:52:16.682497","ut":1666374736.6825,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"ts":"2022-10-21 15:47:30.609252","ut":1666388850.60925,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # {"ts":"2022-10-21 11:52:16.711323","ut":1666374736.71132,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
+    # {"ts":"2022-10-21 15:47:30.63925","ut":1666388850.63925,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"ts":"2022-10-21 11:52:17.755378","ut":1666374737.75538,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"ts":"2022-10-21 15:47:31.675856","ut":1666388851.67586,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # {"ts":"2022-10-21 11:52:17.785048","ut":1666374737.78505,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
+    # {"ts":"2022-10-21 15:47:31.703382","ut":1666388851.70338,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
 
 Structured errors are handled by the `http_error()` function that uses
 default error messages as defined in the `http_status_codes` data frame.
@@ -293,6 +293,52 @@ The `http_success()` works similarly but it does not produce an error.
 It can also pass a `body` argument. This is useful if we need to return
 simple status messages when responding to webhooks during async
 execution.
+
+The `http_response()` can be used for any of the status codes and is
+behind the `http_handler()` function that is useful to set default
+handlers for Plumber:
+
+``` r
+plumber::pr("inst/examples/plumber.R") |>
+  plumber::pr_set_debug(FALSE) |>
+  plumber::pr_set_404(
+    function(req, res) {
+      tryr::msg(
+        title = paste0(
+          "Status 404: ", 
+          tryr::http_status_codes["404", "message"]),
+        level = "INFO"
+      )
+      tryr::http_handler(req, res, 404L)
+    }
+  ) |>
+  plumber::pr_set_error(
+    function(req, res, err) {
+      tryr::msg(
+        title = paste0(
+          "Status 500: ", 
+          tryr::http_status_codes["500", "message"]),
+        message = err,
+        level = "ERROR"
+      )
+      tryr::http_handler(req, res, 500L)
+    }
+  ) |>
+  plumber::pr_hooks(
+    list(
+      preroute = function(data, req, res) {
+        tryr::msg(
+          title = paste(
+            method = req$REQUEST_METHOD, 
+            path = req$PATH_INFO
+          ),
+          level = "INFO"
+        )
+      }
+    )
+  ) |>
+  plumber::pr_run(port=8000)
+```
 
 ## See the action
 
