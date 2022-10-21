@@ -183,7 +183,7 @@ JSON strings, and command line arguments.
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2022-10-21 11:52:10.29 [SUCCESS] Status 200: OK</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2022-10-21 15:47:24.24 [SUCCESS] Status 200: OK</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
@@ -197,7 +197,7 @@ JSON strings, and command line arguments.
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 2022-10-21 11:52:11.35 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 2022-10-21 15:47:25.31 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.</span></span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
@@ -208,7 +208,7 @@ JSON strings, and command line arguments.
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 2022-10-21 11:52:12.42 [ERROR  ] Status 400: Bad Request - Unexpected input.</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 2022-10-21 15:47:26.38 [ERROR  ] Status 400: Bad Request - Unexpected input.</span></span>
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
@@ -219,7 +219,7 @@ JSON strings, and command line arguments.
 <span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
 <span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
 <span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 2022-10-21 11:52:13.49 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing</span></span></code></pre></div>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 2022-10-21 15:47:27.43 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing</span></span></code></pre></div>
 <p>Now we can see that:</p>
 <ul>
 <li>Successful response (200) leaves a trace in STDERR along with the error messages</li>
@@ -294,8 +294,8 @@ JSON strings, and command line arguments.
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 11:52:14.538342","ut":1666374734.53834,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 11:52:14.565371","ut":1666374734.56537,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 15:47:28.482702","ut":1666388848.4827,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 15:47:28.5032","ut":1666388848.5033,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
@@ -305,44 +305,85 @@ JSON strings, and command line arguments.
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 11:52:15.611495","ut":1666374735.6115,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 15:47:29.541244","ut":1666388849.54124,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 11:52:15.64203","ut":1666374735.64203,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 15:47:29.567953","ut":1666388849.56795,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}</span></span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
 <span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 11:52:16.682497","ut":1666374736.6825,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 15:47:30.609252","ut":1666388850.60925,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
 <span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
 <span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 11:52:16.711323","ut":1666374736.71132,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 15:47:30.63925","ut":1666388850.63925,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}</span></span>
 <span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
 <span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
 <span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
 <span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 11:52:17.755378","ut":1666374737.75538,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 15:47:31.675856","ut":1666388851.67586,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
 <span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
 <span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
 <span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 11:52:17.785048","ut":1666374737.78505,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}</span></span></code></pre></div>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="co"># {"ts":"2022-10-21 15:47:31.703382","ut":1666388851.70338,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}</span></span></code></pre></div>
 <p>Structured errors are handled by the <code><a href="reference/http-messages.html">http_error()</a></code> function that uses default error messages as defined in the <code>http_status_codes</code> data frame.</p>
 <p>The <code><a href="reference/http-messages.html">http_success()</a></code> works similarly but it does not produce an error. It can also pass a <code>body</code> argument. This is useful if we need to return simple status messages when responding to webhooks during async execution.</p>
+<p>The <code><a href="reference/http-messages.html">http_response()</a></code> can be used for any of the status codes and is behind the <code><a href="reference/http-messages.html">http_handler()</a></code> function that is useful to set default handlers for Plumber:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plumber</span><span class="fu">::</span><span class="fu">pr</span><span class="op">(</span><span class="st">"inst/examples/plumber.R"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">plumber</span><span class="fu">::</span><span class="fu">pr_set_debug</span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">plumber</span><span class="fu">::</span><span class="fu">pr_set_404</span><span class="op">(</span></span>
+<span>    <span class="kw">function</span><span class="op">(</span><span class="va">req</span>, <span class="va">res</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="fu">tryr</span><span class="fu">::</span><span class="fu"><a href="reference/msg.html">msg</a></span><span class="op">(</span></span>
+<span>        title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
+<span>          <span class="st">"Status 404: "</span>, </span>
+<span>          <span class="fu">tryr</span><span class="fu">::</span><span class="va"><a href="reference/http_status_codes.html">http_status_codes</a></span><span class="op">[</span><span class="st">"404"</span>, <span class="st">"message"</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>        level <span class="op">=</span> <span class="st">"INFO"</span></span>
+<span>      <span class="op">)</span></span>
+<span>      <span class="fu">tryr</span><span class="fu">::</span><span class="fu"><a href="reference/http-messages.html">http_handler</a></span><span class="op">(</span><span class="va">req</span>, <span class="va">res</span>, <span class="fl">404L</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">plumber</span><span class="fu">::</span><span class="fu">pr_set_error</span><span class="op">(</span></span>
+<span>    <span class="kw">function</span><span class="op">(</span><span class="va">req</span>, <span class="va">res</span>, <span class="va">err</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="fu">tryr</span><span class="fu">::</span><span class="fu"><a href="reference/msg.html">msg</a></span><span class="op">(</span></span>
+<span>        title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
+<span>          <span class="st">"Status 500: "</span>, </span>
+<span>          <span class="fu">tryr</span><span class="fu">::</span><span class="va"><a href="reference/http_status_codes.html">http_status_codes</a></span><span class="op">[</span><span class="st">"500"</span>, <span class="st">"message"</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>        message <span class="op">=</span> <span class="va">err</span>,</span>
+<span>        level <span class="op">=</span> <span class="st">"ERROR"</span></span>
+<span>      <span class="op">)</span></span>
+<span>      <span class="fu">tryr</span><span class="fu">::</span><span class="fu"><a href="reference/http-messages.html">http_handler</a></span><span class="op">(</span><span class="va">req</span>, <span class="va">res</span>, <span class="fl">500L</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">plumber</span><span class="fu">::</span><span class="fu">pr_hooks</span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>      preroute <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">req</span>, <span class="va">res</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="fu">tryr</span><span class="fu">::</span><span class="fu"><a href="reference/msg.html">msg</a></span><span class="op">(</span></span>
+<span>          title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span></span>
+<span>            method <span class="op">=</span> <span class="va">req</span><span class="op">$</span><span class="va">REQUEST_METHOD</span>, </span>
+<span>            path <span class="op">=</span> <span class="va">req</span><span class="op">$</span><span class="va">PATH_INFO</span></span>
+<span>          <span class="op">)</span>,</span>
+<span>          level <span class="op">=</span> <span class="st">"INFO"</span></span>
+<span>        <span class="op">)</span></span>
+<span>      <span class="op">}</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">plumber</span><span class="fu">::</span><span class="fu">pr_run</span><span class="op">(</span>port<span class="op">=</span><span class="fl">8000</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="see-the-action">See the action<a class="anchor" aria-label="anchor" href="#see-the-action"></a>
 </h2>
 <p>The <code>inst/examples</code> folder contains Shiny apps that you can edit and use to explore the differences between Plumber’s default error handling (<code>/test</code> endpoint) and the <code>tryr</code> approach (<code>/tryr</code> endpoint). See the response, request, STDOUT and STDERR from the calls:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"inst/examples/app.R"</span><span class="op">)</span></span></code></pre></div>
 <p>The second app is more general. You can edit the <code>plumber_fun</code> function definition and explore your own API’s output printed to STDOUT and STDERR:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"inst/examples/explore.R"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
