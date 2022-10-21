@@ -2,24 +2,26 @@
 % Please edit documentation in R/http_try.R
 \name{http-try}
 \alias{http-try}
-\alias{http_try_handler}
 \alias{http_try}
+\alias{http_try_handler}
 \title{Try mechanism for Plumber APIs}
 \usage{
-http_try_handler(res, x)
+http_try(req, res, expr, silent = TRUE, ...)
 
-http_try(res, expr, silent = TRUE, ...)
+http_try_handler(req, res, x)
 }
 \arguments{
-\item{res}{The response object.}
+\item{req}{The request object.}
 
-\item{x}{The return value from \code{try(expr)}.}
+\item{res}{The response object.}
 
 \item{expr}{An expression.}
 
 \item{silent}{Should the report of error messages be suppressed by \code{\link[=try]{try()}}?}
 
 \item{...}{Arguments passed to \code{\link[=try]{try()}}}
+
+\item{x}{The return value from \code{try(expr)}.}
 }
 \value{
 A list or the results from \code{expr}.
@@ -31,16 +33,17 @@ and provides a mechanism to return custom status codes
 in combination with \code{http_error()} and \code{https_success()}.
 }
 \examples{
-res <- list()
-http_try(res)
-http_try(res, {2 + 2})
-http_try(res, http_error(401))
-http_try(res, http_success(201))
-http_try(res, {lm(NULL)})
-http_try(res, {stop("Stop!!!")})
+res <- req <- list()
+
+http_try(req, res)
+http_try(req, res, {2 + 2})
+http_try(req, res, http_error(401))
+http_try(req, res, http_success(201))
+http_try(req, res, {lm(NULL)})
+http_try(req, res, {stop("Stop!!!")})
 
 f <- function() stop("Stop!!!")
-http_try(res, {f()})
-http_try_handler(res, {try(f())})
+http_try(req, res, {f()})
+http_try_handler(req, res, {try(f())})
 
 }

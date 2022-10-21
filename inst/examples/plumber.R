@@ -20,8 +20,8 @@ function(x) {
 }
 
 #* @post /try
-function(res, x) {
-  tryr::http_try(res, {
+function(req, res, x) {
+  tryr::http_try(req, res, {
     if (missing(x))
       stop("'x' is missing", call. = FALSE)
     bar(x = x)

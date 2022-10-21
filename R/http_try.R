@@ -4,6 +4,7 @@
 #' and provides a mechanism to return custom status codes
 #' in combination with `http_error()` and `https_success()`.
 #' 
+#' @param req The request object.
 #' @param res The response object.
 #' @param expr An expression.
 #' @param x The return value from `try(expr)`.
@@ -14,25 +15,41 @@
 #'   A side effect is setting of the response status code and a log message.
 #' 
 #' @examples 
-#' res <- list()
-#' http_try(res)
-#' http_try(res, {2 + 2})
-#' http_try(res, http_error(401))
-#' http_try(res, http_success(201))
-#' http_try(res, {lm(NULL)})
-#' http_try(res, {stop("Stop!!!")})
+#' res <- req <- list()
+#' 
+#' http_try(req, res)
+#' http_try(req, res, {2 + 2})
+#' http_try(req, res, http_error(401))
+#' http_try(req, res, http_success(201))
+#' http_try(req, res, {lm(NULL)})
+#' http_try(req, res, {stop("Stop!!!")})
 #' 
 #' f <- function() stop("Stop!!!")
-#' http_try(res, {f()})
-#' http_try_handler(res, {try(f())})
+#' http_try(req, res, {f()})
+#' http_try_handler(req, res, {try(f())})
 #' 
 #' @name http-try
 NULL
 
+#' @rdname http-try
+#' @export 
+http_try <- function(req, res, expr, silent = TRUE, ...) {
+    http_try_handler(
+        req = req,
+        res = res,
+        x = try(
+            expr,
+            silent = silent,
+            ...
+        )
+    )
+}
 
 #' @rdname http-try
 #' @export 
-http_try_handler <- function(res, x) {
+http_try_handler <- function(req, res, x) {
+    if (missing(req))
+        req <- list()
     if (missing(res))
         res <- list()
     if (inherits(x, "try-error")) {
@@ -86,17 +103,4 @@ http_try_handler <- function(res, x) {
             )
         }
     }
-}
-
-#' @rdname http-try
-#' @export 
-http_try <- function(res, expr, silent = TRUE, ...) {
-    http_try_handler(
-        res = res,
-        x = try(
-            expr,
-            silent = silent,
-            ...
-        )
-    )
 }
