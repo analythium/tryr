@@ -12,8 +12,8 @@ rx <- callr::r_bg(function() {
     DIGITS = "2"   # 0, 2, 6, ...
     DEBUG = FALSE  # TRUE/FALSE
     Sys.setenv(
-        TRYR_LOG_FORMAT = FORMAT,#"TXT",
-        TRYR_LOG_DIGITS = DIGITS#"2"
+        TRYR_LOG_FORMAT = FORMAT,
+        TRYR_LOG_DIGITS = DIGITS
     )
     plumber::pr("inst/examples/plumber.R") |>
         plumber::pr_set_debug(DEBUG) |>
