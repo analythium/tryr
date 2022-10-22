@@ -17,29 +17,6 @@ rx <- callr::r_bg(function() {
     )
     plumber::pr("inst/examples/plumber.R") |>
         plumber::pr_set_debug(DEBUG) |>
-        plumber::pr_set_404(
-            function(req, res) {
-                tryr::msg(
-                title = paste0(
-                    "Status 404: ", 
-                    tryr::http_status_codes["404", "message"]),
-                level = "INFO"
-                )
-                tryr::http_handler(req, res, 404L)
-            }
-        ) |>
-        plumber::pr_set_error(
-            function(req, res, err) {
-                tryr::msg(
-                title = paste0(
-                    "Status 500: ", 
-                    tryr::http_status_codes["500", "message"]),
-                message = err,
-                level = "ERROR"
-                )
-                tryr::http_handler(req, res, 500L)
-            }
-        ) |>
         plumber::pr_hooks(
             list(
                 preroute = function(data, req, res) {
