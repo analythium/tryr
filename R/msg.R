@@ -44,8 +44,8 @@ msg <- function(
     level <- toupper(level)
     if (!(level %in% names(levels)))
         stop("Log level is incorrectly set.")
-    ENV_LEVEL <- toupper(Sys.getenv("TRYR_LOG_LEVEL", "INFO"))
-    if (!(ENV_LEVEL %in% names(levels)))
+    LOG_LEVEL <- toupper(Sys.getenv("TRYR_LOG_LEVEL", "INFO"))
+    if (!(LOG_LEVEL %in% names(levels)))
         stop("The TRYR_LOG_LEVEL environment variable is incorrectly set.")
     ERR_LEVEL <- toupper(Sys.getenv("TRYR_ERR_LEVEL", "WARN"))
     if (!(ERR_LEVEL %in% names(levels)))
@@ -69,13 +69,13 @@ msg <- function(
     }
     op <- options(digits.secs = as.integer(digits))
     on.exit(options(op))
-    pid <- Sys.getpid()
+    pid <- Sys.getenv("TRYR_PROC_NAME", as.character(Sys.getpid()))
     dt <- as.character(st)
     if (format == "JSON") {
         msg <- paste0(
-            "{\"pid\":",
+            "{\"pid\":\"",
             pid,
-            ",\"ts\":\"",
+            "\",\"ts\":\"",
             dt,
             "\",\"ut\":",
             as.numeric(st),
@@ -91,7 +91,7 @@ msg <- function(
     }
     if (format == "CSV") {
         msg <- paste0(
-            pid, ",\"",
+            "\"", pid, "\",\"",
             dt, "\",",
             as.numeric(st), ",",
             level, ",",
@@ -102,7 +102,7 @@ msg <- function(
     if (format == "PLAIN") {
         msg <- paste0(
             pid,
-            " > ",
+            " | ",
             dt,
             " [",
             switch(level,
@@ -121,7 +121,7 @@ msg <- function(
             message,
             "\n")
     }
-    if (levels[ENV_LEVEL] <= levels[level]) {
+    if (levels[LOG_LEVEL] <= levels[level]) {
         if (levels[level] >= levels[ERR_LEVEL]) {
             cat(msg, file = stderr())
         } else {

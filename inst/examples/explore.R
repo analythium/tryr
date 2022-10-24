@@ -5,12 +5,12 @@
 
 # Edit this function to reflect your Plumber API
 plumber_fun <-function() {
-    FORMAT = "TXT" # TXT or JSON
+    FORMAT = "PLAIN" # PLAIN/JSON/CSV
     DIGITS = "2"   # 0, 2, 6, ...
     DEBUG = FALSE  # TRUE/FALSE
     Sys.setenv(
-        TRYR_LOG_FORMAT = FORMAT,#"TXT",
-        TRYR_LOG_DIGITS = DIGITS#"2"
+        TRYR_LOG_FORMAT = FORMAT,
+        TRYR_LOG_DIGITS = DIGITS
     )
     plumber::pr("inst/examples/plumber.R") |>
         plumber::pr_filter("cors", function(req, res) {
