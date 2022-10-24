@@ -54,7 +54,7 @@ http_try_handler <- function(req, res, x) {
                 title = paste0(
                     "Status 500: ", 
                     http_status_codes["500", "message"]),
-                message = geterrmessage(),
+                message = oneline(geterrmessage()),
                 level = "ERROR"
             )
             res$status <- 500L
