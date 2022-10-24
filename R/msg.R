@@ -3,8 +3,8 @@
 #' @param title Title.
 #' @param message Message.
 #' @param level Log level.
-#' @param json Log format in JSON (default `TRUE`).
-#' @param digits Digits for seconds (default `2L`).
+#' @param format Log format: `"PLAIN"` (default), `"JSON"`, `"CSV"`..
+#' @param digits Digits for seconds (default `3L`).
 #' 
 #' @return `TRUE` or `FALSE`: did a log event happened?
 #'   A side effect is a log message to STDOUT or STDERR.
@@ -14,9 +14,9 @@
 #' msg("Success", "We did it!", "SUCCESS")
 #' msg("Crap", "Oh no ...", "ERROR")
 #' 
-#' msg("Success", "We did it!", "SUCCESS", json=TRUE)
-#' msg("Success", "We did it!", json=TRUE)
-#' msg("Crap", "Oh no ...", "ERROR", json=TRUE)
+#' msg("Success", "We did it!", "SUCCESS", format = "JSON")
+#' msg("Success", "We did it!", format = "JSON")
+#' msg("Crap", "Oh no ...", "ERROR", format = "JSON")
 #' 
 #' msg("Success", "We did it!", digits = 0)
 #' msg("Success", "We did it!", digits = 6)
@@ -26,7 +26,7 @@ msg <- function(
     title = "",
     message = "",
     level = "INFO",
-    json = NULL,
+    format = NULL,
     digits = NULL
 ) {
     st <- Sys.time()
@@ -54,39 +54,55 @@ msg <- function(
         return(invisible(FALSE))
     title <- oneline(title)
     message <- oneline(message)
-    if (is.null(json)) {
-        json <- FALSE
-        ENV_FORMAT <- Sys.getenv("TRYR_LOG_FORMAT", "TXT")
+    if (is.null(format)) {
+        format <- "PLAIN"
+        ENV_FORMAT <- Sys.getenv("TRYR_LOG_FORMAT", "PLAIN")
         if (!is.null(ENV_FORMAT))
-            json <- tolower(ENV_FORMAT) == "json"
+            format <- toupper(ENV_FORMAT)
     }
+    format <- match.arg(toupper(format), c("PLAIN", "JSON", "CSV"))
     if (is.null(digits)) {
-        digits <- 2L
+        digits <- 3L
         ENV_DIGITS <- Sys.getenv("TRYR_LOG_DIGITS")
         if (ENV_DIGITS != "")
             digits <- as.integer(ENV_DIGITS)
     }
     op <- options(digits.secs = as.integer(digits))
     on.exit(options(op))
-
+    pid <- Sys.getpid()
     dt <- as.character(st)
-    if (json) {
+    if (format == "JSON") {
         msg <- paste0(
-            "{\"ts\":\"",
+            "{\"pid\":",
+            pid,
+            ",\"ts\":\"",
             dt,
             "\",\"ut\":",
             as.numeric(st),
             ",\"level\":\"",
             level,
             "\",\"value\":",
-            as.integer(levels[tolower(level)]),
+            levels[level],
             ",\"title\":\"",
             title,
             "\",\"message\":\"",
             message,
             "\"}\n")
-    } else {
+    }
+    if (format == "CSV") {
         msg <- paste0(
+            pid, ",\"",
+            dt, "\",",
+            as.numeric(st), ",",
+            level, ",",
+            levels[level], ",\"",
+            title, "\",\"",
+            message, "\"\n")
+    }
+    if (format == "PLAIN") {
+        msg <- paste0(
+            pid,
+            " > ",
             dt,
             " [",
             switch(level,

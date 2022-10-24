@@ -4,7 +4,7 @@
 \alias{msg}
 \title{Message to STDOUT or STDERR}
 \usage{
-msg(title = "", message = "", level = "INFO", json = NULL, digits = NULL)
+msg(title = "", message = "", level = "INFO", format = NULL, digits = NULL)
 }
 \arguments{
 \item{title}{Title.}
@@ -13,9 +13,9 @@ msg(title = "", message = "", level = "INFO", json = NULL, digits = NULL)
 
 \item{level}{Log level.}
 
-\item{json}{Log format in JSON (default \code{TRUE}).}
+\item{format}{Log format: \code{"PLAIN"} (default), \code{"JSON"}, \code{"CSV"}..}
 
-\item{digits}{Digits for seconds (default \code{2L}).}
+\item{digits}{Digits for seconds (default \code{3L}).}
 }
 \value{
 \code{TRUE} or \code{FALSE}: did a log event happened?
@@ -29,9 +29,9 @@ msg("Success", "We did it!")
 msg("Success", "We did it!", "SUCCESS")
 msg("Crap", "Oh no ...", "ERROR")
 
-msg("Success", "We did it!", "SUCCESS", json=TRUE)
-msg("Success", "We did it!", json=TRUE)
-msg("Crap", "Oh no ...", "ERROR", json=TRUE)
+msg("Success", "We did it!", "SUCCESS", format = "JSON")
+msg("Success", "We did it!", format = "JSON")
+msg("Crap", "Oh no ...", "ERROR", format = "JSON")
 
 msg("Success", "We did it!", digits = 0)
 msg("Success", "We did it!", digits = 6)
