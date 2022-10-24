@@ -30,7 +30,10 @@ rx <- callr::r_bg(function() {
                 }
             )
         ) |>
-        plumber::pr_run(port=5000)
+        plumber::pr_run(
+            port = 5000,
+            quiet = TRUE
+        )
   },
   stdout = out, 
   stderr = err
