@@ -49,8 +49,6 @@ msg <- function(
     ERR_LEVEL <- toupper(Sys.getenv("TRYR_ERR_LEVEL", "WARN"))
     if (!(ERR_LEVEL %in% names(levels)))
         stop("The TRYR_ERR_LEVEL environment variable is incorrectly set.")
-    if (level == "NONE")
-        return(invisible(FALSE))
     if (level == "NONE" || levels[LOG_LEVEL] > levels[level])
         return(invisible(FALSE))
 
