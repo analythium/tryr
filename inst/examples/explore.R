@@ -54,7 +54,10 @@ plumber_fun <-function() {
                 }
             )
         ) |>
-        plumber::pr_run(port=5000)
+        plumber::pr_run(
+            port = 5000,
+            quiet = TRUE
+        )
 }
 
 library(shiny)
