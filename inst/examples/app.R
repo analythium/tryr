@@ -8,10 +8,11 @@ library(shiny)
 out <- file.path(tempdir(), "out")
 err <- file.path(tempdir(), "err")
 rx <- callr::r_bg(function() {
-    FORMAT = "TXT" # TXT or JSON
-    DIGITS = "2"   # 0, 2, 6, ...
+    FORMAT = "TXT" # TXT/JSON/CSV
+    DIGITS = "3"   # 0, 2, 6, ...
     DEBUG = FALSE  # TRUE/FALSE
     Sys.setenv(
+        TRYR_ERR_LEVEL = "NONE",
         TRYR_LOG_FORMAT = FORMAT,
         TRYR_LOG_DIGITS = DIGITS
     )
