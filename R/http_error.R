@@ -36,7 +36,6 @@ http_error <- function(
         stop("Unrecognized status code.")
     i <- as.list(err[as.character(status),])
     i[["message"]] <- paste0(
-        # "Status ", status, ": ", 
         i[["message"]], 
         ifelse(!is.null(message), " - ", ""), oneline(message))
     i[] <- lapply(i, jsonlite::unbox)
@@ -79,7 +78,6 @@ http_response <- function(
         stop("Unrecognized status code.")
     i <- as.list(http_status_codes[as.character(status),])
     i[["message"]] <- paste0(
-        # "Status ", status, ": ", 
         i[["message"]], 
         ifelse(!is.null(message), " - ", ""), oneline(message))
     i[] <- lapply(i, jsonlite::unbox)
