@@ -48,10 +48,6 @@ http_try <- function(req, res, expr, silent = TRUE, ...) {
 #' @rdname http-try
 #' @export 
 http_try_handler <- function(req, res, x) {
-    if (missing(req))
-        req <- list()
-    if (missing(res))
-        res <- list()
     if (inherits(x, "try-error")) {
         if (!inherits(attr(x, "condition"), "http_error")) {
             msg(
