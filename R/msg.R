@@ -29,43 +29,46 @@ msg <- function(
     json = NULL,
     digits = NULL
 ) {
+    st <- Sys.time()
+    levels <- c(
+        ALL = 0L, 
+        TRACE = 1L, 
+        DEBUG = 2L, 
+        INFO = 3L, 
+        SUCCESS = 4L, 
+        WARN = 5L, 
+        ERROR = 6L, 
+        FATAL = 7L, 
+        OFF = 8L,
+        NONE = 9L)
+    level <- toupper(level)
+    if (!(level %in% names(levels)))
+        stop("Log level is incorrectly set.")
+    ENV_LEVEL <- toupper(Sys.getenv("TRYR_LOG_LEVEL", "INFO"))
+    if (!(ENV_LEVEL %in% names(levels)))
+        stop("The TRYR_LOG_LEVEL environment variable is incorrectly set.")
+    ERR_LEVEL <- toupper(Sys.getenv("TRYR_ERR_LEVEL", "WARN"))
+    if (!(ERR_LEVEL %in% names(levels)))
+        stop("The TRYR_ERR_LEVEL environment variable is incorrectly set.")
+    if (level == "NONE")
+        return(invisible(FALSE))
     title <- oneline(title)
     message <- oneline(message)
     if (is.null(json)) {
         json <- FALSE
-        # OPT_FORMAT <- getOption("tryr.log.format")
-        # if (!is.null(OPT_FORMAT))
-        #     json <- tolower(OPT_FORMAT) == "json"
         ENV_FORMAT <- Sys.getenv("TRYR_LOG_FORMAT", "TXT")
         if (!is.null(ENV_FORMAT))
             json <- tolower(ENV_FORMAT) == "json"
     }
     if (is.null(digits)) {
         digits <- 2L
-        # OPT_DIGITS <- getOption("tryr.log.digits")
-        # if (!is.null(OPT_DIGITS))
-        #     digits <- as.integer(OPT_DIGITS)
         ENV_DIGITS <- Sys.getenv("TRYR_LOG_DIGITS")
         if (ENV_DIGITS != "")
             digits <- as.integer(ENV_DIGITS)
     }
     op <- options(digits.secs = as.integer(digits))
     on.exit(options(op))
-    ENV_LEVEL <- Sys.getenv("TRYR_LOG_LEVEL", "INFO")
-    levels <- list(
-        all = 0L, 
-        trace = 1L, 
-        debug = 2L, 
-        info = 3L, 
-        success = 4L, 
-        warn = 5L, 
-        error = 6L, 
-        fatal = 7L, 
-        off = 8L)
-    if (is.null(levels[tolower(ENV_LEVEL)])) {
-        stop("The TRYR_LOG_LEVEL environment variable is incorrectly set.")
-    }
-    st <- Sys.time()
+
     dt <- as.character(st)
     if (json) {
         msg <- paste0(
@@ -94,15 +97,16 @@ msg <- function(
                 WARN    = "WARN   ", 
                 ERROR   = "ERROR  ", 
                 FATAL   = "FATAL  ", 
-                OFF     = "OFF    "),
+                OFF     = "OFF    ",
+                NONE    = "NONE   "),
             "] ",
             title,
             if (message == "") "" else " - ",
             message,
             "\n")
     }
-    if (as.integer(levels[tolower(ENV_LEVEL)]) <= as.integer(levels[tolower(level)])) {
-        if (as.integer(levels[tolower(level)]) > 4L) {
+    if (levels[ENV_LEVEL] <= levels[level]) {
+        if (levels[level] >= levels[ERR_LEVEL]) {
             cat(msg, file = stderr())
         } else {
             cat(msg, file = stdout())
