@@ -29,7 +29,6 @@ msg <- function(
     format = NULL,
     digits = NULL
 ) {
-    st <- Sys.time()
     levels <- c(
         ALL = 0L, 
         TRACE = 1L, 
@@ -52,8 +51,12 @@ msg <- function(
         stop("The TRYR_ERR_LEVEL environment variable is incorrectly set.")
     if (level == "NONE")
         return(invisible(FALSE))
-    title <- oneline(title)
-    message <- oneline(message)
+    if (level == "NONE" || levels[LOG_LEVEL] > levels[level])
+        return(invisible(FALSE))
+
+    st <- Sys.time()
+    # title <- oneline(title)
+    # message <- oneline(message)
     if (is.null(format)) {
         format <- "PLAIN"
         ENV_FORMAT <- Sys.getenv("TRYR_LOG_FORMAT", "PLAIN")
@@ -121,16 +124,12 @@ msg <- function(
             message,
             "\n")
     }
-    if (levels[LOG_LEVEL] <= levels[level]) {
-        if (levels[level] >= levels[ERR_LEVEL]) {
-            cat(msg, file = stderr())
-        } else {
-            cat(msg, file = stdout())
-        }
-        invisible(TRUE)
+    if (levels[level] >= levels[ERR_LEVEL]) {
+        cat(msg, file = stderr())
     } else {
-        invisible(FALSE)
+        cat(msg, file = stdout())
     }
+    invisible(TRUE)
 }
 
 #' Remove newlines and leading/trailing white space from a string
@@ -138,7 +137,7 @@ msg <- function(
 #' @param x A string, possibly a vector
 #' 
 #' @return An atomic character vector.
-#' @noRd
+#' @export 
 oneline <- function(x) {
     trimws(gsub("[\r\n]", " ", paste(as.character(x), collapse = " ")))
 }
