@@ -53,7 +53,7 @@ plumber::pr("inst/examples/plumber.R") |>
 
 ### Default behavior
 
-We use a very simple handler calling the function `foo()`: note that the contents of the response also depend on the `pr_set_debug()` settings that depends on whether we use interactive or non-interactive session. Therefore we turned that off in our interactive examples. 
+We use a handler calling the function `foo()`: note that the contents of the response also depend on the `pr_set_debug()` settings that depends on whether we use interactive or non-interactive session. This is now turned off so that we can see the 'production' behavior.
 
 ```R
 foo <- function(x) {
@@ -69,8 +69,7 @@ function(x) {
 }
 ```
 
-Here are the responses from this `/test` endpoint:
-
+Here are the responses from this `/test` endpoint for various specification of the `x` parameter:
 
 ```{r, echo=FALSE}
 out <- file.path(tmp, "out")
@@ -140,13 +139,14 @@ post(URL, out, err)
 o <- rx$kill()
 ```
 
-As you can see, the response has a generic 500 HTTP status irrespective of nature of the error. Moreover the response contains the error message from R. On the back end, the error is printed to STDOUT, whereas a warning got printed to STDERR.
+As you can see, the response has a generic 500 HTTP status irrespective of nature of the error. On the back end, the error is printed to STDOUT, whereas a warning got printed to STDERR.
 
 This default behavior is undesired for multiple reasons:
 
 - We need to be able to differentiate 4xx and 5xx errors
-- When the error is 5xx, the error message itself might contain sensitive information that we should not leak to the client
 - The detailed error message is helpful on the backend, but we should print it to STDERR instead of STDOUT
+
+Warning: when `pr_set_debug(TRUE)` the error message itself is returned by the response, this might contain sensitive information that we should not leak to the client.
 
 ## Try/catch behavior
 
@@ -170,7 +170,7 @@ function(req, res, x) {
 }
 ```
 
-Here are the outputs from the `/try` endpoint:
+Here are the outputs from the `/try` endpoint for the same requests as before:
 
 ```{r echo=FALSE}
 out <- file.path(tmp, "out")
@@ -242,12 +242,12 @@ o <- rx$kill()
 
 Now we can see that:
 
-- Successful response (200) leaves a trace in STDERR along with the error messages
+- Successful response (200) leaves a trace in STDOUT
 - We can differentiate 4xx and 5xx errors
 - When the error is 5xx, the error message is not included
 - The detailed error message is printed to STDERR
 
-So how did we do it? Here is what you get in tryr: we used `http_try()`. It is a wrapper that can handle _expected_ and _unexpected_ errors. Expected errors give the desired HTTP statuses using `http_error()`. Unexpected error are returned by `stop()` and we have very little control over those (i.e. were written by someone else).
+So how did we do it? Here is what you get in tryr: we used `http_try()`. It is a wrapper that can handle _expected_ and _unexpected_ errors. Expected errors give the desired HTTP statuses using `http_error()`. Unexpected error are returned by `stop()` and we have very little control over those (i.e. these were written by someone else).
 
 ## Implementation
 
@@ -266,7 +266,7 @@ _If we catch an error:_
 
 _If we don't catch an error:_
 
-* the object is of class `http_success()`
+* the object is of class `http_success()` (this comes in handy for async jobs and redirects)
   - log it as a SUCCESS with the message element
   - return the specific HTTP status code with the structured output
   - set the status code of the response object
@@ -274,7 +274,7 @@ _If we don't catch an error:_
   - log it as a SUCCESS with a generic 200 message
   - return the object as is (default status code 200 assumed)
 
-Messages are handled by the `msg` function. Here is how you can add a preroute hook. Here we add a logger to print incoming request info (HTTP method and route) to STDOUT. For the sake of better ingest the logs we can set the logging type to JSON and the timestamp precision to 6 digits.
+Log messages are handled by the `msg` function. Here is how you can add a preroute hook: we add a logger to print incoming request info (HTTP method and route) to STDOUT. For the sake of better ingesting the logs we can set the logging type to JSON (or CSV) and the timestamp precision to 6 digits.
 
 ```R
 Sys.setenv(
@@ -488,7 +488,7 @@ plumber::pr("inst/examples/plumber.R") |>
 
 ## See the action
 
-The `inst/examples` folder contains Shiny apps that you can edit and use to explore the differences between Plumber's default error handling (`/test` endpoint) and the `tryr` approach (`/tryr` endpoint). See the response, request, STDOUT and STDERR from the calls:
+The `inst/examples` folder contains Shiny apps that you can edit and use to explore the differences between Plumber's default error handling (`/test` endpoint) and the tryr approach (`/tryr` endpoint). See the response, request, STDOUT and STDERR from the calls:
 
 ```{r eval=FALSE}
 source("inst/examples/app.R")
