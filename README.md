@@ -29,10 +29,10 @@ plumber::pr("inst/examples/plumber.R") |>
 
 ### Default behavior
 
-We use a very simple handler calling the function `foo()`: note that the
-contents of the response also depend on the `pr_set_debug()` settings
-that depends on whether we use interactive or non-interactive session.
-Therefore we turned that off in our interactive examples.
+We use a handler calling the function `foo()`: note that the contents of
+the response also depend on the `pr_set_debug()` settings that depends
+on whether we use interactive or non-interactive session. This is now
+turned off so that we can see the ‘production’ behavior.
 
 ``` r
 foo <- function(x) {
@@ -48,7 +48,8 @@ function(x) {
 }
 ```
 
-Here are the responses from this `/test` endpoint:
+Here are the responses from this `/test` endpoint for various
+specification of the `x` parameter:
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/test?x=0"
@@ -92,17 +93,18 @@ Here are the responses from this `/test` endpoint:
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
 
 As you can see, the response has a generic 500 HTTP status irrespective
-of nature of the error. Moreover the response contains the error message
-from R. On the back end, the error is printed to STDOUT, whereas a
-warning got printed to STDERR.
+of nature of the error. On the back end, the error is printed to STDOUT,
+whereas a warning got printed to STDERR.
 
 This default behavior is undesired for multiple reasons:
 
 - We need to be able to differentiate 4xx and 5xx errors
-- When the error is 5xx, the error message itself might contain
-  sensitive information that we should not leak to the client
 - The detailed error message is helpful on the backend, but we should
   print it to STDERR instead of STDOUT
+
+Warning: when `pr_set_debug(TRUE)` the error message itself is returned
+by the response, this might contain sensitive information that we should
+not leak to the client.
 
 ## Try/catch behavior
 
@@ -127,14 +129,15 @@ function(req, res, x) {
 }
 ```
 
-Here are the outputs from the `/try` endpoint:
+Here are the outputs from the `/try` endpoint for the same requests as
+before:
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=0"
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # 27367 > 2022-10-23 22:26:22.292 [SUCCESS] Status 200: OK
+    # 47052 | 2022-10-24 18:15:56.676 [SUCCESS] Status 200: OK
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
@@ -148,7 +151,7 @@ Here are the outputs from the `/try` endpoint:
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 27381 > 2022-10-23 22:26:23.360 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
+    # 47064 | 2022-10-24 18:15:57.745 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
@@ -159,7 +162,7 @@ Here are the outputs from the `/try` endpoint:
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 27393 > 2022-10-23 22:26:24.423 [ERROR  ] Status 400: Bad Request - Unexpected input.
+    # 47076 | 2022-10-24 18:15:58.810 [ERROR  ] Status 400: Bad Request - Unexpected input.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
@@ -170,12 +173,11 @@ Here are the outputs from the `/try` endpoint:
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 27407 > 2022-10-23 22:26:25.490 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
+    # 47088 | 2022-10-24 18:15:59.875 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
 
 Now we can see that:
 
-- Successful response (200) leaves a trace in STDERR along with the
-  error messages
+- Successful response (200) leaves a trace in STDOUT
 - We can differentiate 4xx and 5xx errors
 - When the error is 5xx, the error message is not included
 - The detailed error message is printed to STDERR
@@ -184,7 +186,7 @@ So how did we do it? Here is what you get in tryr: we used `http_try()`.
 It is a wrapper that can handle *expected* and *unexpected* errors.
 Expected errors give the desired HTTP statuses using `http_error()`.
 Unexpected error are returned by `stop()` and we have very little
-control over those (i.e. were written by someone else).
+control over those (i.e. these were written by someone else).
 
 ## Implementation
 
@@ -203,7 +205,8 @@ The logic inside `http_try()` is this:
 
 *If we don’t catch an error:*
 
-- the object is of class `http_success()`
+- the object is of class `http_success()` (this comes in handy for async
+  jobs and redirects)
   - log it as a SUCCESS with the message element
   - return the specific HTTP status code with the structured output
   - set the status code of the response object
@@ -211,11 +214,11 @@ The logic inside `http_try()` is this:
   - log it as a SUCCESS with a generic 200 message
   - return the object as is (default status code 200 assumed)
 
-Messages are handled by the `msg` function. Here is how you can add a
-preroute hook. Here we add a logger to print incoming request info (HTTP
-method and route) to STDOUT. For the sake of better ingest the logs we
-can set the logging type to JSON and the timestamp precision to 6
-digits.
+Log messages are handled by the `msg` function. Here is how you can add
+a preroute hook: we add a logger to print incoming request info (HTTP
+method and route) to STDOUT. For the sake of better ingesting the logs
+we can set the logging type to JSON (or CSV) and the timestamp precision
+to 6 digits.
 
 ``` r
 Sys.setenv(
@@ -247,8 +250,8 @@ Output:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # {"pid":27421,"ts":"2022-10-23 22:26:26.535651","ut":1666585586.53565,"level":"INFO","value":3,"title":"POST /try","message":""}
-    # {"pid":27421,"ts":"2022-10-23 22:26:26.566308","ut":1666585586.56631,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
+    # {"pid":"47102","ts":"2022-10-24 18:16:00.918234","ut":1666656960.91819,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"pid":"47102","ts":"2022-10-24 18:16:00.947643","ut":1666656960.94762,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
@@ -258,33 +261,33 @@ Output:
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"pid":27435,"ts":"2022-10-23 22:26:27.60770","ut":1666585587.60771,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"pid":"47116","ts":"2022-10-24 18:16:01.998258","ut":1666656961.99822,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # {"pid":27435,"ts":"2022-10-23 22:26:27.635035","ut":1666585587.63504,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
+    # {"pid":"47116","ts":"2022-10-24 18:16:02.027772","ut":1666656962.02774,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
     # --- Response ---
     # {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}
     # --- STDOUT ---
-    # 27447,2022-10-23 22:26:28.676667,1666585588.67667,INFO,3,POST /try,
+    # {"pid":"47128","ts":"2022-10-24 18:16:03.068161","ut":1666656963.06812,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # 27447,2022-10-23 22:26:28.709112,1666585588.70911,ERROR,6,Status 400: Bad Request - Unexpected input.,
+    # {"pid":"47128","ts":"2022-10-24 18:16:03.0982","ut":1666656963.09828,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"pid":27461,"ts":"2022-10-23 22:26:29.746473","ut":1666585589.74647,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"pid":"47140","ts":"2022-10-24 18:16:04.127104","ut":1666656964.12708,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
     # Running plumber API at http://127.0.0.1:8000
     # Running swagger Docs at http://127.0.0.1:8000/__docs__/
-    # {"pid":27461,"ts":"2022-10-23 22:26:29.773343","ut":1666585589.77334,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
+    # {"pid":"47140","ts":"2022-10-24 18:16:04.149518","ut":1666656964.1495,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
 
 Structured errors are handled by the `http_error()` function that uses
 default error messages as defined in the `http_status_codes` data frame.
@@ -344,7 +347,7 @@ plumber::pr("inst/examples/plumber.R") |>
 
 The `inst/examples` folder contains Shiny apps that you can edit and use
 to explore the differences between Plumber’s default error handling
-(`/test` endpoint) and the `tryr` approach (`/tryr` endpoint). See the
+(`/test` endpoint) and the tryr approach (`/tryr` endpoint). See the
 response, request, STDOUT and STDERR from the calls:
 
 ``` r
