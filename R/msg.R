@@ -38,8 +38,7 @@ msg <- function(
         WARN = 5L, 
         ERROR = 6L, 
         FATAL = 7L, 
-        OFF = 8L,
-        NONE = 9L)
+        OFF = 8L)
     level <- toupper(level)
     if (!(level %in% names(levels)))
         stop("Log level is incorrectly set.")
@@ -49,7 +48,7 @@ msg <- function(
     ERR_LEVEL <- toupper(Sys.getenv("TRYR_ERR_LEVEL", "WARN"))
     if (!(ERR_LEVEL %in% names(levels)))
         stop("The TRYR_ERR_LEVEL environment variable is incorrectly set.")
-    if (level == "NONE" || levels[LOG_LEVEL] > levels[level])
+    if (level == "OFF" || levels[LOG_LEVEL] > levels[level])
         return(invisible(FALSE))
 
     st <- Sys.time()
@@ -114,8 +113,7 @@ msg <- function(
                 WARN    = "WARN   ", 
                 ERROR   = "ERROR  ", 
                 FATAL   = "FATAL  ", 
-                OFF     = "OFF    ",
-                NONE    = "NONE   "),
+                OFF     = "OFF    "),
             "] ",
             title,
             if (message == "") "" else " - ",
