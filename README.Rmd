@@ -77,7 +77,7 @@ err <- file.path(tmp, "err")
 rx <- callr::r_bg(function() {
     plumber::pr("inst/examples/plumber.R") |>
       plumber::pr_set_debug(FALSE) |>
-      plumber::pr_run(port=8000)
+      plumber::pr_run(port=8000, quiet=TRUE)
   },
   stdout = out, 
   stderr = err
@@ -94,7 +94,7 @@ err <- file.path(tmp, "err")
 rx <- callr::r_bg(function() {
     plumber::pr("inst/examples/plumber.R") |>
       plumber::pr_set_debug(FALSE) |>
-      plumber::pr_run(port=8000)
+      plumber::pr_run(port=8000, quiet=TRUE)
   },
   stdout = out, 
   stderr = err
@@ -111,7 +111,7 @@ err <- file.path(tmp, "err")
 rx <- callr::r_bg(function() {
     plumber::pr("inst/examples/plumber.R") |>
       plumber::pr_set_debug(FALSE) |>
-      plumber::pr_run(port=8000)
+      plumber::pr_run(port=8000, quiet=TRUE)
   },
   stdout = out, 
   stderr = err
@@ -128,7 +128,7 @@ err <- file.path(tmp, "err")
 rx <- callr::r_bg(function() {
     plumber::pr("inst/examples/plumber.R") |>
       plumber::pr_set_debug(FALSE) |>
-      plumber::pr_run(port=8000)
+      plumber::pr_run(port=8000, quiet=TRUE)
   },
   stdout = out, 
   stderr = err
@@ -178,7 +178,7 @@ err <- file.path(tmp, "err")
 rx <- callr::r_bg(function() {
     plumber::pr("inst/examples/plumber.R") |>
       plumber::pr_set_debug(FALSE) |>
-      plumber::pr_run(port=8000)
+      plumber::pr_run(port=8000, quiet=TRUE)
   },
   stdout = out, 
   stderr = err
@@ -195,7 +195,7 @@ err <- file.path(tmp, "err")
 rx <- callr::r_bg(function() {
     plumber::pr("inst/examples/plumber.R") |>
       plumber::pr_set_debug(FALSE) |>
-      plumber::pr_run(port=8000)
+      plumber::pr_run(port=8000, quiet=TRUE)
   },
   stdout = out, 
   stderr = err
@@ -212,7 +212,7 @@ err <- file.path(tmp, "err")
 rx <- callr::r_bg(function() {
     plumber::pr("inst/examples/plumber.R") |>
       plumber::pr_set_debug(FALSE) |>
-      plumber::pr_run(port=8000)
+      plumber::pr_run(port=8000, quiet=TRUE)
   },
   stdout = out, 
   stderr = err
@@ -229,7 +229,7 @@ err <- file.path(tmp, "err")
 rx <- callr::r_bg(function() {
     plumber::pr("inst/examples/plumber.R") |>
       plumber::pr_set_debug(FALSE) |>
-      plumber::pr_run(port=8000)
+      plumber::pr_run(port=8000, quiet=TRUE)
   },
   stdout = out, 
   stderr = err
@@ -296,7 +296,9 @@ plumber::pr("inst/examples/plumber.R") |>
       }
     )
   ) |>
-  plumber::pr_run(port=8000)
+  plumber::pr_run(
+    port = 8000,
+    quiet = TRUE)
 ```
 
 Output:
@@ -324,7 +326,9 @@ rx <- callr::r_bg(function() {
         }
       )
     ) |>
-    plumber::pr_run(port=8000)
+    plumber::pr_run(
+      port = 8000, 
+      quiet = TRUE)
   },
   stdout = out, 
   stderr = err
@@ -358,7 +362,9 @@ rx <- callr::r_bg(function() {
         }
       )
     ) |>
-    plumber::pr_run(port=8000)
+    plumber::pr_run(
+      port = 8000, 
+      quiet = TRUE)
   },
   stdout = out, 
   stderr = err
@@ -392,7 +398,9 @@ rx <- callr::r_bg(function() {
         }
       )
     ) |>
-    plumber::pr_run(port=8000)
+    plumber::pr_run(
+      port = 8000, 
+      quiet = TRUE)
   },
   stdout = out, 
   stderr = err
@@ -426,7 +434,9 @@ rx <- callr::r_bg(function() {
         }
       )
     ) |>
-    plumber::pr_run(port=8000)
+    plumber::pr_run(
+      port = 8000,
+      quiet = TRUE)
   },
   stdout = out, 
   stderr = err
@@ -483,7 +493,9 @@ plumber::pr("inst/examples/plumber.R") |>
       }
     )
   ) |>
-  plumber::pr_run(port=8000)
+  plumber::pr_run(
+    port = 8000, 
+    quiet = TRUE)
 ```
 
 ## See the action
