@@ -93,21 +93,21 @@ A side effect is a log message to STDOUT or STDERR.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12406 | 2023-03-18 06:07:01.409 [INFO   ] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8508 | 2023-03-18 06:18:05.057 [INFO   ] Success - We did it!</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, <span class="st">"SUCCESS"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12406 | 2023-03-18 06:07:01.410 [SUCCESS] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8508 | 2023-03-18 06:18:05.059 [SUCCESS] Success - We did it!</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Crap"</span>, <span class="st">"Oh no ..."</span>, <span class="st">"ERROR"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, <span class="st">"SUCCESS"</span>, format <span class="op">=</span> <span class="st">"JSON"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"pid":"12406","ts":"2023-03-18 06:07:01.413","ut":1679119621.41386,"level":"SUCCESS","value":4,"title":"Success","message":"We did it!"}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"pid":"8508","ts":"2023-03-18 06:18:05.062","ut":1679120285.06278,"level":"SUCCESS","value":4,"title":"Success","message":"We did it!"}</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, format <span class="op">=</span> <span class="st">"JSON"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"pid":"12406","ts":"2023-03-18 06:07:01.415","ut":1679119621.41535,"level":"INFO","value":3,"title":"Success","message":"We did it!"}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"pid":"8508","ts":"2023-03-18 06:18:05.064","ut":1679120285.06445,"level":"INFO","value":3,"title":"Success","message":"We did it!"}</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Crap"</span>, <span class="st">"Oh no ..."</span>, <span class="st">"ERROR"</span>, format <span class="op">=</span> <span class="st">"JSON"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12406 | 2023-03-18 06:07:01 [INFO   ] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8508 | 2023-03-18 06:18:05 [INFO   ] Success - We did it!</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, digits <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12406 | 2023-03-18 06:07:01.420018 [INFO   ] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8508 | 2023-03-18 06:18:05.070085 [INFO   ] Success - We did it!</span>
 <span class="r-in"><span> </span></span>
 </code></pre></div>
     </div>
