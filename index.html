@@ -108,38 +108,38 @@ JSON strings, and command line arguments.
 <span>  <span class="fu">foo</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Here are the responses from this <code>/test</code> endpoint for various specification of the <code>x</code> parameter:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co"># --- Request ---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=0"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co"># --- Response ---</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="co"># ["Success!"]</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co"># </span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="co"># --- Request ---</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=-1"</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="co"># --- Response ---</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="co"># &lt;simpleError in foo(x = x): 'x' is too low.&gt;</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="co"># --- Request ---</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=a"</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="co"># --- Response ---</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a><span class="co"># &lt;simpleError in if (x &lt; 0) stop("'x' is too low."): missing value where TRUE/FALSE needed&gt;</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a><span class="co"># Warning in foo(x = x) : NAs introduced by coercion</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a><span class="co"># --- Request ---</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a><span class="co"># curl -X POST "http://localhost:8000/test?x="</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a><span class="co"># --- Response ---</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true"></a><span class="co"># &lt;simpleError in foo(x = x): argument "x" is missing, with no default&gt;</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true"></a><span class="co"># --- STDERR ---</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=0"</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=-1"</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co"># &lt;simpleError in foo(x = x): 'x' is too low.&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=a"</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co"># &lt;simpleError in if (x &lt; 0) stop("'x' is too low."): missing value where TRUE/FALSE needed&gt;</span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co"># Warning in foo(x = x) : NAs introduced by coercion</span></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x="</span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co"># &lt;simpleError in foo(x = x): argument "x" is missing, with no default&gt;</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span></code></pre></div>
 <p>As you can see, the response has a generic 500 HTTP status irrespective of nature of the error. On the back end, the error is printed to STDOUT, whereas a warning got printed to STDERR.</p>
 <p>This default behavior is undesired for multiple reasons:</p>
 <ul>
@@ -170,40 +170,40 @@ JSON strings, and command line arguments.
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Here are the outputs from the <code>/try</code> endpoint for the same requests as before:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co"># --- Request ---</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=0"</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co"># --- Response ---</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co"># ["Success!"]</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co"># 94671 | 2022-11-04 20:55:53.403 [SUCCESS] Status 200: OK</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="co"># --- Request ---</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=-1"</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="co"># --- Response ---</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="co"># </span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="co"># 94683 | 2022-11-04 20:55:54.470 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a><span class="co"># --- Request ---</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a><span class="co"># --- Response ---</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a><span class="co"># </span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a><span class="co"># 94695 | 2022-11-04 20:55:55.533 [ERROR  ] Status 400: Bad Request - Unexpected input.</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true"></a><span class="co"># --- Request ---</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true"></a><span class="co"># --- Response ---</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true"></a><span class="co"># </span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true"></a><span class="co"># 94709 | 2022-11-04 20:55:56.601 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=0"</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># 23066 | 2023-03-18 09:23:30.562 [SUCCESS] Status 200: OK</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=-1"</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co"># 23080 | 2023-03-18 09:23:31.614 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co"># 23096 | 2023-03-18 09:23:32.694 [ERROR  ] Status 400: Bad Request - Unexpected input.</span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="co"># 23108 | 2023-03-18 09:23:33.749 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing</span></span></code></pre></div>
 <p>Now we can see that:</p>
 <ul>
 <li>Successful response (200) leaves a trace in STDOUT</li>
@@ -219,13 +219,15 @@ JSON strings, and command line arguments.
 <p>The logic inside <code><a href="reference/http-try.html">http_try()</a></code> is this:</p>
 <p><em>If we catch an error:</em></p>
 <ul>
-<li>the error is a clear server error coming from <code><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop()</a></code><ul>
+<li>the error is a clear server error coming from <code><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop()</a></code>
+<ul>
 <li>log it as an ERROR + print the error message to STDERR</li>
 <li>return a generic status 500 message</li>
 <li>set the status code of the response object to 500</li>
 </ul>
 </li>
-<li>the error is a structured HTTP error coming from <code><a href="reference/http-messages.html">http_error()</a></code><ul>
+<li>the error is a structured HTTP error coming from <code><a href="reference/http-messages.html">http_error()</a></code>
+<ul>
 <li>log it as an ERROR with the message from the condition attribute</li>
 <li>return the specific HTTP error code with the structured output</li>
 <li>set the status code of the response object</li>
@@ -234,13 +236,15 @@ JSON strings, and command line arguments.
 </ul>
 <p><em>If we don’t catch an error:</em></p>
 <ul>
-<li>the object is of class <code><a href="reference/http-messages.html">http_success()</a></code> (this comes in handy for async jobs and redirects)<ul>
+<li>the object is of class <code><a href="reference/http-messages.html">http_success()</a></code> (this comes in handy for async jobs and redirects)
+<ul>
 <li>log it as a SUCCESS with the message element</li>
 <li>return the specific HTTP status code with the structured output</li>
 <li>set the status code of the response object</li>
 </ul>
 </li>
-<li>the object is NOT of class <code><a href="reference/http-messages.html">http_success()</a></code><ul>
+<li>the object is NOT of class <code><a href="reference/http-messages.html">http_success()</a></code>
+<ul>
 <li>log it as a SUCCESS with a generic 200 message</li>
 <li>return the object as is (default status code 200 assumed)</li>
 </ul>
@@ -271,41 +275,41 @@ JSON strings, and command line arguments.
 <span>    port <span class="op">=</span> <span class="fl">8000</span>,</span>
 <span>    quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Output:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="co"># --- Request ---</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=0"</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="co"># --- Response ---</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="co"># ["Success!"]</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co"># {"pid":"94723","ts":"2022-11-04 20:55:57.643161","ut":1667616957.64312,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="co"># {"pid":"94723","ts":"2022-11-04 20:55:57.670125","ut":1667616957.6701,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="co"># --- Request ---</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=-1"</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a><span class="co"># --- Response ---</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a><span class="co"># {"pid":"94735","ts":"2022-11-04 20:55:58.715163","ut":1667616958.71513,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a><span class="co"># {"pid":"94735","ts":"2022-11-04 20:55:58.745654","ut":1667616958.74564,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a><span class="co"># --- Request ---</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a><span class="co"># --- Response ---</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true"></a><span class="co"># {"pid":"94747","ts":"2022-11-04 20:55:59.783082","ut":1667616959.78305,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true"></a><span class="co"># {"pid":"94747","ts":"2022-11-04 20:55:59.811228","ut":1667616959.81121,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true"></a></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true"></a><span class="co"># --- Request ---</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true"></a><span class="co"># --- Response ---</span></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true"></a><span class="co"># {"pid":"94759","ts":"2022-11-04 20:56:00.84779","ut":1667616960.84776,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true"></a><span class="co"># {"pid":"94759","ts":"2022-11-04 20:56:00.874516","ut":1667616960.87449,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=0"</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># {"pid":"23120","ts":"2023-03-18 09:23:34.787947","ut":1679153014.78792,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co"># {"pid":"23120","ts":"2023-03-18 09:23:34.809655","ut":1679153014.80964,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=-1"</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co"># {"pid":"23132","ts":"2023-03-18 09:23:35.841526","ut":1679153015.8415,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co"># {"pid":"23132","ts":"2023-03-18 09:23:35.863015","ut":1679153015.863,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co"># {"pid":"23146","ts":"2023-03-18 09:23:36.89471","ut":1679153016.89469,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co"># {"pid":"23146","ts":"2023-03-18 09:23:36.916104","ut":1679153016.91609,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}</span></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a><span class="co"># {"pid":"23160","ts":"2023-03-18 09:23:37.947411","ut":1679153017.94738,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a><span class="co"># {"pid":"23160","ts":"2023-03-18 09:23:37.96928","ut":1679153017.96927,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}</span></span></code></pre></div>
 <p>Structured errors are handled by the <code><a href="reference/http-messages.html">http_error()</a></code> function that uses default error messages as defined in the <code>http_status_codes</code> data frame.</p>
 <p>The <code><a href="reference/http-messages.html">http_success()</a></code> works similarly but it does not produce an error. It can also pass a <code>body</code> argument. This is useful if we need to return simple status messages when responding to webhooks during async execution.</p>
 <p>The <code><a href="reference/http-messages.html">http_response()</a></code> can be used for any of the status codes and is behind the <code><a href="reference/http-messages.html">http_handler()</a></code> function that is useful to set default handlers for Plumber:</p>
