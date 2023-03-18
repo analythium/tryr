@@ -10,10 +10,10 @@ JSON strings, and command line arguments.
 ">
 <title>tryr: Manage R Configuration at the Command Line • tryr</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="tryr: Manage R Configuration at the Command Line">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="tryr: Manage R Configuration at the Command Line">
 <meta property="og:description" content="Configuration management using files (JSON, YAML, separated text),
 JSON strings, and command line arguments.
 ">
@@ -94,7 +94,7 @@ JSON strings, and command line arguments.
 <div class="section level3">
 <h3 id="default-behavior">Default behavior<a class="anchor" aria-label="anchor" href="#default-behavior"></a>
 </h3>
-<p>We use a very simple handler calling the function <code>foo()</code>: note that the contents of the response also depend on the <code>pr_set_debug()</code> settings that depends on whether we use interactive or non-interactive session. Therefore we turned that off in our interactive examples.</p>
+<p>We use a handler calling the function <code>foo()</code>: note that the contents of the response also depend on the <code>pr_set_debug()</code> settings that depends on whether we use interactive or non-interactive session. This is now turned off so that we can see the ‘production’ behavior.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">foo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -107,54 +107,46 @@ JSON strings, and command line arguments.
 <span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu">foo</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>Here are the responses from this <code>/test</code> endpoint:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=0"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=-1"</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;simpleError in foo(x = x): 'x' is too low.&gt;</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=a"</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;simpleError in if (x &lt; 0) stop("'x' is too low."): missing value where TRUE/FALSE needed&gt;</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Warning in foo(x = x) : NAs introduced by coercion</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x="</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;simpleError in foo(x = x): argument "x" is missing, with no default&gt;</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span></code></pre></div>
-<p>As you can see, the response has a generic 500 HTTP status irrespective of nature of the error. Moreover the response contains the error message from R. On the back end, the error is printed to STDOUT, whereas a warning got printed to STDERR.</p>
+<p>Here are the responses from this <code>/test</code> endpoint for various specification of the <code>x</code> parameter:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=0"</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=-1"</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co"># &lt;simpleError in foo(x = x): 'x' is too low.&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=a"</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co"># &lt;simpleError in if (x &lt; 0) stop("'x' is too low."): missing value where TRUE/FALSE needed&gt;</span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co"># Warning in foo(x = x) : NAs introduced by coercion</span></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x="</span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co"># &lt;simpleError in foo(x = x): argument "x" is missing, with no default&gt;</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span></code></pre></div>
+<p>As you can see, the response has a generic 500 HTTP status irrespective of nature of the error. On the back end, the error is printed to STDOUT, whereas a warning got printed to STDERR.</p>
 <p>This default behavior is undesired for multiple reasons:</p>
 <ul>
 <li>We need to be able to differentiate 4xx and 5xx errors</li>
-<li>When the error is 5xx, the error message itself might contain sensitive information that we should not leak to the client</li>
 <li>The detailed error message is helpful on the backend, but we should print it to STDERR instead of STDOUT</li>
 </ul>
+<p>Warning: when <code>pr_set_debug(TRUE)</code> the error message itself is returned by the response, this might contain sensitive information that we should not leak to the client.</p>
 </div>
 </div>
 <div class="section level2">
@@ -177,57 +169,49 @@ JSON strings, and command line arguments.
 <span>    <span class="fu">bar</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>Here are the outputs from the <code>/try</code> endpoint:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=0"</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 27367 &gt; 2022-10-23 22:26:22.292 [SUCCESS] Status 200: OK</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=-1"</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 27381 &gt; 2022-10-23 22:26:23.360 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 27393 &gt; 2022-10-23 22:26:24.423 [ERROR  ] Status 400: Bad Request - Unexpected input.</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 27407 &gt; 2022-10-23 22:26:25.490 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing</span></span></code></pre></div>
+<p>Here are the outputs from the <code>/try</code> endpoint for the same requests as before:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=0"</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># 94671 | 2022-11-04 20:55:53.403 [SUCCESS] Status 200: OK</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=-1"</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co"># 94683 | 2022-11-04 20:55:54.470 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co"># 94695 | 2022-11-04 20:55:55.533 [ERROR  ] Status 400: Bad Request - Unexpected input.</span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="co"># 94709 | 2022-11-04 20:55:56.601 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing</span></span></code></pre></div>
 <p>Now we can see that:</p>
 <ul>
-<li>Successful response (200) leaves a trace in STDERR along with the error messages</li>
+<li>Successful response (200) leaves a trace in STDOUT</li>
 <li>We can differentiate 4xx and 5xx errors</li>
 <li>When the error is 5xx, the error message is not included</li>
 <li>The detailed error message is printed to STDERR</li>
 </ul>
-<p>So how did we do it? Here is what you get in tryr: we used <code><a href="reference/http-try.html">http_try()</a></code>. It is a wrapper that can handle <em>expected</em> and <em>unexpected</em> errors. Expected errors give the desired HTTP statuses using <code><a href="reference/http-messages.html">http_error()</a></code>. Unexpected error are returned by <code><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop()</a></code> and we have very little control over those (i.e. were written by someone else).</p>
+<p>So how did we do it? Here is what you get in tryr: we used <code><a href="reference/http-try.html">http_try()</a></code>. It is a wrapper that can handle <em>expected</em> and <em>unexpected</em> errors. Expected errors give the desired HTTP statuses using <code><a href="reference/http-messages.html">http_error()</a></code>. Unexpected error are returned by <code><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop()</a></code> and we have very little control over those (i.e. these were written by someone else).</p>
 </div>
 <div class="section level2">
 <h2 id="implementation">Implementation<a class="anchor" aria-label="anchor" href="#implementation"></a>
@@ -252,7 +236,7 @@ JSON strings, and command line arguments.
 </ul>
 <p><em>If we don’t catch an error:</em></p>
 <ul>
-<li>the object is of class <code><a href="reference/http-messages.html">http_success()</a></code>
+<li>the object is of class <code><a href="reference/http-messages.html">http_success()</a></code> (this comes in handy for async jobs and redirects)
 <ul>
 <li>log it as a SUCCESS with the message element</li>
 <li>return the specific HTTP status code with the structured output</li>
@@ -266,7 +250,7 @@ JSON strings, and command line arguments.
 </ul>
 </li>
 </ul>
-<p>Messages are handled by the <code>msg</code> function. Here is how you can add a preroute hook. Here we add a logger to print incoming request info (HTTP method and route) to STDOUT. For the sake of better ingest the logs we can set the logging type to JSON and the timestamp precision to 6 digits.</p>
+<p>Log messages are handled by the <code>msg</code> function. Here is how you can add a preroute hook: we add a logger to print incoming request info (HTTP method and route) to STDOUT. For the sake of better ingesting the logs we can set the logging type to JSON (or CSV) and the timestamp precision to 6 digits.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span></span>
 <span>  TRYR_LOG_FORMAT <span class="op">=</span> <span class="st">"JSON"</span>,</span>
@@ -287,51 +271,45 @@ JSON strings, and command line arguments.
 <span>      <span class="op">}</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">plumber</span><span class="fu">::</span><span class="fu">pr_run</span><span class="op">(</span>port<span class="op">=</span><span class="fl">8000</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">plumber</span><span class="fu">::</span><span class="fu">pr_run</span><span class="op">(</span></span>
+<span>    port <span class="op">=</span> <span class="fl">8000</span>,</span>
+<span>    quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Output:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=0"</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># {"pid":27421,"ts":"2022-10-23 22:26:26.535651","ut":1666585586.53565,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># {"pid":27421,"ts":"2022-10-23 22:26:26.566308","ut":1666585586.56631,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=-1"</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># {"pid":27435,"ts":"2022-10-23 22:26:27.60770","ut":1666585587.60771,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># {"pid":27435,"ts":"2022-10-23 22:26:27.635035","ut":1666585587.63504,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 27447,2022-10-23 22:26:28.676667,1666585588.67667,INFO,3,POST /try,</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 27447,2022-10-23 22:26:28.709112,1666585588.70911,ERROR,6,Status 400: Bad Request - Unexpected input.,</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co"># {"pid":27461,"ts":"2022-10-23 22:26:29.746473","ut":1666585589.74647,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Running plumber API at http://127.0.0.1:8000</span></span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Running swagger Docs at http://127.0.0.1:8000/__docs__/</span></span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="co"># {"pid":27461,"ts":"2022-10-23 22:26:29.773343","ut":1666585589.77334,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=0"</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># {"pid":"94723","ts":"2022-11-04 20:55:57.643161","ut":1667616957.64312,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co"># {"pid":"94723","ts":"2022-11-04 20:55:57.670125","ut":1667616957.6701,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=-1"</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co"># {"pid":"94735","ts":"2022-11-04 20:55:58.715163","ut":1667616958.71513,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co"># {"pid":"94735","ts":"2022-11-04 20:55:58.745654","ut":1667616958.74564,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co"># {"pid":"94747","ts":"2022-11-04 20:55:59.783082","ut":1667616959.78305,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co"># {"pid":"94747","ts":"2022-11-04 20:55:59.811228","ut":1667616959.81121,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}</span></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a><span class="co"># {"pid":"94759","ts":"2022-11-04 20:56:00.84779","ut":1667616960.84776,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a><span class="co"># {"pid":"94759","ts":"2022-11-04 20:56:00.874516","ut":1667616960.87449,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}</span></span></code></pre></div>
 <p>Structured errors are handled by the <code><a href="reference/http-messages.html">http_error()</a></code> function that uses default error messages as defined in the <code>http_status_codes</code> data frame.</p>
 <p>The <code><a href="reference/http-messages.html">http_success()</a></code> works similarly but it does not produce an error. It can also pass a <code>body</code> argument. This is useful if we need to return simple status messages when responding to webhooks during async execution.</p>
 <p>The <code><a href="reference/http-messages.html">http_response()</a></code> can be used for any of the status codes and is behind the <code><a href="reference/http-messages.html">http_handler()</a></code> function that is useful to set default handlers for Plumber:</p>
@@ -374,12 +352,14 @@ JSON strings, and command line arguments.
 <span>      <span class="op">}</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">plumber</span><span class="fu">::</span><span class="fu">pr_run</span><span class="op">(</span>port<span class="op">=</span><span class="fl">8000</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">plumber</span><span class="fu">::</span><span class="fu">pr_run</span><span class="op">(</span></span>
+<span>    port <span class="op">=</span> <span class="fl">8000</span>, </span>
+<span>    quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="see-the-action">See the action<a class="anchor" aria-label="anchor" href="#see-the-action"></a>
 </h2>
-<p>The <code>inst/examples</code> folder contains Shiny apps that you can edit and use to explore the differences between Plumber’s default error handling (<code>/test</code> endpoint) and the <code>tryr</code> approach (<code>/tryr</code> endpoint). See the response, request, STDOUT and STDERR from the calls:</p>
+<p>The <code>inst/examples</code> folder contains Shiny apps that you can edit and use to explore the differences between Plumber’s default error handling (<code>/test</code> endpoint) and the tryr approach (<code>/tryr</code> endpoint). See the response, request, STDOUT and STDERR from the calls:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"inst/examples/app.R"</span><span class="op">)</span></span></code></pre></div>
 <p>The second app is more general. You can edit the <code>plumber_fun</code> function definition and explore your own API’s output printed to STDOUT and STDERR:</p>
@@ -438,7 +418,7 @@ JSON strings, and command line arguments.
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer>
