@@ -13,4 +13,4 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Check
-        uses: analythium/actions@v1.1
+        uses: analythium/actions@v1.2
