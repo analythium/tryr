@@ -15,6 +15,9 @@ jobs:
       - name: Check
         uses: analythium/actions/pkgdown@v1.5
 
+      - name: Install rsync 📚
+        run: apt-get update && apt-get install -y rsync
+
       - name: Deploy site
         uses: JamesIves/github-pages-deploy-action@v4
         with:
