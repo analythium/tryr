@@ -16,4 +16,4 @@
 ^\.gitpod\.yml$
 ^\.gitpod\.Dockerfile$
 ^\.vscode$
-^*\.png$
+^.*\.png$
