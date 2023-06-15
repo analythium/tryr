@@ -11,6 +11,8 @@ api_framework <- function(req, res) {
     if (inherits(res, "Response"))
         return("RestRserve")
     # plumber's res class is PlumberResponse & R6
+    # would probably work for firey & ambiorix
+    # would probably fail with beakr
     "plumber"
 }
 
