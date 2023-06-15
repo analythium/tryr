@@ -518,7 +518,7 @@ source("inst/examples/explore.R")
 
 ## Other considerations
 
-<https://cran.r-project.org/web/packages/tryCatchLog/vignettes/tryCatchLog-intro.html>
+<https://CRAN.R-project.org/package=tryCatchLog>
 
 STDOUT is buffered, needs a flush. STDERR is unbuffered, more immediate
 <https://unix.stackexchange.com/questions/331611/do-progress-reports-logging-information-belong-on-stderr-or-stdout>

@@ -57,7 +57,15 @@ http_try_handler <- function(req, res, x) {
                 message = oneline(geterrmessage()),
                 level = "ERROR"
             )
-            res$status <- 500L
+
+            # res$status <- 500L
+            if (identical(api_framework(req, res), "plumber")) {
+                res$status <- 500L
+            }
+            if (identical(api_framework(req, res), "RestRserve")) {
+                res$set_status_code(500L)
+            }
+
             i <- as.list(
                 http_status_codes["500",]
             )
@@ -70,7 +78,15 @@ http_try_handler <- function(req, res, x) {
                     attr(x, "condition")$message),
                 level = "ERROR"
             )
-            res$status <- attr(x, "condition")$status
+
+            # res$status <- attr(x, "condition")$status
+            if (identical(api_framework(req, res), "plumber")) {
+                res$status <- attr(x, "condition")$status
+            }
+            if (identical(api_framework(req, res), "RestRserve")) {
+                res$set_status_code(attr(x, "condition")$status)
+            }
+
             i <- unclass(
                 attr(x, "condition")
             )
@@ -93,7 +109,16 @@ http_try_handler <- function(req, res, x) {
                     x$message),
                 level = "SUCCESS"
             )
-            res$status <- x$status
+
+
+            # res$status <- x$status
+            if (identical(api_framework(req, res), "plumber")) {
+                res$status <- x$status
+            }
+            if (identical(api_framework(req, res), "RestRserve")) {
+                res$set_status_code(x$status)
+            }
+
             unclass(
                 x # no unboxing applied
             )

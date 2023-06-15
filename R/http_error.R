@@ -92,7 +92,13 @@ http_response <- function(
 #' @export 
 http_handler <- function(req, res, status, ...) {
     x <- http_response(status = status, ...)
-    res$status <- x$status
-    res$body <- x
+    if (identical(api_framework(req, res), "plumber")) {
+        res$status <- x$status
+        res$body <- x
+    }
+    if (identical(api_framework(req, res), "RestRserve")) {
+        res$set_status_code(x$status)
+        res$set_body(x)
+    }
     x
 }
