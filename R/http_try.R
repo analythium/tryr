@@ -48,6 +48,7 @@ http_try <- function(req, res, expr, silent = TRUE, ...) {
 #' @rdname http-try
 #' @export 
 http_try_handler <- function(req, res, x) {
+    af <- api_framework(req, res)
     if (inherits(x, "try-error")) {
         if (!inherits(attr(x, "condition"), "http_error")) {
             msg(
@@ -59,10 +60,10 @@ http_try_handler <- function(req, res, x) {
             )
 
             # res$status <- 500L
-            if (identical(api_framework(req, res), "plumber")) {
+            if (af == "plumber" || is.na(af)) {
                 res$status <- 500L
             }
-            if (identical(api_framework(req, res), "RestRserve")) {
+            if (!is.na(af) && af == "RestRserve") {
                 res$set_status_code(500L)
             }
 
@@ -80,10 +81,10 @@ http_try_handler <- function(req, res, x) {
             )
 
             # res$status <- attr(x, "condition")$status
-            if (identical(api_framework(req, res), "plumber")) {
+            if (af == "plumber" || is.na(af)) {
                 res$status <- attr(x, "condition")$status
             }
-            if (identical(api_framework(req, res), "RestRserve")) {
+            if (!is.na(af) && af == "RestRserve") {
                 res$set_status_code(attr(x, "condition")$status)
             }
 
@@ -112,10 +113,10 @@ http_try_handler <- function(req, res, x) {
 
 
             # res$status <- x$status
-            if (identical(api_framework(req, res), "plumber")) {
+            if (af == "plumber" || is.na(af)) {
                 res$status <- x$status
             }
-            if (identical(api_framework(req, res), "RestRserve")) {
+            if (!is.na(af) && af == "RestRserve") {
                 res$set_status_code(x$status)
             }
 
