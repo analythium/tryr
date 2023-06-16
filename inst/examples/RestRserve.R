@@ -46,7 +46,7 @@ backend = BackendRserve$new()
 backend$start(app, http_port = 8000)
 
 # Rscript inst/examples/RestRserve.R
-# curl -X POST "http://localhost:8000/try?x=0"
-# curl -X POST "http://localhost:8000/try?x=-1"
-# curl -X POST "http://localhost:8000/try?x=a"
-# curl -X POST "http://localhost:8000/try?x="
+# curl -i -X POST "http://localhost:8000/try?x=0"
+# curl -i -X POST "http://localhost:8000/try?x=-1"
+# curl -i -X POST "http://localhost:8000/try?x=a"
+# curl -i -X POST "http://localhost:8000/try?x="
