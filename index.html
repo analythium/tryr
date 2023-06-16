@@ -118,38 +118,31 @@ JSON strings, and command line arguments.
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co"># </span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co"># createTcpServer: address already in use</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co"># Error in initialize(...) : Failed to create server</span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=-1"</span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co"># createTcpServer: address already in use</span></span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co"># Error in initialize(...) : Failed to create server</span></span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=a"</span></span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co"># createTcpServer: address already in use</span></span>
-<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co"># Error in initialize(...) : Failed to create server</span></span>
-<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x="</span></span>
-<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
-<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a><span class="co"># createTcpServer: address already in use</span></span>
-<span id="cb4-39"><a href="#cb4-39" tabindex="-1"></a><span class="co"># Error in initialize(...) : Failed to create server</span></span></code></pre></div>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=-1"</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co"># &lt;simpleError in foo(x = x): 'x' is too low.&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x=a"</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co"># &lt;simpleError in if (x &lt; 0) stop("'x' is too low."): missing value where TRUE/FALSE needed&gt;</span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co"># Warning in foo(x = x) : NAs introduced by coercion</span></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/test?x="</span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co"># {"error":"500 - Internal server error"}</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co"># &lt;simpleError in foo(x = x): argument "x" is missing, with no default&gt;</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span></code></pre></div>
 <p>As you can see, the response has a generic 500 HTTP status irrespective of nature of the error. On the back end, the error is printed to STDOUT, whereas a warning got printed to STDERR.</p>
 <p>This default behavior is undesired for multiple reasons:</p>
 <ul>
@@ -185,40 +178,35 @@ JSON strings, and command line arguments.
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># 13437 | 2023-06-16 08:44:10.749 [SUCCESS] Status 200: OK</span></span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co"># createTcpServer: address already in use</span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co"># Error in initialize(...) : Failed to create server</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=-1"</span></span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co"># createTcpServer: address already in use</span></span>
-<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co"># Error in initialize(...) : Failed to create server</span></span>
-<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
-<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
-<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co"># createTcpServer: address already in use</span></span>
-<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="co"># Error in initialize(...) : Failed to create server</span></span>
-<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a></span>
-<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
-<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
-<span id="cb6-35"><a href="#cb6-35" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-36"><a href="#cb6-36" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb6-37"><a href="#cb6-37" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-38"><a href="#cb6-38" tabindex="-1"></a><span class="co"># createTcpServer: address already in use</span></span>
-<span id="cb6-39"><a href="#cb6-39" tabindex="-1"></a><span class="co"># Error in initialize(...) : Failed to create server</span></span></code></pre></div>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=-1"</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co"># 13449 | 2023-06-16 08:44:11.805 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co"># 13461 | 2023-06-16 08:44:12.861 [ERROR  ] Status 400: Bad Request - Unexpected input.</span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="co"># 13476 | 2023-06-16 08:44:13.915 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing</span></span></code></pre></div>
 <p>Now we can see that:</p>
 <ul>
 <li>Successful response (200) leaves a trace in STDOUT</li>
@@ -295,40 +283,36 @@ JSON strings, and command line arguments.
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co"># createTcpServer: address already in use</span></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co"># Error in initialize(...) : Failed to create server</span></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=-1"</span></span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
-<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="co"># createTcpServer: address already in use</span></span>
-<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co"># Error in initialize(...) : Failed to create server</span></span>
-<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
-<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
-<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a><span class="co"># createTcpServer: address already in use</span></span>
-<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="co"># Error in initialize(...) : Failed to create server</span></span>
-<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a></span>
-<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
-<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
-<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
-<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
-<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-36"><a href="#cb8-36" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb8-37"><a href="#cb8-37" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-38"><a href="#cb8-38" tabindex="-1"></a><span class="co"># createTcpServer: address already in use</span></span>
-<span id="cb8-39"><a href="#cb8-39" tabindex="-1"></a><span class="co"># Error in initialize(...) : Failed to create server</span></span></code></pre></div>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># {"pid":"13488","ts":"2023-06-16 08:44:14.956005","ut":1686926654.95598,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co"># {"pid":"13488","ts":"2023-06-16 08:44:14.982513","ut":1686926654.98249,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=-1"</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co"># {"pid":"13500","ts":"2023-06-16 08:44:16.02546","ut":1686926656.02544,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co"># {"pid":"13500","ts":"2023-06-16 08:44:16.047444","ut":1686926656.04743,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co"># {"pid":"13512","ts":"2023-06-16 08:44:17.08813","ut":1686926657.08809,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co"># {"pid":"13512","ts":"2023-06-16 08:44:17.110011","ut":1686926657.10999,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}</span></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
+<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a><span class="co"># {"pid":"13524","ts":"2023-06-16 08:44:18.146821","ut":1686926658.1468,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
+<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a><span class="co"># {"pid":"13524","ts":"2023-06-16 08:44:18.166714","ut":1686926658.1667,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}</span></span></code></pre></div>
 <p>Structured errors are handled by the <code><a href="reference/http-messages.html">http_error()</a></code> function that uses default error messages as defined in the <code>http_status_codes</code> data frame.</p>
 <p>The <code><a href="reference/http-messages.html">http_success()</a></code> works similarly but it does not produce an error. It can also pass a <code>body</code> argument. This is useful if we need to return simple status messages when responding to webhooks during async execution.</p>
 <p>The <code><a href="reference/http-messages.html">http_response()</a></code> can be used for any of the status codes and is behind the <code><a href="reference/http-messages.html">http_handler()</a></code> function that is useful to set default handlers for Plumber:</p>
