@@ -1,6 +1,6 @@
 Package: tryr
 Type: Package
-Title: Client/Server Error Handling for Plumber APIs
+Title: Client/Server Error Handling for HTTP APIs
 Version: 0.0.1
 Date: 2022-10-06
 Authors@R: c(
@@ -13,7 +13,8 @@ Authors@R: c(
     role = c("cph", "fnd")))
 Description: Differentiate client errors (4xx)
   from server errors (5xx) with a simple built-in
-  logging mechanism.
+  logging mechanism for the Plumber and RestRserve
+  HTTP API frameworks.
 License: MIT + file LICENSE
 Imports: jsonlite
 LazyLoad: yes

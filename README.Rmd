@@ -29,7 +29,9 @@ tmp <- tempdir()
 ```
 
 
-# tryr: Client/Server Error Handling for Plumber APIs
+# tryr: Client/Server Error Handling for HTTP APIs
+
+> Differentiate client errors (4xx) from server errors (5xx) with a simple built-in logging mechanism for the Plumber and RestRserve HTTP API frameworks.
 
 ```R
 remotes::install_github("analythium/tryr")
@@ -516,9 +518,15 @@ source("inst/examples/explore.R")
 
 ![](tryr-02.png)
 
+## Supported API frameworks
+
+- [plumber](https://www.rplumber.io/): the most popular API framework for R accounting for more than 95% of the total downloads.
+- [RestRserve](https://restrserve.org/): the 2nd most populat framework accounting for 2% of the total downloads. See the [`RestRserve.R](inst/examples/RestrServe.R) example.
+
+[Other frameworks](https://gist.github.com/psolymos/284b43b8dd0583b33ca7fc7dcf71082b) (fiery, beakr, ambiorix) are not supported -- using them will likely result in an error.
+
 ## Other considerations
 
-<https://CRAN.R-project.org/package=tryCatchLog>
+Similar ideas in the [tryCatchLog](https://CRAN.R-project.org/package=tryCatchLog) package for the general use case.
 
-STDOUT is buffered, needs a flush. STDERR is unbuffered, more immediate
-<https://unix.stackexchange.com/questions/331611/do-progress-reports-logging-information-belong-on-stderr-or-stdout>
+STDOUT is buffered, needs a flush. STDERR is unbuffered, more immediate ([_Do progress reports/logging information belong on stderr or stdout?_](https://unix.stackexchange.com/questions/331611/do-progress-reports-logging-information-belong-on-stderr-or-stdout))

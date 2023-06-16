@@ -4,7 +4,6 @@ JSON
 STDERR
 STDOUT
 async
-cran
 https
 preroute
 production’

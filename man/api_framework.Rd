@@ -12,9 +12,9 @@ api_framework(req, res)
 \item{res}{The response object.}
 }
 \value{
-A character vector of length 1.
-Possible values: \code{"plumber"}, \code{"RestRserve"} (R package names);
-\code{"plumber"} is assumed when the API framework cannot be determined.
+A character vector of length 1 with the name of the inferred
+R package or \code{NA} (which behaves as if it were Plumber).
+Unsupported frameworks will produce an error.
 }
 \description{
 Find out the API framework

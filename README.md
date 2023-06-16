@@ -1,4 +1,8 @@
-# tryr: Client/Server Error Handling for Plumber APIs
+# tryr: Client/Server Error Handling for HTTP APIs
+
+> Differentiate client errors (4xx) from server errors (5xx) with a
+> simple built-in logging mechanism for the Plumber and RestRserve HTTP
+> API frameworks.
 
 ``` r
 remotes::install_github("analythium/tryr")
@@ -58,31 +62,38 @@ specification of the `x` parameter:
     # --- STDOUT ---
     # 
     # --- STDERR ---
+    # createTcpServer: address already in use
+    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/test?x=-1"
     # --- Response ---
     # {"error":"500 - Internal server error"}
     # --- STDOUT ---
-    # <simpleError in foo(x = x): 'x' is too low.>
+    # 
     # --- STDERR ---
+    # createTcpServer: address already in use
+    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/test?x=a"
     # --- Response ---
     # {"error":"500 - Internal server error"}
     # --- STDOUT ---
-    # <simpleError in if (x < 0) stop("'x' is too low."): missing value where TRUE/FALSE needed>
+    # 
     # --- STDERR ---
-    # Warning in foo(x = x) : NAs introduced by coercion
+    # createTcpServer: address already in use
+    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/test?x="
     # --- Response ---
     # {"error":"500 - Internal server error"}
     # --- STDOUT ---
-    # <simpleError in foo(x = x): argument "x" is missing, with no default>
+    # 
     # --- STDERR ---
+    # createTcpServer: address already in use
+    # Error in initialize(...) : Failed to create server
 
 As you can see, the response has a generic 500 HTTP status irrespective
 of nature of the error. On the back end, the error is printed to STDOUT,
@@ -129,8 +140,10 @@ before:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # 88923 | 2023-06-15 16:14:31.022 [SUCCESS] Status 200: OK
+    # 
     # --- STDERR ---
+    # createTcpServer: address already in use
+    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=-1"
@@ -139,7 +152,8 @@ before:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # 88937 | 2023-06-15 16:14:32.096 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
+    # createTcpServer: address already in use
+    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
@@ -148,7 +162,8 @@ before:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # 88949 | 2023-06-15 16:14:33.168 [ERROR  ] Status 400: Bad Request - Unexpected input.
+    # createTcpServer: address already in use
+    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
@@ -157,7 +172,8 @@ before:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # 88961 | 2023-06-15 16:14:34.235 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
+    # createTcpServer: address already in use
+    # Error in initialize(...) : Failed to create server
 
 Now we can see that:
 
@@ -236,36 +252,40 @@ Output:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # {"pid":"88973","ts":"2023-06-15 16:14:35.27976","ut":1686867275.27974,"level":"INFO","value":3,"title":"POST /try","message":""}
-    # {"pid":"88973","ts":"2023-06-15 16:14:35.30025","ut":1686867275.30023,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
+    # 
     # --- STDERR ---
+    # createTcpServer: address already in use
+    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=-1"
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"pid":"88986","ts":"2023-06-15 16:14:36.345017","ut":1686867276.34498,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # 
     # --- STDERR ---
-    # {"pid":"88986","ts":"2023-06-15 16:14:36.37041","ut":1686867276.37039,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
+    # createTcpServer: address already in use
+    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
     # --- Response ---
     # {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}
     # --- STDOUT ---
-    # {"pid":"88998","ts":"2023-06-15 16:14:37.417895","ut":1686867277.41785,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # 
     # --- STDERR ---
-    # {"pid":"88998","ts":"2023-06-15 16:14:37.453033","ut":1686867277.45301,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
+    # createTcpServer: address already in use
+    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"pid":"89010","ts":"2023-06-15 16:14:38.493571","ut":1686867278.49352,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # 
     # --- STDERR ---
-    # {"pid":"89010","ts":"2023-06-15 16:14:38.52546","ut":1686867278.52545,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
+    # createTcpServer: address already in use
+    # Error in initialize(...) : Failed to create server
 
 Structured errors are handled by the `http_error()` function that uses
 default error messages as defined in the `http_status_codes` data frame.
@@ -346,9 +366,25 @@ source("inst/examples/explore.R")
 
 ![](tryr-02.png)
 
+## Supported API frameworks
+
+- [plumber](https://www.rplumber.io/): the most popular API framework
+  for R accounting for more than 95% of the total downloads.
+- [RestRserve](https://restrserve.org/): the 2nd most populat framework
+  accounting for 2% of the total downloads. See the
+  [\`RestRserve.R](inst/examples/RestrServe.R) example.
+
+[Other
+frameworks](https://gist.github.com/psolymos/284b43b8dd0583b33ca7fc7dcf71082b)
+(fiery, beakr, ambiorix) are not supported – using them will likely
+result in an error.
+
 ## Other considerations
 
-<https://CRAN.R-project.org/package=tryCatchLog>
+Similar ideas in the
+[tryCatchLog](https://CRAN.R-project.org/package=tryCatchLog) package
+for the general use case.
 
 STDOUT is buffered, needs a flush. STDERR is unbuffered, more immediate
-<https://unix.stackexchange.com/questions/331611/do-progress-reports-logging-information-belong-on-stderr-or-stdout>
+([*Do progress reports/logging information belong on stderr or
+stdout?*](https://unix.stackexchange.com/questions/331611/do-progress-reports-logging-information-belong-on-stderr-or-stdout))
