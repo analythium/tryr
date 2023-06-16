@@ -62,38 +62,31 @@ specification of the `x` parameter:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # createTcpServer: address already in use
-    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/test?x=-1"
     # --- Response ---
     # {"error":"500 - Internal server error"}
     # --- STDOUT ---
-    # 
+    # <simpleError in foo(x = x): 'x' is too low.>
     # --- STDERR ---
-    # createTcpServer: address already in use
-    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/test?x=a"
     # --- Response ---
     # {"error":"500 - Internal server error"}
     # --- STDOUT ---
-    # 
+    # <simpleError in if (x < 0) stop("'x' is too low."): missing value where TRUE/FALSE needed>
     # --- STDERR ---
-    # createTcpServer: address already in use
-    # Error in initialize(...) : Failed to create server
+    # Warning in foo(x = x) : NAs introduced by coercion
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/test?x="
     # --- Response ---
     # {"error":"500 - Internal server error"}
     # --- STDOUT ---
-    # 
+    # <simpleError in foo(x = x): argument "x" is missing, with no default>
     # --- STDERR ---
-    # createTcpServer: address already in use
-    # Error in initialize(...) : Failed to create server
 
 As you can see, the response has a generic 500 HTTP status irrespective
 of nature of the error. On the back end, the error is printed to STDOUT,
@@ -140,10 +133,8 @@ before:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # 
+    # 13437 | 2023-06-16 08:44:10.749 [SUCCESS] Status 200: OK
     # --- STDERR ---
-    # createTcpServer: address already in use
-    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=-1"
@@ -152,8 +143,7 @@ before:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # createTcpServer: address already in use
-    # Error in initialize(...) : Failed to create server
+    # 13449 | 2023-06-16 08:44:11.805 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
@@ -162,8 +152,7 @@ before:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # createTcpServer: address already in use
-    # Error in initialize(...) : Failed to create server
+    # 13461 | 2023-06-16 08:44:12.861 [ERROR  ] Status 400: Bad Request - Unexpected input.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
@@ -172,8 +161,7 @@ before:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # createTcpServer: address already in use
-    # Error in initialize(...) : Failed to create server
+    # 13476 | 2023-06-16 08:44:13.915 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
 
 Now we can see that:
 
@@ -252,40 +240,36 @@ Output:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # 
+    # {"pid":"13488","ts":"2023-06-16 08:44:14.956005","ut":1686926654.95598,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"pid":"13488","ts":"2023-06-16 08:44:14.982513","ut":1686926654.98249,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
     # --- STDERR ---
-    # createTcpServer: address already in use
-    # Error in initialize(...) : Failed to create server
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=-1"
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # 
+    # {"pid":"13500","ts":"2023-06-16 08:44:16.02546","ut":1686926656.02544,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
-    # createTcpServer: address already in use
-    # Error in initialize(...) : Failed to create server
+    # {"pid":"13500","ts":"2023-06-16 08:44:16.047444","ut":1686926656.04743,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
     # --- Response ---
     # {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}
     # --- STDOUT ---
-    # 
+    # {"pid":"13512","ts":"2023-06-16 08:44:17.08813","ut":1686926657.08809,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
-    # createTcpServer: address already in use
-    # Error in initialize(...) : Failed to create server
+    # {"pid":"13512","ts":"2023-06-16 08:44:17.110011","ut":1686926657.10999,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # 
+    # {"pid":"13524","ts":"2023-06-16 08:44:18.146821","ut":1686926658.1468,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
-    # createTcpServer: address already in use
-    # Error in initialize(...) : Failed to create server
+    # {"pid":"13524","ts":"2023-06-16 08:44:18.166714","ut":1686926658.1667,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
 
 Structured errors are handled by the `http_error()` function that uses
 default error messages as defined in the `http_status_codes` data frame.
@@ -370,8 +354,8 @@ source("inst/examples/explore.R")
 
 - [plumber](https://www.rplumber.io/): the most popular API framework
   for R accounting for more than 95% of the total downloads.
-- [RestRserve](https://restrserve.org/): the second most popular framework
-  accounting for 2% of the total downloads. See the
+- [RestRserve](https://restrserve.org/): the second most popular
+  framework accounting for 2% of the total downloads. See the
   [`RestRserve.R`](inst/examples/RestrServe.R) example.
 
 [Other
