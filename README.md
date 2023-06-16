@@ -356,7 +356,7 @@ source("inst/examples/explore.R")
   for R accounting for more than 95% of the total downloads.
 - [RestRserve](https://restrserve.org/): the second most popular
   framework accounting for 2% of the total downloads. See the
-  [`RestRserve.R`](inst/examples/RestrServe.R) example.
+  [`RestRserve.R`](inst/examples/RestRserve.R) example.
 
 [Other
 frameworks](https://gist.github.com/psolymos/284b43b8dd0583b33ca7fc7dcf71082b)
