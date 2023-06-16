@@ -27,3 +27,9 @@ function(req, res, x) {
     bar(x = x)
   })
 }
+
+# R -e "plumber::plumb('inst/examples/plumber.R') |> plumber::pr_run(port=8000)"
+# curl -i -X POST "http://localhost:8000/try?x=0"
+# curl -i -X POST "http://localhost:8000/try?x=-1"
+# curl -i -X POST "http://localhost:8000/try?x=a"
+# curl -i -X POST "http://localhost:8000/try?x="
