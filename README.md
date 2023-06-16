@@ -370,7 +370,7 @@ source("inst/examples/explore.R")
 
 - [plumber](https://www.rplumber.io/): the most popular API framework
   for R accounting for more than 95% of the total downloads.
-- [RestRserve](https://restrserve.org/): the 2nd most populat framework
+- [RestRserve](https://restrserve.org/): the second most popular framework
   accounting for 2% of the total downloads. See the
   [`RestRserve.R`](inst/examples/RestrServe.R) example.
 
