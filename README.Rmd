@@ -449,7 +449,6 @@ post(URL, out, err)
 o <- rx$kill()
 ```
 
-
 Structured errors are handled by the `http_error()` function that uses default error messages as defined in the `http_status_codes` data frame.
 
 The `http_success()` works similarly but it does not produce an error. It can also pass a `body` argument. This is useful if we need to return simple status messages when responding to webhooks during async execution.
@@ -524,6 +523,71 @@ source("inst/examples/explore.R")
 - [RestRserve](https://restrserve.org/): the second most popular framework accounting for 2% of the total downloads. See the [`RestRserve.R`](inst/examples/RestRserve.R) example.
 
 [Other frameworks](https://gist.github.com/psolymos/284b43b8dd0583b33ca7fc7dcf71082b) (fiery, beakr, ambiorix) are not supported -- using them will likely result in an error.
+
+Let's see an example for RestRserve:
+
+```{verbatim lang="R", file="inst/examples/RestRserve.R"}
+```
+
+```{r echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+    source("inst/examples/RestRserve.R")
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/try?x=0"
+post(URL, out, err)
+o <- rx$kill()
+```
+
+```{r echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+    source("inst/examples/RestRserve.R")
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/try?x=-1"
+post(URL, out, err)
+o <- rx$kill()
+```
+
+```{r echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+    source("inst/examples/RestRserve.R")
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/try?x=a"
+post(URL, out, err)
+o <- rx$kill()
+```
+
+```{r echo=FALSE}
+out <- file.path(tmp, "out")
+err <- file.path(tmp, "err")
+rx <- callr::r_bg(function() {
+    source("inst/examples/RestRserve.R")
+  },
+  stdout = out, 
+  stderr = err
+)
+Sys.sleep(1)
+URL <- "http://localhost:8000/try?x="
+post(URL, out, err)
+o <- rx$kill()
+```
 
 ## Other considerations
 
