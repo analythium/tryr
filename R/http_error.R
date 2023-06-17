@@ -37,8 +37,8 @@ http_error <- function(
     i <- as.list(err[as.character(status),])
     i[["message"]] <- paste0(
         i[["message"]], 
-        ifelse(!is.null(message), " - ", ""), oneline(message))
-    i[] <- lapply(i, jsonlite::unbox)
+        ifelse(!is.null(message), " - ", ""), one_line(message))
+    i[] <- lapply(i, un_box)
     stop(
         structure(
             i,
@@ -79,8 +79,8 @@ http_response <- function(
     i <- as.list(http_status_codes[as.character(status),])
     i[["message"]] <- paste0(
         i[["message"]], 
-        ifelse(!is.null(message), " - ", ""), oneline(message))
-    i[] <- lapply(i, jsonlite::unbox)
+        ifelse(!is.null(message), " - ", ""), one_line(message))
+    i[] <- lapply(i, un_box)
     if (!is.null(body))
         i$body <- body
     structure(

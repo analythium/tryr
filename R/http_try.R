@@ -55,7 +55,7 @@ http_try_handler <- function(req, res, x) {
                 title = paste0(
                     "Status 500: ", 
                     http_status_codes["500", "message"]),
-                message = oneline(geterrmessage()),
+                message = one_line(geterrmessage()),
                 level = "ERROR"
             )
 
@@ -70,7 +70,7 @@ http_try_handler <- function(req, res, x) {
             i <- as.list(
                 http_status_codes["500",]
             )
-            i[] <- lapply(i, jsonlite::unbox)
+            i[] <- lapply(i, un_box)
             i
         } else {
             msg(
@@ -91,7 +91,7 @@ http_try_handler <- function(req, res, x) {
             i <- unclass(
                 attr(x, "condition")
             )
-            i[] <- lapply(i, jsonlite::unbox)
+            i[] <- lapply(i, un_box)
             i
         }
     } else {

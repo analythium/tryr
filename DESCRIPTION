@@ -1,8 +1,8 @@
 Package: tryr
 Type: Package
 Title: Client/Server Error Handling for HTTP APIs
-Version: 0.0.1
-Date: 2022-10-06
+Version: 0.0.2
+Date: 2023-06-16
 Authors@R: c(
   person(given = "Peter",
     family = "Solymos",
@@ -16,7 +16,6 @@ Description: Differentiate client errors (4xx)
   logging mechanism for the Plumber and RestRserve
   HTTP API frameworks.
 License: MIT + file LICENSE
-Imports: jsonlite
 LazyLoad: yes
 RoxygenNote: 7.2.3
 Encoding: UTF-8

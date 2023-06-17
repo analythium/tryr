@@ -52,8 +52,8 @@ msg <- function(
         return(invisible(FALSE))
 
     st <- Sys.time()
-    # title <- oneline(title)
-    # message <- oneline(message)
+    # title <- one_line(title)
+    # message <- one_line(message)
     if (is.null(format)) {
         format <- "PLAIN"
         ENV_FORMAT <- Sys.getenv("TRYR_LOG_FORMAT", "PLAIN")
@@ -126,14 +126,4 @@ msg <- function(
         cat(msg, file = stdout())
     }
     invisible(TRUE)
-}
-
-#' Remove newlines and leading/trailing white space from a string
-#' 
-#' @param x A string, possibly a vector
-#' 
-#' @return An atomic character vector.
-#' @export 
-oneline <- function(x) {
-    trimws(gsub("[\r\n]", " ", paste(as.character(x), collapse = " ")))
 }

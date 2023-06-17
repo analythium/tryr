@@ -6,6 +6,7 @@
 #' @return A character vector of length 1 with the name of the inferred
 #'   R package or `NA` (which behaves as if it were Plumber).
 #'   Unsupported frameworks will produce an error.
+#' @noRd
 api_framework <- function(req, res) {
     # plumber, RestRserve, fiery, ambiorix, beakr all use R6
     if (inherits(res, "R6")) {
@@ -67,4 +68,27 @@ api_framework <- function(req, res) {
     }
     # unknown - behaves like Plumber
     NA_character_
+}
+
+#' Remove newlines and leading/trailing white space from a string
+#' 
+#' @param x A string, possibly a vector
+#' 
+#' @return An atomic character vector.
+#' @noRd
+one_line <- function(x) {
+    trimws(gsub("[\r\n]", " ", paste(as.character(x), collapse = " ")))
+}
+
+#' Unbox a scalar like in jsonlite but not as safe
+#' 
+#' @param x An atomic vector
+#' 
+#' @return x when length > 1, and x as a scalar class when length is 1
+#' @noRd
+un_box <- function(x) {
+    if (!identical(length(x), 1L))
+        return(x)
+    class(x) <- c("scalar", class(x))
+    x
 }

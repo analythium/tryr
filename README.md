@@ -133,7 +133,7 @@ before:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # 13437 | 2023-06-16 08:44:10.749 [SUCCESS] Status 200: OK
+    # 20076 | 2023-06-16 21:25:35.520 [SUCCESS] Status 200: OK
     # --- STDERR ---
 
     # --- Request ---
@@ -143,7 +143,7 @@ before:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # 13449 | 2023-06-16 08:44:11.805 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
+    # 20088 | 2023-06-16 21:25:36.586 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
@@ -152,7 +152,7 @@ before:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # 13461 | 2023-06-16 08:44:12.861 [ERROR  ] Status 400: Bad Request - Unexpected input.
+    # 20100 | 2023-06-16 21:25:37.661 [ERROR  ] Status 400: Bad Request - Unexpected input.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
@@ -161,7 +161,7 @@ before:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # 13476 | 2023-06-16 08:44:13.915 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
+    # 20112 | 2023-06-16 21:25:38.735 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
 
 Now we can see that:
 
@@ -240,8 +240,8 @@ Output:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # {"pid":"13488","ts":"2023-06-16 08:44:14.956005","ut":1686926654.95598,"level":"INFO","value":3,"title":"POST /try","message":""}
-    # {"pid":"13488","ts":"2023-06-16 08:44:14.982513","ut":1686926654.98249,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
+    # {"pid":"20125","ts":"2023-06-16 21:25:39.785617","ut":1686972339.78558,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"pid":"20125","ts":"2023-06-16 21:25:39.814874","ut":1686972339.81485,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
     # --- STDERR ---
 
     # --- Request ---
@@ -249,27 +249,27 @@ Output:
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"pid":"13500","ts":"2023-06-16 08:44:16.02546","ut":1686926656.02544,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"pid":"20137","ts":"2023-06-16 21:25:40.861506","ut":1686972340.86146,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
-    # {"pid":"13500","ts":"2023-06-16 08:44:16.047444","ut":1686926656.04743,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
+    # {"pid":"20137","ts":"2023-06-16 21:25:40.892093","ut":1686972340.89207,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
     # --- Response ---
     # {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}
     # --- STDOUT ---
-    # {"pid":"13512","ts":"2023-06-16 08:44:17.08813","ut":1686926657.08809,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"pid":"20149","ts":"2023-06-16 21:25:41.937577","ut":1686972341.93753,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
-    # {"pid":"13512","ts":"2023-06-16 08:44:17.110011","ut":1686926657.10999,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
+    # {"pid":"20149","ts":"2023-06-16 21:25:41.972471","ut":1686972341.97245,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"pid":"13524","ts":"2023-06-16 08:44:18.146821","ut":1686926658.1468,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"pid":"20161","ts":"2023-06-16 21:25:43.01552","ut":1686972343.01547,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
-    # {"pid":"13524","ts":"2023-06-16 08:44:18.166714","ut":1686926658.1667,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
+    # {"pid":"20161","ts":"2023-06-16 21:25:43.047822","ut":1686972343.0478,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
 
 Structured errors are handled by the `http_error()` function that uses
 default error messages as defined in the `http_status_codes` data frame.
