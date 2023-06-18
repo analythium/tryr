@@ -92,3 +92,15 @@ un_box <- function(x) {
     class(x) <- c("scalar", class(x))
     x
 }
+
+#' Combine values into a single string
+#'
+#' @param x,y Strings to combine.
+#'
+#' @return A string.
+#'
+#' @rdname paste
+#' @export
+"%+%" <- function(x, y) {
+    paste0(as.character(c(x, y)), collapse = "")
+}

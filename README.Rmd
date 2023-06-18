@@ -589,6 +589,26 @@ post(URL, out, err)
 o <- rx$kill()
 ```
 
+## What else is included
+
+The functions use the `msg` function for logging. This function writes the log message to STDOUT or STDERR as a side effect. Instead of using `glue`, `sprintf`, or `paste`, you can use the `%+%` operator that is similar to addition in JavaScript:
+
+```{r}
+library(tryr)
+n <- 5
+"n = " %+% n
+
+msg("Success", "We did it!")
+msg("Success", "n = " %+% n %+% " is right", "SUCCESS")
+msg("Error", "n = " %+% n %+% " is too high", "ERROR")
+
+msg("Success", "We did it!", format = "JSON")
+msg("Success", "n = " %+% n %+% " is right", "SUCCESS", digits = 0)
+msg("Error", "n = " %+% n %+% " is too high", "ERROR", digits = 6)
+```
+
+You can't see the errors because those are writted to STDERR.
+
 ## Other considerations
 
 Similar ideas in the [tryCatchLog](https://CRAN.R-project.org/package=tryCatchLog) package for the general use case.
