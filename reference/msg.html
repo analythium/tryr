@@ -36,7 +36,7 @@ in plain text, JSON, or comma separated format."><meta property="og:image" conte
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="http://github.com/analythium" aria-label="GitHub">
+  <a class="external-link nav-link" href="http://github.com/analythium/tryr" aria-label="GitHub">
     <span class="fa fa-github"></span>
      
   </a>
@@ -134,21 +134,21 @@ used to signal successful HTTP response codes (2xx).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Sample size n = 5."</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7097 | 2023-06-19 05:23:14.607 [INFO   ] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7724 | 2023-06-19 18:56:12.252 [INFO   ] Success - We did it!</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, <span class="st">"SUCCESS"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7097 | 2023-06-19 05:23:14.609 [SUCCESS] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7724 | 2023-06-19 18:56:12.253 [SUCCESS] Success - We did it!</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Error"</span>, <span class="st">"Oh no! n cannot be "</span> <span class="op">%+%</span> <span class="va">n</span>, <span class="st">"ERROR"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, <span class="st">"SUCCESS"</span>, format <span class="op">=</span> <span class="st">"JSON"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"pid":"7097","ts":"2023-06-19 05:23:14.612","ut":1687152194.61244,"level":"SUCCESS","value":4,"title":"Success","message":"We did it!"}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"pid":"7724","ts":"2023-06-19 18:56:12.256","ut":1687200972.2569,"level":"SUCCESS","value":4,"title":"Success","message":"We did it!"}</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, format <span class="op">=</span> <span class="st">"JSON"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"pid":"7097","ts":"2023-06-19 05:23:14.614","ut":1687152194.61401,"level":"INFO","value":3,"title":"Success","message":"We did it!"}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"pid":"7724","ts":"2023-06-19 18:56:12.258","ut":1687200972.25842,"level":"INFO","value":3,"title":"Success","message":"We did it!"}</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Error"</span>, <span class="st">"Oh no ..."</span>, <span class="st">"ERROR"</span>, format <span class="op">=</span> <span class="st">"JSON"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7097 | 2023-06-19 05:23:14 [INFO   ] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7724 | 2023-06-19 18:56:12 [INFO   ] Success - We did it!</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, digits <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7097 | 2023-06-19 05:23:14.61861 [INFO   ] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7724 | 2023-06-19 18:56:12.263122 [INFO   ] Success - We did it!</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
