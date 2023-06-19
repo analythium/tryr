@@ -49,6 +49,9 @@ If it is unset or null, the format is considered plain text.
 
 The logging message will be formed by combining the \code{title} and the \code{message} parts.
 The log info also contains the process ID, a timestamp (using \code{\link[=Sys.time]{Sys.time()}}), and the log level.
+The timestamp prints out fractional seconds according to \code{digits}. When \code{digits} is \code{NULL}
+it checks the \code{TRYR_LOG_DIGITS} environment variables and uses that value.
+The default is 3 when \code{TRYR_LOG_DIGITS} unset or null.
 
 Besides the usual log levels, there is an extra one \code{"SUCCESS"} that is
 used to signal successful HTTP response codes (2xx).
@@ -59,11 +62,11 @@ n <- 5
 
 msg("Success", "We did it!")
 msg("Success", "We did it!", "SUCCESS")
-msg("Crap", "Oh no ...", "ERROR")
+msg("Error", "Oh no! n cannot be " \%+\% n, "ERROR")
 
 msg("Success", "We did it!", "SUCCESS", format = "JSON")
 msg("Success", "We did it!", format = "JSON")
-msg("Crap", "Oh no ...", "ERROR", format = "JSON")
+msg("Error", "Oh no ...", "ERROR", format = "JSON")
 
 msg("Success", "We did it!", digits = 0)
 msg("Success", "We did it!", digits = 6)

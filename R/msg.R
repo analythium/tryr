@@ -27,6 +27,9 @@
 #'
 #' The logging message will be formed by combining the `title` and the `message` parts.
 #' The log info also contains the process ID, a timestamp (using [Sys.time()]), and the log level.
+#' The timestamp prints out fractional seconds according to `digits`. When `digits` is `NULL`
+#' it checks the `TRYR_LOG_DIGITS` environment variables and uses that value.
+#' The default is 3 when `TRYR_LOG_DIGITS` unset or null.
 #'
 #' Besides the usual log levels, there is an extra one `"SUCCESS"` that is
 #' used to signal successful HTTP response codes (2xx).
@@ -43,11 +46,11 @@
 #' 
 #' msg("Success", "We did it!")
 #' msg("Success", "We did it!", "SUCCESS")
-#' msg("Crap", "Oh no ...", "ERROR")
+#' msg("Error", "Oh no! n cannot be " %+% n, "ERROR")
 #'
 #' msg("Success", "We did it!", "SUCCESS", format = "JSON")
 #' msg("Success", "We did it!", format = "JSON")
-#' msg("Crap", "Oh no ...", "ERROR", format = "JSON")
+#' msg("Error", "Oh no ...", "ERROR", format = "JSON")
 #'
 #' msg("Success", "We did it!", digits = 0)
 #' msg("Success", "We did it!", digits = 6)
