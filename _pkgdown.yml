@@ -1,10 +1,13 @@
 url: https://hub.analythium.io/tryr
 
 home:
-  title: "tryr: Manage R Configuration at the Command Line"
+  title: "tryr: Client/Server Error Handling for HTTP APIs"
   description: |
-    Configuration management using files (JSON, YAML, separated text),
-    JSON strings, and command line arguments.
+    Differentiate client errors (4xx)
+    from server errors (5xx) for the Plumber and 
+    RestRserve HTTP API frameworks. The package
+    includes a with a built-in logging mechanism
+    to STDOUT or STDERR depending on the log level.
 
 template:
   bootstrap: 5
@@ -31,6 +34,5 @@ navbar:
       aria-label: Twitter
     github:
       icon: fa-github
-      href: http://github.com/analythium
+      href: http://github.com/analythium/tryr
       aria-label: GitHub
-

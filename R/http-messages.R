@@ -39,7 +39,7 @@
 #' str(res$body)
 #' 
 #' 
-#' @seealso [http_status_codes]
+#' @seealso [`http_status_codes`]
 #' @name http-messages
 NULL
 

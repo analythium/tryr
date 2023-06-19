@@ -64,5 +64,5 @@ str(res$body)
 
 }
 \seealso{
-\link{http_status_codes}
+\code{\link{http_status_codes}}
 }
