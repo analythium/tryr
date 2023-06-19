@@ -3,7 +3,7 @@
 \docType{data}
 \name{http_status_codes}
 \alias{http_status_codes}
-\title{Data frame with possible status codes and default messages}
+\title{HTTP Response Status Codes}
 \format{
 An object of class \code{data.frame} with 62 rows and 3 columns.
 }
@@ -12,5 +12,15 @@ http_status_codes
 }
 \description{
 Data frame with possible status codes and default messages
+based on \href{https://httpwg.org/specs/rfc9110.html#overview.of.status.codes}{RFC 9110}.
+See also \url{https://developer.mozilla.org/en-US/docs/Web/HTTP/Status}.
+}
+\examples{
+str(http_status_codes)
+
+http_status_codes[http_status_codes$category == "Successful",]
+
+http_status_codes["500",]
+
 }
 \keyword{datasets}

@@ -1,10 +1,22 @@
+#' HTTP Response Status Codes
+#' 
 #' Data frame with possible status codes and default messages
+#' based on [RFC 9110](https://httpwg.org/specs/rfc9110.html#overview.of.status.codes).
+#' See also <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status>.
+#' 
+#' @examples
+#' str(http_status_codes)
+#' 
+#' http_status_codes[http_status_codes$category == "Successful",]
+#' 
+#' http_status_codes["500",]
+#' 
 #' @export
 http_status_codes <- structure(
     list(category = c("Informational", "Informational", 
-    "Informational", "Informational", "Success", "Success", "Success", 
-    "Success", "Success", "Success", "Success", "Success", "Success", 
-    "Success", "Redirection", "Redirection", "Redirection", "Redirection", 
+    "Informational", "Informational", "Successful", "Successful", "Successful", 
+    "Successful", "Successful", "Successful", "Successful", "Successful", "Successful", 
+    "Successful", "Redirection", "Redirection", "Redirection", "Redirection", 
     "Redirection", "Redirection", "Redirection", "Redirection", "Client Error", 
     "Client Error", "Client Error", "Client Error", "Client Error", 
     "Client Error", "Client Error", "Client Error", "Client Error", 

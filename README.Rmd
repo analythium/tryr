@@ -607,7 +607,7 @@ msg("Success", "n = " %+% n %+% " is right", "SUCCESS", digits = 0)
 msg("Error", "n = " %+% n %+% " is too high", "ERROR", digits = 6)
 ```
 
-You can't see the errors because those are writted to STDERR.
+You can't see the errors because those are written to STDERR.
 
 ## Other considerations
 

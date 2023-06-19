@@ -4,7 +4,7 @@
 \alias{http-try}
 \alias{http_try}
 \alias{http_try_handler}
-\title{Try mechanism for Plumber APIs}
+\title{Client/Server Error Handling}
 \usage{
 http_try(req, res, expr, silent = TRUE, ...)
 
@@ -15,9 +15,9 @@ http_try_handler(req, res, x)
 
 \item{res}{The response object.}
 
-\item{expr}{An expression.}
+\item{expr}{An R expression to try.}
 
-\item{silent}{Should the report of error messages be suppressed by \code{\link[=try]{try()}}?}
+\item{silent}{Logical, should the report of error messages be suppressed by \code{\link[=try]{try()}}?}
 
 \item{...}{Arguments passed to \code{\link[=try]{try()}}}
 
@@ -25,25 +25,77 @@ http_try_handler(req, res, x)
 }
 \value{
 A list or the results from \code{expr}.
-A side effect is setting of the response status code and a log message.
+A side effect is setting of the response status code on the response
+object and a log message to STDOUT or STDERR.
 }
 \description{
-Helps differentiate between client (4xx) and server (5xx) errors,
-and provides a mechanism to return custom status codes
-in combination with \code{http_error()} and \code{https_success()}.
+Differentiate between client (4xx) and server (5xx) errors.
+Provides a mechanism to return custom status codes
+in combination with \code{\link[=http_error]{http_error()}} and \code{\link[=http_success]{http_success()}}.
+}
+\details{
+If we catch an error:
+\itemize{
+\item the error is a clear server error coming from \code{stop()}
+\itemize{
+\item log it as an ERROR + print the error message to STDERR
+\item return a generic status 500 message
+\item set the status code of the response object to 500
+}
+\item the error is a structured HTTP error coming from \code{http_error()}
+\itemize{
+\item log it as an ERROR with the message from the condition attribute
+\item return the specific HTTP error code with the structured output
+\item set the status code of the response object
+}
+}
+
+If we don't catch an error:
+\itemize{
+\item the object is of class \code{http_success()} (this comes in handy for async jobs and redirects)
+\itemize{
+\item log it as a SUCCESS with the message element
+\item return the specific HTTP status code with the structured output
+\item set the status code of the response object
+}
+\item the object is NOT of class \code{http_success()}
+\itemize{
+\item log it as a SUCCESS with a generic 200 message
+\item return the object as is (default status code 200 assumed)
+}
+}
 }
 \examples{
-res <- req <- list()
+req <- new.env()
+res <- new.env()
 
 http_try(req, res)
-http_try(req, res, {2 + 2})
+res$status
+
+http_try(req, res, { 2 + 2 })
+res$status
+
 http_try(req, res, http_error(401))
+res$status
+
 http_try(req, res, http_success(201))
-http_try(req, res, {lm(NULL)})
-http_try(req, res, {stop("Stop!!!")})
+res$status
+
+http_try(req, res, { lm(NULL) })
+res$status
+
+http_try(req, res, { stop("Stop!!!") })
+res$status
+
 
 f <- function() stop("Stop!!!")
-http_try(req, res, {f()})
-http_try_handler(req, res, {try(f())})
+http_try(req, res, { f() })
+res$status
 
+http_try_handler(req, res, { try(f()) })
+res$status
+
+}
+\seealso{
+\code{\link[=try]{try()}}, \code{\link[=msg]{msg()}}
 }

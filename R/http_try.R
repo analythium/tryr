@@ -1,33 +1,73 @@
-#' Try mechanism for Plumber APIs
+#' Client/Server Error Handling
 #' 
-#' Helps differentiate between client (4xx) and server (5xx) errors,
-#' and provides a mechanism to return custom status codes
-#' in combination with `http_error()` and `https_success()`.
+#' Differentiate between client (4xx) and server (5xx) errors.
+#' Provides a mechanism to return custom status codes
+#' in combination with [`http_error()`] and [`http_success()`].
 #' 
 #' @param req The request object.
 #' @param res The response object.
-#' @param expr An expression.
+#' @param expr An R expression to try.
 #' @param x The return value from `try(expr)`.
-#' @param silent Should the report of error messages be suppressed by [try()]?
+#' @param silent Logical, should the report of error messages be suppressed by [try()]?
 #' @param ... Arguments passed to [try()]
-#' 
+#'
+#' @details
+#' If we catch an error:
+#'
+#' * the error is a clear server error coming from `stop()`
+#'   * log it as an ERROR + print the error message to STDERR
+#'   * return a generic status 500 message
+#'   * set the status code of the response object to 500
+#' * the error is a structured HTTP error coming from `http_error()`
+#'   * log it as an ERROR with the message from the condition attribute
+#'   * return the specific HTTP error code with the structured output
+#'   * set the status code of the response object
+#'
+#' If we don't catch an error:
+#'
+#' * the object is of class `http_success()` (this comes in handy for async jobs and redirects)
+#'   * log it as a SUCCESS with the message element
+#'   * return the specific HTTP status code with the structured output
+#'   * set the status code of the response object
+#' * the object is NOT of class `http_success()`
+#'   * log it as a SUCCESS with a generic 200 message
+#'   * return the object as is (default status code 200 assumed)
+#'
 #' @return A list or the results from `expr`.
-#'   A side effect is setting of the response status code and a log message.
+#'   A side effect is setting of the response status code on the response
+#'   object and a log message to STDOUT or STDERR.
 #' 
 #' @examples 
-#' res <- req <- list()
+#' req <- new.env()
+#' res <- new.env()
 #' 
 #' http_try(req, res)
-#' http_try(req, res, {2 + 2})
+#' res$status
+#'
+#' http_try(req, res, { 2 + 2 })
+#' res$status
+#'
 #' http_try(req, res, http_error(401))
+#' res$status
+#'
 #' http_try(req, res, http_success(201))
-#' http_try(req, res, {lm(NULL)})
-#' http_try(req, res, {stop("Stop!!!")})
+#' res$status
+#'
+#' http_try(req, res, { lm(NULL) })
+#' res$status
+#'
+#' http_try(req, res, { stop("Stop!!!") })
+#' res$status
+#'
 #' 
 #' f <- function() stop("Stop!!!")
-#' http_try(req, res, {f()})
-#' http_try_handler(req, res, {try(f())})
-#' 
+#' http_try(req, res, { f() })
+#' res$status
+#'
+#' http_try_handler(req, res, { try(f()) })
+#' res$status
+#'
+#' @seealso [try()], [msg()]
 #' @name http-try
 NULL
 

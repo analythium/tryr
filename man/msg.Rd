@@ -2,29 +2,61 @@
 % Please edit documentation in R/msg.R
 \name{msg}
 \alias{msg}
-\title{Message to STDOUT or STDERR}
+\alias{\%+\%}
+\title{Write Logging Information to STDOUT or STDERR}
 \usage{
 msg(title = "", message = "", level = "INFO", format = NULL, digits = NULL)
+
+x \%+\% y
 }
 \arguments{
-\item{title}{Title.}
+\item{title}{Character, the title of the logging message.}
 
-\item{message}{Message.}
+\item{message}{Character, a more detailed logging message.}
 
-\item{level}{Log level.}
+\item{level}{Log level; one of \code{"ALL"}, \code{"TRACE"}, \code{"DEBUG"}, \code{"INFO"},
+\code{"SUCCESS"}, \code{"WARN"}, \code{"ERROR"}, \code{"FATAL"}, \code{"OFF"} (case insensitive).}
 
-\item{format}{Log format: \code{"PLAIN"} (default), \code{"JSON"}, \code{"CSV"}..}
+\item{format}{Log format: \code{"PLAIN"} (default), \code{"JSON"}, \code{"CSV"}
+(case insensitive).}
 
-\item{digits}{Digits for seconds (default \code{3L}).}
+\item{digits}{Integer of length 1, digits for seconds (default \code{3L} meaning milliseconds).}
+
+\item{x, y}{Strings to combine.}
 }
 \value{
-\code{TRUE} or \code{FALSE}: did a log event happened?
-A side effect is a log message to STDOUT or STDERR.
+\code{msg} invisibly returns logical indicating if the log message was written
+(\code{TRUE}) or not (\code{FALSE}). A side effect is a log message to STDOUT or STDERR.
+
+The \verb{\%+\%} special pastes the right and left hand side together into s single string.
 }
 \description{
-Message to STDOUT or STDERR
+A simple logging utility that writes the log message to STDOUT or STDERR
+in plain text, JSON, or comma separated format.
+}
+\details{
+The \code{TRYR_ERR_LEVEL} environment variable determines where the log message is written.
+If the log level is at least the one or above the \code{TRYR_ERR_LEVEL} value
+(or \code{"WARN"} when it is unset or null) the message is written to STDERR,
+otherwise it is written to STDOUT.
+
+The log message is only written when the log level is at least the one or higher than specified
+by the \code{TRYR_LOG_LEVEL} environment variables; or \code{"INFO"} when the variable is unset or null.
+
+The log format can be plain text, JSON, or comma separated text.
+When the log format is \code{NULL} the \code{TRYR_LOG_FORMAT} environment variables is checked.
+If it is unset or null, the format is considered plain text.
+
+The logging message will be formed by combining the \code{title} and the \code{message} parts.
+The log info also contains the process ID, a timestamp (using \code{\link[=Sys.time]{Sys.time()}}), and the log level.
+
+Besides the usual log levels, there is an extra one \code{"SUCCESS"} that is
+used to signal successful HTTP response codes (2xx).
 }
 \examples{
+n <- 5
+"Sample " \%+\% "size " \%+\% "n = " \%+\% n \%+\% "."
+
 msg("Success", "We did it!")
 msg("Success", "We did it!", "SUCCESS")
 msg("Crap", "Oh no ...", "ERROR")
@@ -35,5 +67,8 @@ msg("Crap", "Oh no ...", "ERROR", format = "JSON")
 
 msg("Success", "We did it!", digits = 0)
 msg("Success", "We did it!", digits = 6)
- 
+
+}
+\seealso{
+\code{\link[=paste0]{paste0()}}, \code{\link[=sprintf]{sprintf()}}
 }

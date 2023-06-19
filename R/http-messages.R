@@ -1,26 +1,45 @@
-#' HTTP messages
-#' 
+#' Generic HTTP Response Messages
+#'
+#' These functions provide generic HTTP response messages
+#' based on the HTTP response status codes.
+#'
 #' @param status HTTP status code.
-#' @param message Error message.
+#' @param message An HTTP response message or `NULL`.
+#'   A generic response message is provided when it is `NULL`
+#'   based on [`http_status_codes`].
 #' @param body A list, additional values to be returned.
 #' @param req The request object.
 #' @param res The response object.
-#' @param ... Other arguments passed to `http_response`.
 #' 
-#' @return `http_error` returns an error with a custom condition attribute.
-#'  `http_success` returns a list.
+#' @return `http_error` returns an error with a custom condition attribute
+#'   after checking if the status code is at least 400.
+#' 
+#' `http_success` returns a list but checks that the status code is <400.
+#'
+#' `http_response` returns a list checking only that the status code is valid.
+#'
+#' `http_handler` behaves like `http_response` but it also sets the status code
+#' and the body of the response object.
 #' 
 #' @examples 
 #' try(http_error())
 #' try(http_error(400))
 #' try(http_error(400, "Sorry"))
 #' 
-#' http_success()
-#' http_success(201)
-#' http_success(201, "Awesome")
-#' http_success(201, "Awesome", list(name = "Jane", count = 6))
+#' str(http_success())
+#' str(http_success(201))
+#' str(http_success(201, "Awesome"))
+#'
+#' str(http_response(201, "Awesome", list(name = "Jane", count = 6)))
+#'
+#' req <- new.env()
+#' res <- new.env()
+#' str(http_handler(req, res, 201, "Awesome", list(name = "Jane", count = 6)))
+#' res$status
+#' str(res$body)
 #' 
 #' 
+#' @seealso [http_status_codes]
 #' @name http-messages
 NULL
 
@@ -90,15 +109,20 @@ http_response <- function(
 
 #' @rdname http-messages
 #' @export 
-http_handler <- function(req, res, status, ...) {
-    x <- http_response(status = status, ...)
+http_handler <- function(req, res,
+    status = 200L,
+    message = NULL,
+    body = NULL) {
+    x <- http_response(status = status,
+        message = message,
+        body = body)
     af <- api_framework(req, res)
     if (af == "plumber" || is.na(af)) {
-        res$status <- x$status
+        res$status <- unclass(x$status)
         res$body <- x
     }
     if (!is.na(af) && af == "RestRserve") {
-        res$set_status_code(x$status)
+        res$set_status_code(unclass(x$status))
         res$set_body(x)
     }
     x
