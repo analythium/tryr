@@ -12,7 +12,7 @@ in plain text, JSON, or comma separated format."><meta property="og:image" conte
     
     <a class="navbar-brand me-2" href="../index.html">tryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -134,21 +134,21 @@ used to signal successful HTTP response codes (2xx).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Sample size n = 5."</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6327 | 2024-05-21 17:55:02.512 [INFO   ] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6294 | 2024-05-21 17:56:03.914 [INFO   ] Success - We did it!</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, <span class="st">"SUCCESS"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6327 | 2024-05-21 17:55:02.512 [SUCCESS] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6294 | 2024-05-21 17:56:03.914 [SUCCESS] Success - We did it!</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Error"</span>, <span class="st">"Oh no! n cannot be "</span> <span class="op">%+%</span> <span class="va">n</span>, <span class="st">"ERROR"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, <span class="st">"SUCCESS"</span>, format <span class="op">=</span> <span class="st">"JSON"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"pid":"6327","ts":"2024-05-21 17:55:02.513","ut":1716314102.51364,"level":"SUCCESS","value":4,"title":"Success","message":"We did it!"}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"pid":"6294","ts":"2024-05-21 17:56:03.915","ut":1716314163.91528,"level":"SUCCESS","value":4,"title":"Success","message":"We did it!"}</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, format <span class="op">=</span> <span class="st">"JSON"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"pid":"6327","ts":"2024-05-21 17:55:02.514","ut":1716314102.51409,"level":"INFO","value":3,"title":"Success","message":"We did it!"}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"pid":"6294","ts":"2024-05-21 17:56:03.915","ut":1716314163.91565,"level":"INFO","value":3,"title":"Success","message":"We did it!"}</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Error"</span>, <span class="st">"Oh no ..."</span>, <span class="st">"ERROR"</span>, format <span class="op">=</span> <span class="st">"JSON"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6327 | 2024-05-21 17:55:02 [INFO   ] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6294 | 2024-05-21 17:56:03 [INFO   ] Success - We did it!</span>
 <span class="r-in"><span><span class="fu">msg</span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, digits <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6327 | 2024-05-21 17:55:02.515367 [INFO   ] Success - We did it!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6294 | 2024-05-21 17:56:03.916795 [INFO   ] Success - We did it!</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
