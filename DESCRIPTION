@@ -1,6 +1,6 @@
 Package: tryr
 Type: Package
-Title: Client/Server Error Handling for HTTP APIs
+Title: Client/Server Error Handling for HTTP API Frameworks
 Version: 0.1.0
 Date: 2024-05-21
 Authors@R: c(
@@ -14,8 +14,9 @@ Authors@R: c(
 Description: Differentiate client errors (4xx)
   from server errors (5xx) for the Plumber and 
   RestRserve HTTP API frameworks. The package
-  includes a with a built-in logging mechanism
-  to STDOUT or STDERR depending on the log level.
+  also includes a built-in logging mechanism
+  to standard output (STDOUT) or standard error
+  (STDERR) depending on the log level.
 License: MIT + file LICENSE
 LazyLoad: yes
 RoxygenNote: 7.3.1
