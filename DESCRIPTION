@@ -18,7 +18,7 @@ Description: Differentiate client errors (4xx)
   to STDOUT or STDERR depending on the log level.
 License: MIT + file LICENSE
 LazyLoad: yes
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/analythium/tryr/issues
