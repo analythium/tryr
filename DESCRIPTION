@@ -12,8 +12,8 @@ Authors@R: c(
   person(given = "Analythium Solutions Inc.",
     role = c("cph", "fnd")))
 Description: Differentiate client errors (4xx)
-  from server errors (5xx) for the Plumber and 
-  RestRserve HTTP API frameworks. The package
+  from server errors (5xx) for the 'plumber' and 
+  'RestRserve' HTTP API frameworks. The package
   also includes a built-in logging mechanism
   to standard output (STDOUT) or standard error
   (STDERR) depending on the log level.
