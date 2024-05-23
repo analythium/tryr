@@ -4,19 +4,29 @@
 
 requireNamespace("tryr")
 tryr_debug <- function() {
-  tryr::msg(level = "DEBUG")
+  tryr::msg("Debug message.", level = "DEBUG")
 }
 tryr_info <- function()  {
-  tryr::msg("Info message.")
+  tryr::msg("Info message.", level = "INFO")
 }
 
 cat_debug <- function() {
-  cat() # Print nothing.
+  if (isTRUE(FALSE)) {
+    cat(
+      "INFO  [", format(Sys.time(), "%Y-%m-%d %H:%M:%S", usetz = FALSE),
+      "] Info message.", sep = "")
+  } else {
+    cat() # Print nothing.
+  }
 }
 cat_info <- function() {
+  if (isTRUE(TRUE)) {
     cat(
-    "INFO  [", format(Sys.time(), "%Y-%m-%d %H:%M:%S", usetz = FALSE),
-    "] Info message.", sep = "")
+      "INFO  [", format(Sys.time(), "%Y-%m-%d %H:%M:%S", usetz = FALSE),
+      "] Info message.", sep = "")
+  } else {
+    cat() # Print nothing.
+  }
 }
 cat_debug <- compiler::cmpfun(cat_debug)
 cat_info <- compiler::cmpfun(cat_info)
@@ -114,7 +124,7 @@ info_bench <- microbenchmark::microbenchmark(
   lgr = lgr_info(),
   loggit = loggit_info(),
   rlog = rlog_info(),
-  times = 500,
+  times = 1000,
   control = list(warmups = 10)
 )
 
@@ -127,13 +137,22 @@ debug_bench <- microbenchmark::microbenchmark(
   logger = logger_debug(),
   lgr = lgr_debug(),
   rlog = rlog_debug(),
-  times = 500,
+  times = 1000,
   control = list(warmups = 10)
 )
 
 print(info_bench, order = "median")
 
 print(debug_bench, order = "median")
+
+d <- data.frame(
+  time = c(info_bench$time, debug_bench$time),
+  expr = c(info_bench$expr, debug_bench$expr),
+  level = factor(c(rep("INFO", length(info_bench[[1]])), rep("DEBUG", length(debug_bench[[1]])))))
+op <- par(las = 1, mar = c(4, 10, 1, 1))
+boxplot(log(time) ~ expr + level, d, horizontal = TRUE, col = rep(c(2, 4), c(9, 9)), ylab = "")
+# boxplot(log(time) ~ level + expr, d, horizontal = TRUE, col = rep(c(2, 4), 9), ylab = "")
+par(op)
 
 ## profile
 
@@ -150,25 +169,25 @@ summaryRprof()
 
 # r$> print(info_bench, order = "median")
 # Unit: microseconds
-#           expr     min       lq      mean   median       uq       max neval
-#       *** tryr   5.207   8.6510  12.52525  11.0290  14.3910   487.326   500 ***
-#          log4r  15.047  20.7460  28.76232  25.6250  33.8865   515.411   500
-#            cat  31.242  37.1050  41.84042  39.8725  43.2550   131.405   500
-#           rlog  38.048  50.7170  60.31559  56.6415  65.7435   493.230   500
-#         logger  99.876 131.5895 162.17673 154.3445 188.9895   694.171   500
-#        logging 220.785 268.7345 352.64002 303.8715 340.7305  3993.318   500
-#         loggit 311.067 367.1550 462.18308 416.1090 473.0375  4403.031   500
-#            lgr 609.465 678.5910 843.33482 746.9995 826.5395 16420.828   500
-#  futile.logger 647.431 716.7210 852.82673 782.8745 859.5855  6665.042   500
+#           expr     min       lq      mean   median       uq      max neval
+#          log4r  14.350  19.3110  24.27548  22.5090  28.7615   95.161  1000
+#            cat  31.447  36.2850  38.56173  38.2530  40.1390   72.242  1000
+#           rlog  37.720  46.9655  55.23856  50.9220  55.3500 3377.908  1000
+#           tryr  43.050  55.4730  65.53415  60.8235  67.8960 3457.735  1000 <===
+#         logger  97.621 123.4715 147.47282 139.4410 159.8180 3494.963  1000
+#        logging 227.140 259.3045 308.85329 281.0755 305.4500 5578.173  1000
+#         loggit 310.739 354.9575 425.12859 384.2930 421.8900 4192.168  1000
+#            lgr 597.206 664.0155 767.45079 699.9110 746.8765 5158.005  1000
+#  futile.logger 627.095 697.4100 789.06894 738.9020 782.7515 4517.216  1000
 
 # r$> print(debug_bench, order = "median")
 # Unit: microseconds
 #           expr     min       lq       mean   median       uq      max neval
-#            cat   1.107   1.4555   1.583010   1.5990   1.6810    4.551   500
-#          log4r   1.312   1.7630   2.860980   1.9270   2.1320  437.675   500
-#           rlog   2.993   3.6490   4.870800   4.1000   4.5920  349.525   500
-#       *** tryr   4.838   5.5760   6.961308   6.0680   6.6830  390.115   500 ***
-#            lgr   7.503   8.4460   9.994242   9.0610   9.6965  394.420   500
-#        logging   8.856  10.2090  12.272202  11.0700  12.3820  413.608   500
-#         logger   8.774  10.2090  12.287618  11.1520  12.2795  430.008   500
-#  futile.logger 187.083 193.6020 219.642248 197.1485 201.6175 3496.603   500
+#          log4r   1.312   1.7630   2.427651   1.9270   2.1730  425.826  1000
+#            cat   1.353   1.7630   2.006950   2.0090   2.1525   24.190  1000
+#           rlog   3.075   3.7310   4.668137   4.1820   4.6740  390.976  1000
+#           tryr   3.403   4.0590   5.032627   4.5715   5.0840  377.364  1000 <===
+#            lgr   7.462   8.6305  12.944848   9.2660   9.9220 2999.929  1000
+#        logging   8.815  10.3730  12.209554  11.3980  12.5870  417.339  1000
+#         logger   8.938  10.5780  12.133376  11.5210  12.5460  399.094  1000
+#  futile.logger 187.124 195.7340 216.986145 200.0185 207.1935 3619.234  1000
