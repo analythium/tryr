@@ -87,8 +87,9 @@ to STDOUT or STDERR depending on the log level.
 <blockquote>
 <p>Differentiate client errors (4xx) from server errors (5xx) with a simple built-in logging mechanism for the Plumber and RestRserve HTTP API frameworks.</p>
 </blockquote>
+<p><a href="https://github.com/analythium/tryr/actions" class="external-link"><img src="https://github.com/analythium/tryr/actions/workflows/check.yml/badge.svg" alt="Build status"></a> <a href="https://CRAN.R-project.org/package=tryr" class="external-link"><img src="http://www.r-pkg.org/badges/version/tryr" alt="CRAN version"></a> <a href="https://hub.analythium.io/tryr/"><img src="http://cranlogs.r-pkg.org/badges/grand-total/tryr" alt="CRAN RStudio mirror downloads"></a></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"analythium/tryr"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"tryr"</span><span class="op">)</span></span></code></pre></div>
 <p>In client/server setups, the client might send user input that is incorrect. In such cases the front end application needs to know that the 4xx error status indicates that the message needs to be relayed to the user to correct the input.</p>
 <p>As opposed to this, when the server fails due to unexpected reasons, the client only needs to know that an error with 5xx status happened. Logs are essential for backend developers to diagnose the problem.</p>
 <div class="section level2">
@@ -184,7 +185,7 @@ to STDOUT or STDERR depending on the log level.
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># 10548 | 2024-05-21 11:51:24.084 [SUCCESS] Status 200: OK</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># 21236 | 2024-05-25 08:58:03.876 [SUCCESS] Status 200: OK</span></span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
 <span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
 <span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
@@ -194,7 +195,7 @@ to STDOUT or STDERR depending on the log level.
 <span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
 <span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co"># </span></span>
 <span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co"># 10580 | 2024-05-21 11:51:25.155 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co"># 21248 | 2024-05-25 08:58:04.941 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.</span></span>
 <span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a></span>
 <span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
 <span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
@@ -203,7 +204,7 @@ to STDOUT or STDERR depending on the log level.
 <span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
 <span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co"># </span></span>
 <span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co"># 10592 | 2024-05-21 11:51:26.215 [ERROR  ] Status 400: Bad Request - Unexpected input.</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co"># 21278 | 2024-05-25 08:58:06.009 [ERROR  ] Status 400: Bad Request - Unexpected input.</span></span>
 <span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a></span>
 <span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
 <span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
@@ -212,7 +213,7 @@ to STDOUT or STDERR depending on the log level.
 <span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
 <span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="co"># </span></span>
 <span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="co"># 10624 | 2024-05-21 11:51:27.286 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing</span></span></code></pre></div>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="co"># 21288 | 2024-05-25 08:58:07.077 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing</span></span></code></pre></div>
 <p>Now we can see that:</p>
 <ul>
 <li>Successful response (200) leaves a trace in STDOUT</li>
@@ -289,8 +290,8 @@ to STDOUT or STDERR depending on the log level.
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># ["Success!"]</span></span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># {"pid":"10636","ts":"2024-05-21 11:51:28.330135","ut":1716313888.33009,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co"># {"pid":"10636","ts":"2024-05-21 11:51:28.359236","ut":1716313888.35921,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># {"pid":"21318","ts":"2024-05-25 08:58:08.120625","ut":1716649088.12057,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co"># {"pid":"21318","ts":"2024-05-25 08:58:08.148386","ut":1716649088.14837,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}</span></span>
 <span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
 <span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
 <span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
@@ -298,27 +299,27 @@ to STDOUT or STDERR depending on the log level.
 <span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
 <span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co"># {"pid":"10668","ts":"2024-05-21 11:51:29.40934","ut":1716313889.40931,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co"># {"pid":"21328","ts":"2024-05-25 08:58:09.19666","ut":1716649089.19661,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
 <span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co"># {"pid":"10668","ts":"2024-05-21 11:51:29.435525","ut":1716313889.43551,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co"># {"pid":"21328","ts":"2024-05-25 08:58:09.22357","ut":1716649089.22356,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}</span></span>
 <span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a></span>
 <span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
 <span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
 <span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
 <span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co"># {"pid":"10680","ts":"2024-05-21 11:51:30.482933","ut":1716313890.48287,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co"># {"pid":"21358","ts":"2024-05-25 08:58:10.270953","ut":1716649090.2709,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
 <span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co"># {"pid":"10680","ts":"2024-05-21 11:51:30.51150","ut":1716313890.51149,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}</span></span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co"># {"pid":"21358","ts":"2024-05-25 08:58:10.300038","ut":1716649090.30002,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}</span></span>
 <span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a></span>
 <span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
 <span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
 <span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
 <span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a><span class="co"># {"pid":"10713","ts":"2024-05-21 11:51:31.556088","ut":1716313891.55603,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a><span class="co"># {"pid":"21368","ts":"2024-05-25 08:58:11.343283","ut":1716649091.34323,"level":"INFO","value":3,"title":"POST /try","message":""}</span></span>
 <span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a><span class="co"># {"pid":"10713","ts":"2024-05-21 11:51:31.584738","ut":1716313891.58471,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}</span></span></code></pre></div>
+<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a><span class="co"># {"pid":"21368","ts":"2024-05-25 08:58:11.36911","ut":1716649091.36909,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}</span></span></code></pre></div>
 <p>Structured errors are handled by the <code><a href="reference/http-messages.html">http_error()</a></code> function that uses default error messages as defined in the <code>http_status_codes</code> data frame.</p>
 <p>The <code><a href="reference/http-messages.html">http_success()</a></code> works similarly but it does not produce an error. It can also pass a <code>body</code> argument. This is useful if we need to return simple status messages when responding to webhooks during async execution.</p>
 <p>The <code><a href="reference/http-messages.html">http_response()</a></code> can be used for any of the status codes and is behind the <code><a href="reference/http-messages.html">http_handler()</a></code> function that is useful to set default handlers for Plumber:</p>
@@ -446,9 +447,9 @@ to STDOUT or STDERR depending on the log level.
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co"># "Success!"</span></span>
 <span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co"># -- running Rserve in this R session (pid=10727), 2 server(s) --</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co"># -- running Rserve in this R session (pid=21398), 2 server(s) --</span></span>
 <span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co"># (This session will block until Rserve is shut down)</span></span>
-<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co"># 10759 | 2024-05-21 11:51:32.638 [SUCCESS] Status 200: OK</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co"># 21408 | 2024-05-25 08:58:12.441 [SUCCESS] Status 200: OK</span></span>
 <span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
 <span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a></span>
 <span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
@@ -456,30 +457,30 @@ to STDOUT or STDERR depending on the log level.
 <span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
 <span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="co"># -- running Rserve in this R session (pid=10760), 2 server(s) --</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="co"># -- running Rserve in this R session (pid=21409), 2 server(s) --</span></span>
 <span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="co"># (This session will block until Rserve is shut down)</span></span>
 <span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="co"># 10772 | 2024-05-21 11:51:33.681 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.</span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="co"># 21439 | 2024-05-25 08:58:13.508 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.</span></span>
 <span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a></span>
 <span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
 <span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x=a"</span></span>
 <span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="co"># {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}</span></span>
 <span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a><span class="co"># -- running Rserve in this R session (pid=10773), 2 server(s) --</span></span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a><span class="co"># -- running Rserve in this R session (pid=21440), 2 server(s) --</span></span>
 <span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a><span class="co"># (This session will block until Rserve is shut down)</span></span>
 <span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a><span class="co"># 10805 | 2024-05-21 11:51:34.723 [ERROR  ] Status 400: Bad Request - Unexpected input.</span></span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a><span class="co"># 21459 | 2024-05-25 08:58:14.580 [ERROR  ] Status 400: Bad Request - Unexpected input.</span></span>
 <span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a></span>
 <span id="cb13-31"><a href="#cb13-31" tabindex="-1"></a><span class="co"># --- Request ---</span></span>
 <span id="cb13-32"><a href="#cb13-32" tabindex="-1"></a><span class="co"># curl -X POST "http://localhost:8000/try?x="</span></span>
 <span id="cb13-33"><a href="#cb13-33" tabindex="-1"></a><span class="co"># --- Response ---</span></span>
 <span id="cb13-34"><a href="#cb13-34" tabindex="-1"></a><span class="co"># {"category":"Server Error","status":500,"message":"Internal Server Error"}</span></span>
 <span id="cb13-35"><a href="#cb13-35" tabindex="-1"></a><span class="co"># --- STDOUT ---</span></span>
-<span id="cb13-36"><a href="#cb13-36" tabindex="-1"></a><span class="co"># -- running Rserve in this R session (pid=10806), 2 server(s) --</span></span>
+<span id="cb13-36"><a href="#cb13-36" tabindex="-1"></a><span class="co"># -- running Rserve in this R session (pid=21461), 2 server(s) --</span></span>
 <span id="cb13-37"><a href="#cb13-37" tabindex="-1"></a><span class="co"># (This session will block until Rserve is shut down)</span></span>
 <span id="cb13-38"><a href="#cb13-38" tabindex="-1"></a><span class="co"># --- STDERR ---</span></span>
-<span id="cb13-39"><a href="#cb13-39" tabindex="-1"></a><span class="co"># 10818 | 2024-05-21 11:51:35.766 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing</span></span></code></pre></div>
+<span id="cb13-39"><a href="#cb13-39" tabindex="-1"></a><span class="co"># 21482 | 2024-05-25 08:58:15.652 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="what-else-is-included">What else is included<a class="anchor" aria-label="anchor" href="#what-else-is-included"></a>
@@ -493,18 +494,18 @@ to STDOUT or STDERR depending on the log level.
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="reference/msg.html">msg</a></span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span><span class="op">)</span></span>
-<span><span class="co"># 10442 | 2024-05-21 11:51:35.782 [INFO   ] Success - We did it!</span></span></code></pre></div>
+<span><span class="co"># 21132 | 2024-05-25 08:58:15.676 [INFO   ] Success - We did it!</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/msg.html">msg</a></span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"n = "</span> <span class="op"><a href="reference/msg.html">%+%</a></span> <span class="va">n</span> <span class="op"><a href="reference/msg.html">%+%</a></span> <span class="st">" is right"</span>, <span class="st">"SUCCESS"</span><span class="op">)</span></span>
-<span><span class="co"># 10442 | 2024-05-21 11:51:35.783 [SUCCESS] Success - n = 5 is right</span></span></code></pre></div>
+<span><span class="co"># 21132 | 2024-05-25 08:58:15.676 [SUCCESS] Success - n = 5 is right</span></span></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/msg.html">msg</a></span><span class="op">(</span><span class="st">"Error"</span>, <span class="st">"n = "</span> <span class="op"><a href="reference/msg.html">%+%</a></span> <span class="va">n</span> <span class="op"><a href="reference/msg.html">%+%</a></span> <span class="st">" is too high"</span>, <span class="st">"ERROR"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/msg.html">msg</a></span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"We did it!"</span>, format <span class="op">=</span> <span class="st">"JSON"</span><span class="op">)</span></span>
-<span><span class="co"># {"pid":"10442","ts":"2024-05-21 11:51:35.784","ut":1716313895.78436,"level":"INFO","value":3,"title":"Success","message":"We did it!"}</span></span></code></pre></div>
+<span><span class="co"># {"pid":"21132","ts":"2024-05-25 08:58:15.677","ut":1716649095.67782,"level":"INFO","value":3,"title":"Success","message":"We did it!"}</span></span></code></pre></div>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/msg.html">msg</a></span><span class="op">(</span><span class="st">"Success"</span>, <span class="st">"n = "</span> <span class="op"><a href="reference/msg.html">%+%</a></span> <span class="va">n</span> <span class="op"><a href="reference/msg.html">%+%</a></span> <span class="st">" is right"</span>, <span class="st">"SUCCESS"</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="co"># 10442 | 2024-05-21 11:51:35 [SUCCESS] Success - n = 5 is right</span></span></code></pre></div>
+<span><span class="co"># 21132 | 2024-05-25 08:58:15 [SUCCESS] Success - n = 5 is right</span></span></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/msg.html">msg</a></span><span class="op">(</span><span class="st">"Error"</span>, <span class="st">"n = "</span> <span class="op"><a href="reference/msg.html">%+%</a></span> <span class="va">n</span> <span class="op"><a href="reference/msg.html">%+%</a></span> <span class="st">" is too high"</span>, <span class="st">"ERROR"</span>, digits <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 <p>You can’t see the errors because those are written to STDERR.</p>
@@ -519,6 +520,7 @@ to STDOUT or STDERR depending on the log level.
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=tryr" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/analythium/tryr/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/analythium/tryr/issues" class="external-link">Report a bug</a></li>
 </ul>
