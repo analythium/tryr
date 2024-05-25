@@ -41,7 +41,7 @@ version](http://www.r-pkg.org/badges/version/tryr)](https://CRAN.R-project.org/p
 downloads](http://cranlogs.r-pkg.org/badges/grand-total/tryr)](https://hub.analythium.io/tryr/)
 
 ```R
-remotes::install_github("tryr")
+install.packages("tryr")
 ```
 
 In client/server setups, the client might send user input that is incorrect. In such cases the front end application needs to know that the 4xx error status indicates that the message needs to be relayed to the user to correct the input.
