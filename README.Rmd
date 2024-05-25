@@ -33,8 +33,15 @@ tmp <- tempdir()
 
 > Differentiate client errors (4xx) from server errors (5xx) with a simple built-in logging mechanism for the Plumber and RestRserve HTTP API frameworks.
 
+[![Build
+status](https://github.com/analythium/tryr/actions/workflows/check.yml/badge.svg)](https://github.com/analythium/tryr/actions)
+[![CRAN
+version](http://www.r-pkg.org/badges/version/tryr)](https://CRAN.R-project.org/package=tryr)
+[![CRAN RStudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/grand-total/tryr)](https://hub.analythium.io/tryr/)
+
 ```R
-remotes::install_github("analythium/tryr")
+remotes::install_github("tryr")
 ```
 
 In client/server setups, the client might send user input that is incorrect. In such cases the front end application needs to know that the 4xx error status indicates that the message needs to be relayed to the user to correct the input.
