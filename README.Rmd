@@ -514,7 +514,7 @@ The `inst/examples` folder contains Shiny apps that you can edit and use to expl
 source("inst/examples/app.R")
 ```
 
-![](tryr-01.png)
+![](https://raw.githubusercontent.com/analythium/tryr/main/tryr-01.png)
 
 The second app is more general. You can edit the `plumber_fun` function definition and explore your own API's output printed to STDOUT and STDERR:
 
@@ -522,7 +522,7 @@ The second app is more general. You can edit the `plumber_fun` function definiti
 source("inst/examples/explore.R")
 ```
 
-![](tryr-02.png)
+![](https://raw.githubusercontent.com/analythium/tryr/main/tryr-02.png)
 
 ## Supported API frameworks
 
