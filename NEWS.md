@@ -1,3 +1,7 @@
+# Version 0.1.2
+
+* Improve examples.
+
 # Version 0.1.1
 
 * Single quoting other R packages in `DESCRIPTION`.

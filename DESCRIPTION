@@ -1,8 +1,8 @@
 Package: tryr
 Type: Package
 Title: Client/Server Error Handling for HTTP API Frameworks
-Version: 0.1.1
-Date: 2024-05-22
+Version: 0.1.2
+Date: 2024-05-29
 Authors@R: c(
   person(given = "Peter",
     family = "Solymos",
