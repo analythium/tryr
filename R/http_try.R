@@ -40,30 +40,42 @@
 #' @examples 
 #' req <- new.env()
 #' res <- new.env()
-#' 
 #' http_try(req, res)
 #' res$status
 #'
+#' req <- new.env()
+#' res <- new.env()
 #' http_try(req, res, { 2 + 2 })
 #' res$status
 #'
+#' req <- new.env()
+#' res <- new.env()
 #' http_try(req, res, http_error(401))
 #' res$status
 #'
+#' req <- new.env()
+#' res <- new.env()
 #' http_try(req, res, http_success(201))
 #' res$status
 #'
+#' req <- new.env()
+#' res <- new.env()
 #' http_try(req, res, { lm(NULL) })
 #' res$status
 #'
+#' req <- new.env()
+#' res <- new.env()
 #' http_try(req, res, { stop("Stop!!!") })
 #' res$status
 #'
-#' 
+#' req <- new.env()
+#' res <- new.env()
 #' f <- function() stop("Stop!!!")
 #' http_try(req, res, { f() })
 #' res$status
 #'
+#' req <- new.env()
+#' res <- new.env()
 #' http_try_handler(req, res, { try(f()) })
 #' res$status
 #'
