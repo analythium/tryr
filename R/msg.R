@@ -108,7 +108,7 @@ msg <- function(
     # op <- options(digits.secs = as.integer(digits))
     # on.exit(options(op))
     pid <- Sys.getenv("TRYR_PROC_NAME", as.character(Sys.getpid()))
-    dt <- as.character(format(Sys.time(), digits = as.integer(digits)))
+    dt <- as.character(format(st, digits = as.integer(digits)))
     if (format == "JSON") {
         msg <- paste0(
             "{\"pid\":\"",

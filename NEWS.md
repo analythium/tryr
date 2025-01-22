@@ -1,3 +1,7 @@
+# Version 0.1.3
+
+* Fix timestamp calculation in `msg`.
+
 # Version 0.1.2
 
 * Improve examples.
