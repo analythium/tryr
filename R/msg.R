@@ -109,6 +109,7 @@ msg <- function(
     # on.exit(options(op))
     pid <- Sys.getenv("TRYR_PROC_NAME", as.character(Sys.getpid()))
     dt <- as.character(format(st, digits = as.integer(digits)))
+    ut <- as.character(format(as.numeric(st), nsmall = as.integer(digits)))
     if (format == "JSON") {
         msg <- paste0(
             "{\"pid\":\"",
@@ -116,7 +117,7 @@ msg <- function(
             "\",\"ts\":\"",
             dt,
             "\",\"ut\":",
-            as.numeric(st),
+            ut,
             ",\"level\":\"",
             level,
             "\",\"value\":",
@@ -131,7 +132,7 @@ msg <- function(
         msg <- paste0(
             "\"", pid, "\",\"",
             dt, "\",",
-            as.numeric(st), ",",
+            ut, ",",
             level, ",",
             levels[level], ",\"",
             title, "\",\"",
