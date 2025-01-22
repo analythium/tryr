@@ -11,7 +11,7 @@ spelling::update_wordlist()
 urlchecker::url_check()
 
 # local checks
-devtools::check()
+rcmdcheck::rcmdcheck()
 
 devtools::install()
 

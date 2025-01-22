@@ -140,7 +140,7 @@ before:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # 299 | 2025-01-22 01:11:35.895 [SUCCESS] Status 200: OK
+    # 9966 | 2025-01-22 09:14:45.843 [SUCCESS] Status 200: OK
     # --- STDERR ---
 
     # --- Request ---
@@ -150,7 +150,7 @@ before:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # 327 | 2025-01-22 01:11:36.962 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
+    # 10008 | 2025-01-22 09:14:46.915 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
@@ -159,7 +159,7 @@ before:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # 387 | 2025-01-22 01:11:38.042 [ERROR  ] Status 400: Bad Request - Unexpected input.
+    # 10018 | 2025-01-22 09:14:47.987 [ERROR  ] Status 400: Bad Request - Unexpected input.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
@@ -168,7 +168,7 @@ before:
     # --- STDOUT ---
     # 
     # --- STDERR ---
-    # 405 | 2025-01-22 01:11:39.120 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
+    # 10058 | 2025-01-22 09:14:49.061 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
 
 Now we can see that:
 
@@ -247,8 +247,8 @@ Output:
     # --- Response ---
     # ["Success!"]
     # --- STDOUT ---
-    # {"pid":"543","ts":"2025-01-22 01:11:40.165858","ut":1737533500.165859,"level":"INFO","value":3,"title":"POST /try","message":""}
-    # {"pid":"543","ts":"2025-01-22 01:11:40.190247","ut":1737533500.190247,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
+    # {"pid":"10098","ts":"2025-01-22 09:14:50.107361","ut":1737562490.107361,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"pid":"10098","ts":"2025-01-22 09:14:50.135257","ut":1737562490.135257,"level":"SUCCESS","value":4,"title":"Status 200: OK","message":""}
     # --- STDERR ---
 
     # --- Request ---
@@ -256,27 +256,27 @@ Output:
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"pid":"610","ts":"2025-01-22 01:11:41.234571","ut":1737533501.234572,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"pid":"10108","ts":"2025-01-22 09:14:51.171416","ut":1737562491.171417,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
-    # {"pid":"610","ts":"2025-01-22 01:11:41.263364","ut":1737533501.263364,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
+    # {"pid":"10108","ts":"2025-01-22 09:14:51.196443","ut":1737562491.196443,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error in foo(x) : 'x' is too low."}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
     # --- Response ---
     # {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}
     # --- STDOUT ---
-    # {"pid":"664","ts":"2025-01-22 01:11:42.309396","ut":1737533502.309396,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"pid":"10148","ts":"2025-01-22 09:14:52.251338","ut":1737562492.251339,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
-    # {"pid":"664","ts":"2025-01-22 01:11:42.332154","ut":1737533502.332155,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
+    # {"pid":"10148","ts":"2025-01-22 09:14:52.281832","ut":1737562492.281833,"level":"ERROR","value":6,"title":"Status 400: Bad Request - Unexpected input.","message":""}
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # {"pid":"677","ts":"2025-01-22 01:11:43.375473","ut":1737533503.375473,"level":"INFO","value":3,"title":"POST /try","message":""}
+    # {"pid":"10158","ts":"2025-01-22 09:14:53.325664","ut":1737562493.325664,"level":"INFO","value":3,"title":"POST /try","message":""}
     # --- STDERR ---
-    # {"pid":"677","ts":"2025-01-22 01:11:43.403477","ut":1737533503.403478,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
+    # {"pid":"10158","ts":"2025-01-22 09:14:53.352067","ut":1737562493.352068,"level":"ERROR","value":6,"title":"Status 500: Internal Server Error","message":"Error : 'x' is missing"}
 
 Structured errors are handled by the `http_error()` function that uses
 default error messages as defined in the `http_status_codes` data frame.
@@ -299,7 +299,7 @@ plumber::pr("inst/examples/plumber.R") |>
         title = paste0(
           "Status 404: ", 
           tryr::http_status_codes["404", "message"]),
-        level = "INFO"
+        level = "ERROR"
       )
       tryr::http_handler(req, res, 404L)
     }
@@ -432,9 +432,9 @@ backend$start(app, http_port = 8000)
     # --- Response ---
     # "Success!"
     # --- STDOUT ---
-    # -- running Rserve in this R session (pid=717), 2 server(s) --
+    # -- running Rserve in this R session (pid=10198), 2 server(s) --
     # (This session will block until Rserve is shut down)
-    # 727 | 2025-01-22 01:11:44.474 [SUCCESS] Status 200: OK
+    # 10209 | 2025-01-22 09:14:54.427 [SUCCESS] Status 200: OK
     # --- STDERR ---
 
     # --- Request ---
@@ -442,30 +442,30 @@ backend$start(app, http_port = 8000)
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # -- running Rserve in this R session (pid=728), 2 server(s) --
+    # -- running Rserve in this R session (pid=10210), 2 server(s) --
     # (This session will block until Rserve is shut down)
     # --- STDERR ---
-    # 759 | 2025-01-22 01:11:45.543 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
+    # 10250 | 2025-01-22 09:14:55.493 [ERROR  ] Status 500: Internal Server Error - Error in foo(x) : 'x' is too low.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x=a"
     # --- Response ---
     # {"category":"Client Error","status":400,"message":"Bad Request - Unexpected input."}
     # --- STDOUT ---
-    # -- running Rserve in this R session (pid=760), 2 server(s) --
+    # -- running Rserve in this R session (pid=10251), 2 server(s) --
     # (This session will block until Rserve is shut down)
     # --- STDERR ---
-    # 770 | 2025-01-22 01:11:46.620 [ERROR  ] Status 400: Bad Request - Unexpected input.
+    # 10261 | 2025-01-22 09:14:56.566 [ERROR  ] Status 400: Bad Request - Unexpected input.
 
     # --- Request ---
     # curl -X POST "http://localhost:8000/try?x="
     # --- Response ---
     # {"category":"Server Error","status":500,"message":"Internal Server Error"}
     # --- STDOUT ---
-    # -- running Rserve in this R session (pid=771), 2 server(s) --
+    # -- running Rserve in this R session (pid=10262), 2 server(s) --
     # (This session will block until Rserve is shut down)
     # --- STDERR ---
-    # 803 | 2025-01-22 01:11:47.697 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
+    # 10302 | 2025-01-22 09:14:57.640 [ERROR  ] Status 500: Internal Server Error - Error : 'x' is missing
 
 ## What else is included
 
@@ -481,15 +481,15 @@ n <- 5
 # [1] "n = 5"
 
 msg("Success", "We did it!")
-# 99995 | 2025-01-22 01:11:47.727 [INFO   ] Success - We did it!
+# 9851 | 2025-01-22 09:14:57.665 [INFO   ] Success - We did it!
 msg("Success", "n = " %+% n %+% " is right", "SUCCESS")
-# 99995 | 2025-01-22 01:11:47.733 [SUCCESS] Success - n = 5 is right
+# 9851 | 2025-01-22 09:14:57.670 [SUCCESS] Success - n = 5 is right
 msg("Error", "n = " %+% n %+% " is too high", "ERROR")
 
 msg("Success", "We did it!", format = "JSON")
-# {"pid":"99995","ts":"2025-01-22 01:11:47.734","ut":1737533507.734,"level":"INFO","value":3,"title":"Success","message":"We did it!"}
+# {"pid":"9851","ts":"2025-01-22 09:14:57.671","ut":1737562497.671,"level":"INFO","value":3,"title":"Success","message":"We did it!"}
 msg("Success", "n = " %+% n %+% " is right", "SUCCESS", digits = 0)
-# 99995 | 2025-01-22 01:11:47 [SUCCESS] Success - n = 5 is right
+# 9851 | 2025-01-22 09:14:57 [SUCCESS] Success - n = 5 is right
 msg("Error", "n = " %+% n %+% " is too high", "ERROR", digits = 6)
 ```
 

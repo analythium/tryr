@@ -471,7 +471,7 @@ plumber::pr("inst/examples/plumber.R") |>
         title = paste0(
           "Status 404: ", 
           tryr::http_status_codes["404", "message"]),
-        level = "INFO"
+        level = "ERROR"
       )
       tryr::http_handler(req, res, 404L)
     }
